@@ -1,10 +1,10 @@
-import { AppScreen } from '@stackflow/plugin-basic-ui'
+import { AppScreen } from '@stackflow/plugin-basic-ui';
 
 type SettingsParams = {
   params: {
-    name: string
-  }
-}
+    name: string;
+  };
+};
 const Settings: React.FC<SettingsParams> = ({ params: { name } }) => {
   return (
     <AppScreen appBar={{ title: 'Settings' }}>
@@ -12,7 +12,7 @@ const Settings: React.FC<SettingsParams> = ({ params: { name } }) => {
         <h1>{name}</h1>
       </div>
     </AppScreen>
-  )
-}
+  );
+};
 
-export default Settings
+export default Settings;

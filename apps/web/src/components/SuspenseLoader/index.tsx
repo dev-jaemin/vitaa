@@ -1,16 +1,16 @@
-import NProgress from 'nprogress'
-import { useEffect } from 'react'
+import NProgress from 'nprogress';
+import { useEffect } from 'react';
 
-import { Box, CircularProgress } from '@mui/material'
+import { Box, CircularProgress } from '@mui/material';
 
 function SuspenseLoader() {
   useEffect(() => {
-    NProgress.start()
+    NProgress.start();
 
     return () => {
-      NProgress.done()
-    }
-  }, [])
+      NProgress.done();
+    };
+  }, []);
 
   return (
     <Box
@@ -27,7 +27,7 @@ function SuspenseLoader() {
     >
       <CircularProgress size={64} disableShrink thickness={3} />
     </Box>
-  )
+  );
 }
 
-export default SuspenseLoader
+export default SuspenseLoader;
