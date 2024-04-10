@@ -1,13 +1,13 @@
-import { Suspense } from 'react';
+// import { Suspense } from 'react';
 import { Navigate, type RouteObject } from 'react-router';
 
-import SuspenseLoader from './components/SuspenseLoader';
+// import SuspenseLoader from './components/SuspenseLoader';
 
-const Loader = (Component: React.ComponentType<any>) => (props: JSX.IntrinsicAttributes) => (
-  <Suspense fallback={<SuspenseLoader />}>
-    <Component {...props} />
-  </Suspense>
-);
+// const Loader = (Component: React.ComponentType<unknown>) => (props: JSX.IntrinsicAttributes) => (
+//   <Suspense fallback={<SuspenseLoader />}>
+//     <Component {...props} />
+//   </Suspense>
+// );
 
 const routes: RouteObject[] = [
   /**

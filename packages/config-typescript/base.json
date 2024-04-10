@@ -16,8 +16,7 @@
     "preserveWatchOutput": true,
     "skipLibCheck": true,
     "strict": true,
-    "allowImportingTsExtensions": true,
-    "allowImportingTsxExtensions": true
+    "allowImportingTsExtensions": true
   },
   "exclude": ["node_modules"]
 }
