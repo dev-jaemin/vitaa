@@ -18,11 +18,7 @@
     "strict": true,
     "allowImportingTsExtensions": true,
     "jsx": "react-jsx",
-    "noEmit": true,
-    "baseUrl": ".",
-    "paths": {
-      "@mukkaebi/*": ["../../packages/*"]
-    }
+    "noEmit": true
   },
   "exclude": ["node_modules"]
 }
