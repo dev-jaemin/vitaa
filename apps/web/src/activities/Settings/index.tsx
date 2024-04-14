@@ -5,7 +5,7 @@ type SettingsParams = {
     name: string;
   };
 };
-const Settings: React.FC<SettingsParams> = ({ params: { name } }) => {
+const SettingsActivity: React.FC<SettingsParams> = ({ params: { name } }) => {
   return (
     <AppScreen appBar={{ title: 'Settings' }}>
       <div>
@@ -15,4 +15,4 @@ const Settings: React.FC<SettingsParams> = ({ params: { name } }) => {
   );
 };
 
-export default Settings;
+export default SettingsActivity;

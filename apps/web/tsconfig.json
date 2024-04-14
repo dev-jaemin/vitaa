@@ -2,6 +2,6 @@
   "compilerOptions": {
     "jsx": "react-jsx"
   },
-  "extends": "@repo/typescript-config/vite.json",
-  "include": ["src"]
+  "extends": ["@repo/typescript-config/vite.json"],
+  "include": ["src", "src/layouts/stackflow.ts"]
 }

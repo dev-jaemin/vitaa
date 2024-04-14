@@ -17,7 +17,12 @@
     "skipLibCheck": true,
     "strict": true,
     "allowImportingTsExtensions": true,
-    "noEmit": true
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@mukkaebi/*": ["../../packages/*"]
+    }
   },
   "exclude": ["node_modules"]
 }

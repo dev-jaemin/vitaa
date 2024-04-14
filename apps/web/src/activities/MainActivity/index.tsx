@@ -6,7 +6,7 @@ const MainActivity: ActivityComponentType = () => {
   const { push } = useFlow();
 
   const onClick = () => {
-    push('Settings', {
+    push('SettingsActivity', {
       name: 'Jaemin',
     });
   };

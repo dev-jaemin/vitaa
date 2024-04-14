@@ -1,9 +1,9 @@
 import { stackflow } from '@stackflow/react';
 import { basicRendererPlugin } from '@stackflow/plugin-renderer-basic';
 import { basicUIPlugin } from '@stackflow/plugin-basic-ui';
-import MainActivity from '../activities/MainActivity';
-import Settings from '../activities/Settings';
 import { historySyncPlugin } from '@stackflow/plugin-history-sync';
+import MainActivity from '../activities/MainActivity';
+import SettingsActivity from '../activities/Settings';
 
 export const { Stack, useFlow } = stackflow({
   transitionDuration: 350,
@@ -15,11 +15,13 @@ export const { Stack, useFlow } = stackflow({
     historySyncPlugin({
       routes: {
         MainActivity: '/',
-        Settings: '/settings',
+        SettingsActivity: '/settings',
       },
       fallbackActivity: () => 'MainActivity',
     }),
   ],
-  activities: { MainActivity, Settings },
-  initialActivity: () => 'MainActivity',
+  activities: {
+    MainActivity,
+    SettingsActivity,
+  },
 });
