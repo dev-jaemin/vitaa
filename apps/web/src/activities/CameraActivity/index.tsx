@@ -2,21 +2,17 @@ import type { ActivityComponentType } from '@stackflow/react';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { BottomNavigation } from '../../components/BottomNavigation';
 import { ScreenContainer } from '../../components/Containers/ScreenContainer';
-import Header from '../../components/Header';
-import WelcomeBox from './WelcomeBox';
-import CalorieBox from './CalorieBox';
+import Camera from './Camera/Camera';
 
-const MainActivity: ActivityComponentType = () => {
+const CameraActivity: ActivityComponentType = () => {
   return (
     <AppScreen>
-      <Header isCalendar />
       <ScreenContainer>
-        <WelcomeBox />
-        <CalorieBox />
+        <Camera />
       </ScreenContainer>
       <BottomNavigation />
     </AppScreen>
   );
 };
 
-export default MainActivity;
+export default CameraActivity;

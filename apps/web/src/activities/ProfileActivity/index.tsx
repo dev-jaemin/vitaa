@@ -1,22 +1,18 @@
 import type { ActivityComponentType } from '@stackflow/react';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { BottomNavigation } from '../../components/BottomNavigation';
+import { Typography } from '@mui/material';
 import { ScreenContainer } from '../../components/Containers/ScreenContainer';
-import Header from '../../components/Header';
-import WelcomeBox from './WelcomeBox';
-import CalorieBox from './CalorieBox';
 
-const MainActivity: ActivityComponentType = () => {
+const ProfileActivity: ActivityComponentType = () => {
   return (
     <AppScreen>
-      <Header isCalendar />
       <ScreenContainer>
-        <WelcomeBox />
-        <CalorieBox />
+        <Typography variant="h1">Profile Activity</Typography>
       </ScreenContainer>
       <BottomNavigation />
     </AppScreen>
   );
 };
 
-export default MainActivity;
+export default ProfileActivity;

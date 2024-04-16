@@ -1,22 +1,28 @@
 import MUIBottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import ListIcon from '@mui/icons-material/List';
-import SettingsIcon from '@mui/icons-material/Settings';
 
 import { useFlow } from '../../layouts/stackflow';
+import { Camera, Home, Person } from '@mui/icons-material';
+import { Paper } from '@mui/material';
+
+// TEMP TYPE
+type Activity = 'MainActivity' | 'CameraActivity' | 'ProfileActivity';
 
 export function BottomNavigation() {
   const { push } = useFlow();
 
   // @TODO - Add a type for the activity
-  const handleClick = (_: React.SyntheticEvent<Element, Event>, activity: 'MainActivity' | 'SettingsActivity') => {
-    push(activity, {});
+  const handleClick = (_: React.SyntheticEvent<Element, Event>, activity: Activity) => {
+    push(activity, {}, { animate: false });
   };
 
   return (
-    <MUIBottomNavigation showLabels onChange={handleClick}>
-      <BottomNavigationAction label="메인" value="MainActivity" icon={<ListIcon />} />
-      <BottomNavigationAction label="설정" value="SettingsActivity" icon={<SettingsIcon />} />
-    </MUIBottomNavigation>
+    <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+      <MUIBottomNavigation showLabels onChange={handleClick}>
+        <BottomNavigationAction label="HOME" value="MainActivity" icon={<Home />} />
+        <BottomNavigationAction label="CAMERA" value="CameraActivity" icon={<Camera />} />
+        <BottomNavigationAction label="MY" value="ProfileActivity" icon={<Person />} />
+      </MUIBottomNavigation>
+    </Paper>
   );
 }
