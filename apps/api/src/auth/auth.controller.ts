@@ -7,7 +7,6 @@ export class AuthController {
 
   @Post('/kakao/callback')
   async getHello(@Body('code') code: string): Promise<string> {
-    console.log('code', code);
     const token = await this.authService.getAccessToken(code);
 
     return token;
