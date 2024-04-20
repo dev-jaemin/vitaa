@@ -5,7 +5,13 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [AuthModule, ConfigModule.forRoot({ envFilePath: ['.env.local'] })],
+  imports: [
+    AuthModule,
+    ConfigModule.forRoot({
+      envFilePath: ['.env.local'],
+      isGlobal: true,
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -13,6 +13,7 @@ import AuthActivity from '../activities/AuthActivity';
 
 import '@stackflow/plugin-basic-ui/index.css';
 import { AuthCallbackActivity } from '../activities/AuthCallbackActivity';
+import { providersPlugin } from './plugins/providersPlugin';
 
 export const { Stack, useFlow } = stackflow({
   transitionDuration: 350,
@@ -36,6 +37,7 @@ export const { Stack, useFlow } = stackflow({
       },
       fallbackActivity: () => 'MainActivity',
     }),
+    providersPlugin,
   ],
   activities: {
     /**페이지 */
