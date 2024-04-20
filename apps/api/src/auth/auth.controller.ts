@@ -11,13 +11,6 @@ export class AuthController {
     private readonly configService: ConfigService,
   ) {}
 
-  @Post('/kakao/callback')
-  async getHello(@Body('code') code: string): Promise<string> {
-    const token = await this.authService.getAccessToken(code);
-
-    return token;
-  }
-
   @Get('kakao')
   @UseGuards(AuthGuard('kakao'))
   @HttpCode(301)
@@ -33,7 +26,7 @@ export class AuthController {
   @HttpCode(200)
   async refresh(@Req() req: Request, @Res() res: Response) {
     try {
-      const newAccessToken = await this.authService.refresh(req.headers.authorization);
+      const newAccessToken = await this.authService.refresh(req.cookies.refreshToken);
 
       return res.send({ accessToken: newAccessToken });
     } catch (err) {
