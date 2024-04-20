@@ -4,7 +4,7 @@ declare global {
       init: (key: string) => void;
       isInitialized: () => boolean;
       Auth: {
-        authorize: () => void;
+        authorize: (setttings: Settings) => void;
       };
     };
   }

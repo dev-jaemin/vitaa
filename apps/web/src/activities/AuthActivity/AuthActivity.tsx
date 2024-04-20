@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 
 export const AuthActivity: ActivityComponentType = () => {
   function handleLogin() {
-    window.Kakao.Auth.authorize();
+    window.Kakao.Auth.authorize({ redirectUri: 'http://localhost:5173/auth/callback' });
   }
 
   useEffect(() => {

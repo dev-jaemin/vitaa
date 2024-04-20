@@ -12,6 +12,7 @@ import CapturedActivity from '../activities/CapturedActivity';
 import AuthActivity from '../activities/AuthActivity';
 
 import '@stackflow/plugin-basic-ui/index.css';
+import { AuthCallbackActivity } from '../activities/AuthCallbackActivity';
 
 export const { Stack, useFlow } = stackflow({
   transitionDuration: 350,
@@ -29,6 +30,7 @@ export const { Stack, useFlow } = stackflow({
         SettingsActivity: '/settings',
         CapturedActivity: '/captured',
         AuthActivity: '/auth',
+        AuthCallbackActivity: '/auth/callback',
         /**모달 */
         CalendarModal: '/calendar',
       },
@@ -43,6 +45,7 @@ export const { Stack, useFlow } = stackflow({
     CapturedActivity,
     SettingsActivity,
     AuthActivity,
+    AuthCallbackActivity,
     /**모달 */
     CalendarModal,
   },
