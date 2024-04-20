@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import axios, { AxiosResponse } from 'axios';
@@ -73,5 +73,37 @@ export class AuthService {
     // await this.usersRepository.setCurrentRefreshToken(payload.userId, currentRefreshToken);
 
     return refreshToken;
+  }
+
+  async refresh(refreshToken: string): Promise<string> {
+    try {
+      // 1차 검증
+      const decodedRefreshToken = this.jwtService.verify(refreshToken, {
+        secret: this.configService.get('JWT_REFRESH_SECRET'),
+      });
+      const userId = decodedRefreshToken.userId;
+
+      // 데이터베이스에서 User 객체 가져오기
+      // const user = await this.usersRepository.getUserWithCurrentRefreshToken(userId);
+      const user: User = {
+        id: userId,
+        kakaoId: decodedRefreshToken.kakaoId,
+        name: '김재민',
+      };
+
+      // 2차 검증
+      // const isRefreshTokenMatching = await bcrypt.compare(refreshToken, user.currentRefreshToken);
+
+      // if (!isRefreshTokenMatching) {
+      //   throw new UnauthorizedException('Invalid refresh-token');
+      // }
+
+      // 새로운 accessToken 생성
+      const accessToken = this.generateAccessToken(user);
+
+      return accessToken;
+    } catch (err) {
+      throw new UnauthorizedException('Invalid refresh-token');
+    }
   }
 }

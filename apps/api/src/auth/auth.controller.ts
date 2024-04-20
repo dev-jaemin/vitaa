@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, Post, Req, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, HttpCode, Post, Req, Res, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
@@ -18,7 +18,7 @@ export class AuthController {
     return token;
   }
 
-  @Get('kakao') // 카카오 서버를 거쳐서 도착하게 될 엔드포인트
+  @Post('kakao') // 카카오 서버를 거쳐서 도착하게 될 엔드포인트
   @UseGuards(AuthGuard('kakao')) // kakao.strategy를 실행시켜 줍니다.
   @HttpCode(301)
   async kakaoLogin(@Req() req: Request, @Res() res: Response) {
@@ -27,5 +27,17 @@ export class AuthController {
     res.cookie('refreshToken', refreshToken, { httpOnly: true });
     res.cookie('isLoggedIn', true, { httpOnly: false });
     return res.redirect(this.configService.get('CLIENT_URL'));
+  }
+
+  @Post('refresh')
+  @HttpCode(200)
+  async refresh(@Req() req: Request, @Res() res: Response) {
+    try {
+      const newAccessToken = await this.authService.refresh(req.headers.authorization);
+
+      return res.send({ accessToken: newAccessToken });
+    } catch (err) {
+      throw new UnauthorizedException();
+    }
   }
 }
