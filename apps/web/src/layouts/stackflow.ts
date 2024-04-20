@@ -2,13 +2,16 @@ import { stackflow } from '@stackflow/react';
 import { basicRendererPlugin } from '@stackflow/plugin-renderer-basic';
 import { basicUIPlugin } from '@stackflow/plugin-basic-ui';
 import { historySyncPlugin } from '@stackflow/plugin-history-sync';
+
 import MainActivity from '../activities/MainActivity';
 import SettingsActivity from '../activities/Settings';
-import '@stackflow/plugin-basic-ui/index.css';
 import CameraActivity from '../activities/CameraActivity';
 import ProfileActivity from '../activities/ProfileActivity';
 import CalendarModal from '../components/Modals/CalendarModal';
 import CapturedActivity from '../activities/CapturedActivity';
+import AuthActivity from '../activities/AuthActivity';
+
+import '@stackflow/plugin-basic-ui/index.css';
 
 export const { Stack, useFlow } = stackflow({
   transitionDuration: 350,
@@ -25,6 +28,7 @@ export const { Stack, useFlow } = stackflow({
         ProfileActivity: '/profile',
         SettingsActivity: '/settings',
         CapturedActivity: '/captured',
+        AuthActivity: '/auth',
         /**모달 */
         CalendarModal: '/calendar',
       },
@@ -38,6 +42,7 @@ export const { Stack, useFlow } = stackflow({
     ProfileActivity,
     CapturedActivity,
     SettingsActivity,
+    AuthActivity,
     /**모달 */
     CalendarModal,
   },
