@@ -8,6 +8,7 @@ export const ScreenContainer = styled(Paper)(({ theme }) => ({
   position: 'relative',
   overflow: 'auto',
   padding: theme.spacing(2),
+  boxSizing: 'border-box',
 }));
 
 export const SpaceBetweenContainer = styled(Box)({
