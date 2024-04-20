@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 
 export const AuthActivity: ActivityComponentType = () => {
   function handleLogin() {
-    window.Kakao.Auth.authorize({ redirectUri: 'http://localhost:5173/auth/callback' });
+    window.Kakao.Auth.authorize({ redirectUri: `${import.meta.env.VITE_API_URL}/auth/kakao` });
   }
 
   useEffect(() => {
