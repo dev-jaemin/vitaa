@@ -4,6 +4,8 @@ import { JwtService } from '@nestjs/jwt';
 import axios, { AxiosResponse } from 'axios';
 import * as bcrypt from 'bcrypt';
 
+import { User } from '@repo/ui/types';
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -30,28 +32,34 @@ export class AuthService {
     return { accessToken, refreshToken };
   }
 
-  async kakaoValidateUser(kakaoId: number): Promise<UserDocument> {
-    let user: UserDocument = await this.usersRepository.findUserByKakaoId(kakaoId); // 유저 조회
-    if (!user) {
-      // 회원 가입 로직
-      user = await this.usersRepository.create({
-        kakaoId,
-        provider: 'kakao',
-      });
-    }
+  // TODO : userRepository 추가 및 mock data 수정
+  async kakaoValidateUser(kakaoId: number): Promise<User> {
+    // let user: User = await this.usersRepository.findUserByKakaoId(kakaoId); // 유저 조회
+
+    let user: User = {
+      id: 1,
+      kakaoId: kakaoId,
+      name: '김재민',
+    };
+    // if (!user) {
+    //   user = await this.usersRepository.create({
+    //     kakaoId,
+    //   });
+    // }
     return user;
   }
 
-  generateAccessToken(user: UserDocument): string {
+  generateAccessToken(user: User): string {
     const payload = {
-      userId: user._id,
+      id: user.id,
     };
     return this.jwtService.sign(payload);
   }
 
-  async generateRefreshToken(user: UserDocument): Promise<string> {
+  // TODO : userRepository 추가
+  async generateRefreshToken(user: User): Promise<string> {
     const payload = {
-      userId: user._id,
+      userId: user.id,
     };
 
     const refreshToken = this.jwtService.sign(payload, {
@@ -62,7 +70,7 @@ export class AuthService {
     const saltOrRounds = 10;
     const currentRefreshToken = await bcrypt.hash(refreshToken, saltOrRounds);
 
-    await this.usersRepository.setCurrentRefreshToken(payload.userId, currentRefreshToken);
+    // await this.usersRepository.setCurrentRefreshToken(payload.userId, currentRefreshToken);
 
     return refreshToken;
   }
