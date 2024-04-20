@@ -8,7 +8,7 @@ export class AuthService {
 
   async getAccessToken(code: string) {
     // 백엔드 auth 서버로 code를 전송해서 accessToken 발급
-    const kakao_api_url = `${process.env.KAKAO_AUTH_SERVER_URI}?grant_type=authorization_code&client_id=${process.env.KAKAO_CLIENT_ID}&redirect_url=${process.env.KAKAO_REDIRECT_URL}&code=${code}`;
+    const kakao_api_url = `${process.env.KAKAO_AUTH_SERVER_URI}?grant_type=authorization_code&client_id=${process.env.KAKAO_CLIENT_ID}&redirect_url=${encodeURI(process.env.KAKAO_AUTH_REDIRECT_URI)}&code=${code}`;
 
     try {
       const response: AxiosResponse<string> = await axios.post(kakao_api_url);
