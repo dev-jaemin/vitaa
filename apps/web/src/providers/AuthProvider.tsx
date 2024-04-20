@@ -18,7 +18,7 @@ export function useAuthUser() {
   return context;
 }
 
-export function ProviderContextProvider({ children }: { children: React.ReactNode }) {
+export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
 
   return <ProviderContext.Provider value={{ user, setUser }}>{children}</ProviderContext.Provider>;
