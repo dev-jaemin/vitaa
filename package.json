@@ -25,6 +25,7 @@
     "@stackflow/react": "^1.1.8",
     "axios": "^1.6.8",
     "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
     "dayjs": "^1.11.10",
     "nprogress": "^0.2.0",
     "passport": "^0.7.0",
