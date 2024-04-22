@@ -3,16 +3,29 @@ import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { BottomNavigation } from '../../components/BottomNavigation';
 import { ScreenContainer } from '../../components/Containers/ScreenContainer';
 import Header from '../../components/Header';
-import WelcomeBox from './WelcomeBox';
-import CalorieBox from './CalorieBox';
+import WelcomeBox from './WelcomeBox/WelcomeBox';
+import CalorieBox from './CalorieBox/CalorieBox';
+import MealBox from '../../components/MealBox/MealBox';
+import { Box, Typography } from '@mui/material';
+import InfoBox from '../../components/InfoAccordion/InfoAccordion';
 
 const MainActivity: ActivityComponentType = () => {
   return (
     <AppScreen>
       <Header isCalendar />
-      <ScreenContainer>
+      <ScreenContainer gap={4}>
         <WelcomeBox />
         <CalorieBox />
+        <InfoBox mealId={null} currentCalories={0} maxCalories={0} foodCount={0} mealCategory={'BREAKFAST'} />
+        <Typography variant="subtitle2" textAlign={'left'}>
+          오늘의 식단
+        </Typography>
+        <Box display="flex" flexDirection="column" gap={1} width={'100%'} alignItems={'center'}>
+          <MealBox currentCalories={0} maxCalories={0} foodCount={0} mealCategory={'BREAKFAST'} mealId={1} />
+          <MealBox currentCalories={0} maxCalories={0} foodCount={0} mealCategory={'LUNCH'} mealId={2} />
+          <MealBox currentCalories={0} maxCalories={0} foodCount={0} mealCategory={'SNACK'} mealId={3} />
+          <MealBox currentCalories={0} maxCalories={0} foodCount={0} mealCategory={'DINNER'} mealId={null} />
+        </Box>
       </ScreenContainer>
       <BottomNavigation />
     </AppScreen>
