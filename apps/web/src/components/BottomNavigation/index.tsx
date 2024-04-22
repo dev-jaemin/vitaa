@@ -3,7 +3,7 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 
 import { useFlow } from '../../layouts/stackflow';
 import { Camera, Home, Person } from '@mui/icons-material';
-import { Paper } from '@mui/material';
+import { Box } from '@mui/material';
 
 // TEMP TYPE
 type Activity = 'MainActivity' | 'CameraActivity' | 'ProfileActivity';
@@ -17,12 +17,12 @@ export function BottomNavigation() {
   };
 
   return (
-    <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+    <Box sx={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 999 }}>
       <MUIBottomNavigation showLabels onChange={handleClick}>
         <BottomNavigationAction label="HOME" value="MainActivity" icon={<Home />} />
         <BottomNavigationAction label="CAMERA" value="CameraActivity" icon={<Camera />} />
         <BottomNavigationAction label="MY" value="ProfileActivity" icon={<Person />} />
       </MUIBottomNavigation>
-    </Paper>
+    </Box>
   );
 }

@@ -17,6 +17,7 @@
     "@nestjs/axios": "^3.0.2",
     "@nestjs/config": "^3.2.2",
     "@nestjs/jwt": "^10.2.0",
+    "@nestjs/mapped-types": "^2.0.5",
     "@nestjs/passport": "^10.0.3",
     "@stackflow/core": "^1.0.10",
     "@stackflow/plugin-basic-ui": "^1.5.3",
