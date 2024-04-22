@@ -32,7 +32,7 @@ export default Header;
 
 const HeaderPaper = styled(Box)({
   height: 64,
-  padding: 16,
+  padding: '16px 16px 0 16px',
 });
 
 const Circle = styled(Box)(({ theme }) => ({
