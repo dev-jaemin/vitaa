@@ -1,33 +1,29 @@
-import { Grid, LinearProgress, Typography } from '@mui/material';
-import { Nutrient } from '../../types/Meal';
-import { SpaceBetweenContainer } from '../Containers/ScreenContainer';
-import { koreanNutrient, nutrientColors } from '../../constants/meal';
+import { Grid, styled } from '@mui/material';
+import IndividualNutrient from './IndividualNutrient';
 
 interface NutrientBoxProps {
-  mass: number;
-  nutrient: Nutrient;
-  percentage: number;
-  unit?: string;
+  // mass: number;
+  // nutrient: Nutrient;
+  // percentage: number;
+  // unit?: string;
 }
 
-const NutrientBox: React.FC<NutrientBoxProps> = ({ mass, nutrient, percentage, unit = 'g' }) => {
-  const color = nutrientColors[nutrient];
-
+const NutrientBox: React.FC<NutrientBoxProps> = () => {
   return (
-    <Grid item sm={6} p={1}>
-      <Typography variant="h3" display={'inline'}>
-        {mass}
-      </Typography>
-      <Typography variant="subtitle1" display={'inline'}>
-        &nbsp;{unit}
-      </Typography>
-      <SpaceBetweenContainer>
-        <Typography variant="caption">전체 {koreanNutrient[nutrient]}</Typography>
-        <Typography variant="caption">{percentage}%</Typography>
-      </SpaceBetweenContainer>
-      <LinearProgress variant="determinate" value={percentage} color={color} sx={{ mt: 2, color: 'red' }} />
-    </Grid>
+    <BoxContainer container>
+      <IndividualNutrient mass={0} nutrient={'CALORIES'} percentage={0} unit="kcal" />
+      <IndividualNutrient mass={0} nutrient={'CARBS'} percentage={28} />
+      <IndividualNutrient mass={0} nutrient={'PROTEIN'} percentage={89} />
+      <IndividualNutrient mass={0} nutrient={'FAT'} percentage={45} />
+    </BoxContainer>
   );
 };
 
 export default NutrientBox;
+
+const BoxContainer = styled(Grid)(({ theme }) => ({
+  borderRadius: 24,
+  backgroundColor: theme.colors.secondary.lighter,
+  width: '90%',
+  padding: 16,
+}));

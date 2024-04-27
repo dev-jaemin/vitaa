@@ -21,3 +21,9 @@ export const FlexContainer = styled(Box)({
   flexDirection: 'row',
   alignItems: 'center',
 });
+
+export const CenterContainer = styled(Box)({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+});

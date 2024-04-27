@@ -2,7 +2,7 @@ import { Modal } from '@stackflow/plugin-basic-ui';
 import { ActivityComponentType } from '@stackflow/react';
 import { DateCalendar, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { useSelectedDateStore } from '../../activities/MainActivity/_store/selectedDate';
+import { useSelectedDateStore } from '../../recoil/selectedDate';
 import { Dayjs } from 'dayjs';
 
 const CalendarModal: ActivityComponentType = () => {

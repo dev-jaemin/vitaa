@@ -1,5 +1,5 @@
 import { Box, Typography, styled } from '@mui/material';
-import { Meal } from '../../types/Meal';
+import { Meal } from '../../types/meal';
 import useMealImage from '../../activities/MainActivity/_hooks/useMealImage';
 import { FlexContainer, SpaceBetweenContainer } from '../Containers/ScreenContainer';
 import { ChevronRight } from '@mui/icons-material';
@@ -58,8 +58,8 @@ export default MealBox;
 const BoxContainer = styled(Box)(({ theme }) => ({
   borderRadius: 24,
   backgroundColor: theme.colors.secondary.lighter,
-  width: '80%',
-  padding: 12,
+  width: '90%',
+  padding: 16,
   cursor: 'pointer',
   transition: 'background-color 0.3s',
   '&:active': {

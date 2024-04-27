@@ -7,10 +7,11 @@ import MainActivity from '../activities/MainActivity';
 import SettingsActivity from '../activities/Settings';
 import CameraActivity from '../activities/CameraActivity';
 import ProfileActivity from '../activities/ProfileActivity';
-import CalendarModal from '../components/Modals/CalendarModal';
+import CalendarModal from '../activities/_modals/CalendarModal';
 import CapturedActivity from '../activities/CapturedActivity';
 import AuthActivity from '../activities/AuthActivity';
 import MealActivity from '../activities/MealActivity';
+import MealSelectionModal from '../activities/_modals/MealSelectionModal';
 import '@stackflow/plugin-basic-ui/index.css';
 import { AuthCallbackActivity } from '../activities/AuthCallbackActivity';
 import { providersPlugin } from './plugins/providersPlugin';
@@ -35,6 +36,7 @@ export const { Stack, useFlow } = stackflow({
         AuthCallbackActivity: '/auth/callback',
         /**모달 */
         CalendarModal: '/calendar',
+        MealSelectionModal: '/meal-selection',
       },
       fallbackActivity: () => 'MainActivity',
     }),
@@ -52,6 +54,7 @@ export const { Stack, useFlow } = stackflow({
     AuthCallbackActivity,
     /**모달 */
     CalendarModal,
+    MealSelectionModal,
   },
   initialActivity: () => 'MainActivity',
 });

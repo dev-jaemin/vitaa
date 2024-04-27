@@ -1,5 +1,5 @@
 import { Accordion, AccordionDetails, AccordionSummary, Grid, Typography, styled } from '@mui/material';
-import { Meal } from '../../types/Meal';
+import { Meal } from '../../types/meal';
 import { ExpandMore } from '@mui/icons-material';
 import NutrientBox from '../NutrientBox/NutrientBox';
 
@@ -19,12 +19,7 @@ const InfoAccordion: React.FC<InfoAccordionProps> = () => {
       </AccordionSummary>
       <AccordionDetails>
         <Grid container>
-          <NutrientBox mass={0} nutrient={'CALORIES'} percentage={0} unit='kcal' />
-          <NutrientBox mass={0} nutrient={'CARBS'} percentage={28} />
-          <NutrientBox mass={0} nutrient={'PROTEIN'} percentage={89} />
-          <NutrientBox mass={0} nutrient={'FAT'} percentage={45} />
-          <NutrientBox mass={0} nutrient={'SUGAR'} percentage={12} />
-          <NutrientBox mass={0} nutrient={'CALCIUM'} percentage={0} />
+          <NutrientBox />
         </Grid>
       </AccordionDetails>
     </AccordionContainer>

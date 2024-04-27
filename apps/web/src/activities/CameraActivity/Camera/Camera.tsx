@@ -1,7 +1,7 @@
-import { useCallback, useRef } from 'react';
+import { RefObject } from 'react';
 import Webcam from 'react-webcam';
-import { useSetCapturedImage } from '../_store/capturedImage';
-import { useFlow } from '../../../layouts/stackflow';
+import { useActivity } from '@stackflow/react';
+import { Box } from '@mui/material';
 
 const videoConstraints = {
   width: 1280,
@@ -9,34 +9,24 @@ const videoConstraints = {
   facingMode: 'user',
 };
 
-const Camera = () => {
-  const webcamRef = useRef<Webcam>(null);
-  const { push } = useFlow();
-
-  const setImage = useSetCapturedImage();
-
-  const handleClick = () => {
-    push('CapturedActivity', {});
-  };
-
-  const capture = useCallback(() => {
-    if (!webcamRef.current) return;
-    const imageSrc = webcamRef.current.getScreenshot();
-    setImage(imageSrc);
-    handleClick();
-  }, [webcamRef]);
+const Camera = ({ webcamRef }: { webcamRef: RefObject<Webcam> }) => {
+  const activityState = useActivity();
+  const isActive = activityState.isActive;
 
   return (
     <>
-      <Webcam
-        audio={false}
-        height={'auto'}
-        ref={webcamRef}
-        screenshotFormat="image/jpeg"
-        width={'100%'}
-        videoConstraints={videoConstraints}
-      />
-      <button onClick={capture}>촬영</button>
+      {isActive && (
+        <Box>
+          <Webcam
+            audio={false}
+            ref={webcamRef}
+            screenshotFormat="image/jpeg"
+            width={'100%'}
+            height={'100%'}
+            videoConstraints={videoConstraints}
+          />
+        </Box>
+      )}
     </>
   );
 };

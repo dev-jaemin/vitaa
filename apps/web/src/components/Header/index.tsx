@@ -1,8 +1,8 @@
-import { Box, Button, styled } from '@mui/material';
+import { Badge, Box, Button, styled } from '@mui/material';
 import { SpaceBetweenContainer } from '../Containers/ScreenContainer';
-import { useSelectedDate } from '../../activities/MainActivity/_store/selectedDate';
+import { useSelectedDate } from '../../recoil/selectedDate';
 import dayjs from 'dayjs';
-import { ArrowDropDown } from '@mui/icons-material';
+import { ArrowDropDown, Chat } from '@mui/icons-material';
 import { useFlow } from '../../layouts/stackflow';
 
 const Header = ({ isCalendar = false }: { isCalendar?: boolean }) => {
@@ -13,6 +13,8 @@ const Header = ({ isCalendar = false }: { isCalendar?: boolean }) => {
     push('CalendarModal', {});
   };
 
+  const TEMP_IS_NEW_CHAT = true;
+
   return (
     <HeaderPaper>
       <SpaceBetweenContainer>
@@ -22,7 +24,11 @@ const Header = ({ isCalendar = false }: { isCalendar?: boolean }) => {
             {dayjs(selectedDate).format('YYYY년 MM월 DD일')}
           </Button>
         )}
-        <Circle />
+        <Circle>
+          <Badge color="error" variant="dot" invisible={!TEMP_IS_NEW_CHAT}>
+            <Chat />
+          </Badge>
+        </Circle>
       </SpaceBetweenContainer>
     </HeaderPaper>
   );
@@ -40,4 +46,12 @@ const Circle = styled(Box)(({ theme }) => ({
   width: 52,
   height: 52,
   backgroundColor: theme.colors.primary.main,
+  cursor: 'pointer',
+  '&:hover': {
+    backgroundColor: theme.colors.primary.dark,
+  },
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  color: theme.palette.common.white,
 }));
