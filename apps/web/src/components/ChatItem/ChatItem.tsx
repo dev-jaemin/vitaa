@@ -10,9 +10,9 @@ export function ChatItem({ me, message }: ChatItemProps) {
       <Box
         bgcolor={me ? 'primary.main' : 'secondary.main'}
         color={me ? 'primary.contrastText' : 'secondary.contrastText'}
-        borderRadius="10px"
-        padding="10px"
-        margin="10px"
+        borderRadius={1}
+        padding={1}
+        margin={1}
         maxWidth="70%"
       >
         {message}

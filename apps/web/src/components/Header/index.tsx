@@ -7,6 +7,7 @@ import { useFlow } from '../../layouts/stackflow';
 import { useState } from 'react';
 
 import { ChatBottomSheet } from '../ChatBottomSheet';
+import { MOCK_CHAT_DATA } from '../../activities/MainActivity/_data/chat';
 
 const Header = ({ isCalendar = false }: { isCalendar?: boolean }) => {
   const selectedDate = useSelectedDate();
@@ -38,7 +39,11 @@ const Header = ({ isCalendar = false }: { isCalendar?: boolean }) => {
           </Badge>
         </Circle>
       </SpaceBetweenContainer>
-      <ChatBottomSheet isBottomSheetOpen={isBottomSheetOpen} onClose={() => setIsBottomSheetOpen(false)} />
+      <ChatBottomSheet
+        isBottomSheetOpen={isBottomSheetOpen}
+        onClose={() => setIsBottomSheetOpen(false)}
+        messages={MOCK_CHAT_DATA}
+      />
     </HeaderPaper>
   );
 };
