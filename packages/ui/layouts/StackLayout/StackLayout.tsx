@@ -4,7 +4,7 @@ import { Wrapper } from './Wrapper';
 export function StackLayout({ children }: { children: React.ReactNode }) {
   return (
     <Wrapper>
-      <LayoutItem>{children}</LayoutItem>
+      <LayoutItem id="webview-root">{children}</LayoutItem>
     </Wrapper>
   );
 }
