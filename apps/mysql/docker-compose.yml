@@ -1,0 +1,22 @@
+services: 
+  mukkaebi_db: 
+    image: mysql:latest
+    restart: always
+    container_name: mysql_mukkaebi
+    ports:
+      - "8503:3306" 
+    environment: # -e 옵션
+      - MYSQL_ROOT_PASSWORD=9240
+      - MYSQL_DATABASE=mukkaebi
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin
+      - TZ=Asia/Seoul
+      - LANG=C.UTF-8
+    command: # 명령어 실행
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - /data/mysql:/var/lib/mysql # 저장
+      - ./initdb.d:/docker-entrypoint-initdb.d
+      - .:/app
+    working_dir: /app
