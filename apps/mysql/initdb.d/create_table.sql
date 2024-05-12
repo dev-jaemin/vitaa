@@ -3,7 +3,7 @@ CREATE TABLE users (
   kakao_id INT,
   username VARCHAR(255),
   gender VARCHAR(10),
-  birthdate DATE,
+  age INT,
   weight INT,
   height INT,
   goal VARCHAR(255),
