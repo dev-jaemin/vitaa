@@ -1,8 +1,8 @@
 INSERT INTO users (kakao_id, username, gender, birthdate, weight, height, goal, created_at)
 VALUES 
-(1, "김상엽", "남", "1999-04-29", 65, 168, "저염식 생활화와 당뇨 완치", NOW()),
-(2, "김재민", "남", "1999-10-13", 80, 180, "다이어트", NOW()),
-(3, "박하영", "여", "2001-05-06", 50, 160, "신체밸런스를 유지한 체중유지", NOW());
+(1, "김상엽", "남", 25, 65, 168, "저염식 생활화와 당뇨 완치", NOW()),
+(2, "김재민", "남", 25, 80, 180, "다이어트", NOW()),
+(3, "박하영", "여", 24, 50, 160, "신체밸런스를 유지한 체중유지", NOW());
 
 INSERT INTO meal (user_id, date, category, calories, carbs, protein, fat, image, rating, review, created_at)
 VALUES 
