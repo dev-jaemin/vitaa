@@ -4,7 +4,7 @@ import * as Joi from 'joi';
 
 export const configModuleOptions: ConfigModuleOptions = {
   isGlobal: true,
-  envFilePath: '.env',
+  envFilePath: '.env.local',
 };
 
 export const { TypedConfigService, TypedConfigModule } = createTypedConfig({
@@ -15,7 +15,7 @@ export const { TypedConfigService, TypedConfigModule } = createTypedConfig({
   JWT_SECRET_KEY: Joi.string().required(),
   JWT_ACCESS_TOKEN_EXPIRES: Joi.number().required(),
   JWT_REFRESH_TOKEN_EXPIRES: Joi.number().required(),
-  DB_NAME: Joi.string().required(),
+  DB_DATABASE: Joi.string().required(),
 });
 
 export type TypedConfigService = InstanceType<typeof TypedConfigService>;
