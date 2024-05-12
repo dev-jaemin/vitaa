@@ -20,6 +20,7 @@
     "@nestjs/jwt": "^10.2.0",
     "@nestjs/mapped-types": "^2.0.5",
     "@nestjs/passport": "^10.0.3",
+    "@nestjs/typeorm": "^10.0.2",
     "@stackflow/core": "^1.0.10",
     "@stackflow/plugin-basic-ui": "^1.5.3",
     "@stackflow/plugin-history-sync": "^1.4.0",
@@ -30,6 +31,9 @@
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
     "dayjs": "^1.11.10",
+    "joi": "^17.13.1",
+    "mysql2": "^3.9.7",
+    "nestjs-typed-config": "^0.2.2",
     "notistack": "^3.0.1",
     "nprogress": "^0.2.0",
     "passport": "^0.7.0",
@@ -42,7 +46,9 @@
     "react-modal-sheet": "^2.2.0",
     "react-router": "^6.22.3",
     "react-webcam": "^7.2.0",
-    "recoil": "^0.7.7"
+    "recoil": "^0.7.7",
+    "typeorm": "^0.3.20",
+    "typeorm-naming-strategies": "^4.1.0"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
