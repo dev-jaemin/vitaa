@@ -4,13 +4,17 @@ import { JwtService } from '@nestjs/jwt';
 import axios, { AxiosResponse } from 'axios';
 import * as bcrypt from 'bcrypt';
 
-import { User } from '@repo/ui/types';
+import { RegisterDto, UserDto } from '@repo/ui/types';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { User } from './user.entity';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly configService: ConfigService,
     private readonly jwtService: JwtService,
+    @InjectRepository(User) private userRepository: Repository<User>,
   ) {}
 
   async getAccessToken(code: string) {
@@ -33,13 +37,18 @@ export class AuthService {
   }
 
   // TODO : userRepository 추가 및 mock data 수정
-  async kakaoValidateUser(kakaoId: number): Promise<User> {
+  async kakaoValidateUser(kakaoId: number): Promise<UserDto> {
     // let user: User = await this.usersRepository.findUserByKakaoId(kakaoId); // 유저 조회
 
-    let user: User = {
+    let user: UserDto = {
       id: 1,
       kakaoId: kakaoId,
-      name: '김재민',
+      username: '김재민',
+      gender: 'M',
+      age: 24,
+      weight: 67,
+      height: 176,
+      goal: '다이어트',
     };
     // if (!user) {
     //   user = await this.usersRepository.create({
@@ -49,7 +58,7 @@ export class AuthService {
     return user;
   }
 
-  generateAccessToken(user: User): string {
+  generateAccessToken(user: UserDto): string {
     const payload = {
       id: user.id,
     };
@@ -57,7 +66,7 @@ export class AuthService {
   }
 
   // TODO : userRepository 추가
-  async generateRefreshToken(user: User): Promise<string> {
+  async generateRefreshToken(user: UserDto): Promise<string> {
     const payload = {
       userId: user.id,
     };
@@ -85,10 +94,15 @@ export class AuthService {
 
       // 데이터베이스에서 User 객체 가져오기
       // const user = await this.usersRepository.getUserWithCurrentRefreshToken(userId);
-      const user: User = {
-        id: userId,
+      const user: UserDto = {
+        id: 1,
         kakaoId: decodedRefreshToken.kakaoId,
-        name: '김재민',
+        username: '김재민',
+        gender: 'M',
+        age: 24,
+        weight: 67,
+        height: 176,
+        goal: '다이어트',
       };
 
       // 2차 검증
@@ -105,5 +119,9 @@ export class AuthService {
     } catch (err) {
       throw new UnauthorizedException('Invalid refresh-token');
     }
+  }
+
+  async register(body: RegisterDto) {
+    this.userRepository.save(body);
   }
 }

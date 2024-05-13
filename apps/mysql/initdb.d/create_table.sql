@@ -1,4 +1,4 @@
-CREATE TABLE users (
+CREATE TABLE user (
   id INT PRIMARY KEY AUTO_INCREMENT,
   kakao_id INT,
   username VARCHAR(255),

@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { ConfigService } from '@nestjs/config';
+import { RegisterDto } from '@repo/ui/types';
 
 @Controller('auth')
 export class AuthController {
@@ -29,6 +30,18 @@ export class AuthController {
       const newAccessToken = await this.authService.refresh(req.cookies.refreshToken);
 
       return res.send({ accessToken: newAccessToken });
+    } catch (err) {
+      throw new UnauthorizedException();
+    }
+  }
+
+  @Post('/register')
+  @HttpCode(201)
+  async register(@Body() body: RegisterDto, @Res() res: Response) {
+    try {
+      this.authService.register(body);
+
+      return res.send({ message: 'success' });
     } catch (err) {
       throw new UnauthorizedException();
     }

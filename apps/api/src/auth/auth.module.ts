@@ -7,6 +7,8 @@ import { HttpModule } from '@nestjs/axios';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { KakaoStrategy } from './strategies/kakao.strategy';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from './user.entity';
 
 @Module({
   imports: [
@@ -20,6 +22,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
       }),
       inject: [ConfigService],
     }),
+    TypeOrmModule.forFeature([User]),
   ],
   controllers: [AuthController],
   providers: [AuthService, KakaoStrategy, JwtStrategy],

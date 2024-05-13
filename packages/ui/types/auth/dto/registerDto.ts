@@ -1,5 +1,4 @@
-export interface User {
-  id: number;
+export interface RegisterDto {
   kakaoId: number;
   username: string;
   gender: string;
