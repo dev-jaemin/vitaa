@@ -8,6 +8,7 @@ import { MealModule } from './meal/meal.module';
 import { FoodModule } from './food/food.module';
 import { TypeOrmConfig } from './common/config/typeorm.config';
 import { configModuleOptions } from './common/config/config.config';
+import { ChatModule } from './chat/chat.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { configModuleOptions } from './common/config/config.config';
     TypeOrmModule.forRootAsync(TypeOrmConfig),
     AuthModule,
     FoodModule,
+    ChatModule,
   ],
   controllers: [AppController],
   providers: [AppService],
