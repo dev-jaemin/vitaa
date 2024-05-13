@@ -18,7 +18,7 @@ export class MealController {
   @UseGuards(AuthGuard('jwt'))
   createMeal(@Req() req: Request, @Res() res: Response, @Body() body: PostMealDto) {
     try {
-      this.mealService.createMeal({ ...body, kakaoId: req.user.id });
+      this.mealService.createMeal({ ...body, kakaoId: req.user.kakaoId });
       return res.send({ message: 'success' });
     } catch (err) {
       return res.send({ message: 'error' });
