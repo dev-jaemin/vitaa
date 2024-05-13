@@ -46,4 +46,11 @@ export class AuthController {
       throw new UnauthorizedException();
     }
   }
+
+  @Get('/me')
+  @UseGuards(AuthGuard('jwt'))
+  @HttpCode(200)
+  async me(@Req() req: Request) {
+    return req.user;
+  }
 }
