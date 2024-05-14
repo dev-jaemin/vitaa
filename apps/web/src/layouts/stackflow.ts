@@ -15,7 +15,7 @@ import MealSelectionModal from '../activities/_modals/MealSelectionModal';
 import '@stackflow/plugin-basic-ui/index.css';
 import { AuthCallbackActivity } from '../activities/AuthCallbackActivity';
 import { providersPlugin } from './plugins/providersPlugin';
-
+import ChatBottomSheet from '../activities/_bottomsheets/ChatBottomSheet';
 export const { Stack, useFlow } = stackflow({
   transitionDuration: 350,
   plugins: [
@@ -32,11 +32,13 @@ export const { Stack, useFlow } = stackflow({
         SettingsActivity: '/settings',
         CapturedActivity: '/captured',
         AuthActivity: '/auth',
-        MealActivity: '/meal/:mealId',
+        MealActivity: '/meal',
         AuthCallbackActivity: '/auth/callback',
         /**모달 */
         CalendarModal: '/calendar',
         MealSelectionModal: '/meal-selection',
+        /**바텀시트 */
+        ChatBottomSheet: '/chat?message',
       },
       fallbackActivity: () => 'MainActivity',
     }),
@@ -55,6 +57,8 @@ export const { Stack, useFlow } = stackflow({
     /**모달 */
     CalendarModal,
     MealSelectionModal,
+    /**바텀시트 */
+    ChatBottomSheet,
   },
   initialActivity: () => 'MainActivity',
 });
