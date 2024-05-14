@@ -1,12 +1,12 @@
 import { Meal } from '../types/meal';
 
 const koreanMeal = {
-  BREAKFAST: '아침',
-  LUNCH: '점심',
-  DINNER: '저녁',
-  SNACK: '간식',
+  Breakfast: '아침',
+  Lunch: '점심',
+  Dinner: '저녁',
+  Snack: '간식',
 };
 
 export default koreanMeal;
 
-export const mealData: Meal[] = ['BREAKFAST', 'LUNCH', 'DINNER', 'SNACK'];
+export const mealData: Meal[] = ['Breakfast', 'Lunch', 'Dinner', 'Snack'];
