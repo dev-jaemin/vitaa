@@ -6,10 +6,10 @@ import Snack from '../../../assets/snack.png';
 
 const useMealImage = (meal: Meal) => {
   const images = {
-    BREAKFAST: Breakfast,
-    LUNCH: Lunch,
-    DINNER: Dinner,
-    SNACK: Snack,
+    Breakfast: Breakfast,
+    Lunch: Lunch,
+    Dinner: Dinner,
+    Snack: Snack,
   };
 
   return images[meal];

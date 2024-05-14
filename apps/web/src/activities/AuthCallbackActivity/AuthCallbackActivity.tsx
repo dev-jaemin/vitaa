@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useFlow } from '../../layouts/stackflow';
 import { type AuthResponse } from '@repo/ui';
+import { enqueueSnackbar } from 'notistack';
 
 export const AuthCallbackActivity = () => {
   const params = new URL(document.URL).searchParams;
@@ -13,12 +14,13 @@ export const AuthCallbackActivity = () => {
       const authData = (await axios.post<AuthResponse>(`${import.meta.env.VITE_API_URL}/auth/kakao/callback`, { code }))
         .data;
 
+      console.log(authData);
       if (authData) {
         Object.entries(authData).forEach(object => {
           localStorage.setItem(object[0], object[1]);
         });
 
-        window.alert('로그인 성공!');
+        enqueueSnackbar('Welcome Back!', { variant: 'success' });
       }
     } catch (e) {
       window.alert('로그인 실패ㅠㅠㅠ');

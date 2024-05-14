@@ -1,18 +1,21 @@
 import { LocalFireDepartment } from '@mui/icons-material';
 import { Box, Typography, styled } from '@mui/material';
 import { Gauge } from '@mui/x-charts/Gauge';
+import { useMeals } from '../../../recoil/meal';
 
-const tempCurrentCalories = 75;
-const tempMaxCalories = 200;
+const tempMaxCalories = 3000;
 
 const CalorieBox = () => {
-  const currentCalories = tempCurrentCalories;
   const maxCalories = tempMaxCalories;
+
+  const meals = useMeals();
+  const currentCalories = meals.reduce((sum, meal) => sum + meal.calories ?? 0, 0);
+
   const progressValue = (currentCalories / maxCalories) * 100;
 
   return (
     <BoxContainer textAlign={'center'}>
-        <Gauge width={300} height={300} value={progressValue} endAngle={110} startAngle={-110} text={''} />
+      <Gauge width={300} height={300} value={progressValue} endAngle={110} startAngle={-110} text={''} />
       <Box mb={8} mt={-20}>
         <LocalFireDepartment color="primary" fontSize="large" />
         <Typography variant="subtitle1"> 칼로리 소모량</Typography>

@@ -5,10 +5,17 @@ import { ScreenContainer } from '../../components/Containers/ScreenContainer';
 import KakaoLogo from '/src/assets/kakao_login.webp';
 import { WelcomeBox } from './WelcomeBox';
 import { useEffect } from 'react';
+import { useAuthUser } from '../../providers';
+import { useGetUserInfo } from '../../apis/auth/_hooks/me';
 
 export const AuthActivity: ActivityComponentType = () => {
-  function handleLogin() {
+  const { setUser } = useAuthUser();
+
+  async function handleLogin() {
     window.Kakao.Auth.authorize({ redirectUri: `${import.meta.env.VITE_API_URL}/auth/kakao` });
+
+    const user = useGetUserInfo();
+    console.log('user', user);
   }
 
   useEffect(() => {
