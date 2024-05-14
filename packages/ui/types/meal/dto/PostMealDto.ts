@@ -1,9 +1,9 @@
 export interface PostMealDto {
   kakaoId?: number;
-  category: 'BREAKFAST' | 'LUNCH' | 'DINNER' | 'SNACK';
+  category: 'Breakfast' | 'Lunch' | 'Dinner' | 'Snack';
   image: string;
   date: Date;
-  calories?: number;
+  calories: number;
   carbs?: number;
   protein?: number;
   fat?: number;
