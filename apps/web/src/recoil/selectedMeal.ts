@@ -3,7 +3,7 @@ import { Meal } from '../types/meal';
 
 const selectedMealAtom = atom<Meal>({
   key: 'selectedMealAtom',
-  default: 'BREAKFAST',
+  default: 'Breakfast',
 });
 
 const useselectedMeal = () => {
