@@ -4,22 +4,17 @@ import { useSelectedDate } from '../../recoil/selectedDate';
 import dayjs from 'dayjs';
 import { ArrowDropDown, Chat } from '@mui/icons-material';
 import { useFlow } from '../../layouts/stackflow';
-import { useState } from 'react';
-
-import { ChatBottomSheet } from '../ChatBottomSheet';
-import { MOCK_CHAT_DATA } from '../../activities/MainActivity/_data/chat';
 
 const Header = ({ isCalendar = false }: { isCalendar?: boolean }) => {
   const selectedDate = useSelectedDate();
   const { push } = useFlow();
-  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
 
   const onClickCalendar = () => {
     push('CalendarModal', {});
   };
 
   const handleClickChat = () => {
-    setIsBottomSheetOpen(true);
+    push('ChatBottomSheet', { message: '' });
   };
 
   const TEMP_IS_NEW_CHAT = true;
@@ -39,11 +34,6 @@ const Header = ({ isCalendar = false }: { isCalendar?: boolean }) => {
           </Badge>
         </Circle>
       </SpaceBetweenContainer>
-      <ChatBottomSheet
-        isBottomSheetOpen={isBottomSheetOpen}
-        onClose={() => setIsBottomSheetOpen(false)}
-        messages={MOCK_CHAT_DATA}
-      />
     </HeaderPaper>
   );
 };

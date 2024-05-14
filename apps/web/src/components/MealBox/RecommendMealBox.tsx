@@ -5,16 +5,14 @@ import { FlexContainer, SpaceBetweenContainer } from '../Containers/ScreenContai
 import { ChevronRight } from '@mui/icons-material';
 import koreanMeal from '../../constants/meal';
 import { useFlow } from '../../layouts/stackflow';
-import { PostMealDto } from '@repo/ui';
+import { Meal } from '../../types/meal';
 
-const MealBox = ({ meal, max, isDisableClick }: { meal: PostMealDto; max: number; isDisableClick?: boolean }) => {
-  const { calories, category } = meal;
-  const image = useMealImage(category);
+const RecommendMealBox = ({ mealCategory }: { mealCategory: Meal }) => {
+  const image = useMealImage(mealCategory);
   const { push } = useFlow();
 
   const handleMealClick = () => {
-    if (isDisableClick) return;
-    push('MealActivity', { meal: meal });
+    push('ChatBottomSheet', { message: '오늘 하루 내게 딱! 맞는 ' + koreanMeal[mealCategory] + ' 추천 받기' });
   };
 
   return (
@@ -24,22 +22,18 @@ const MealBox = ({ meal, max, isDisableClick }: { meal: PostMealDto; max: number
           <MealImage src={image} alt="meal" />
           <Box ml={1}>
             <>
-              <Typography variant="h6" textAlign={'left'}>
-                {koreanMeal[category]}
-              </Typography>
-              <Typography variant="body2">
-                <strong>{calories}</strong> / {max} kcal{' '}
-              </Typography>
+              <Typography variant="caption">오늘 하루 내게 딱! 맞는</Typography>
+              <RecommendText variant="h6">{koreanMeal[mealCategory]} 추천 받기</RecommendText>
             </>
           </Box>
         </FlexContainer>
-        {!isDisableClick && <ChevronRight color="success" />}
+        <ChevronRight color="success" />
       </SpaceBetweenContainer>
     </BoxContainer>
   );
 };
 
-export default MealBox;
+export default RecommendMealBox;
 
 const BoxContainer = styled(Box)(({ theme }) => ({
   borderRadius: 24,
@@ -51,6 +45,16 @@ const BoxContainer = styled(Box)(({ theme }) => ({
   '&:active': {
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
   },
+}));
+
+const RecommendText = styled(Typography)(({ theme }) => ({
+  textAlign: 'left',
+  fontWeight: 'bold',
+  background: theme.colors.gradients.purple1,
+  backgroundClip: 'text',
+  color: theme.colors.gradients.purple1,
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
 }));
 
 const MealImage = styled('img')({

@@ -1,16 +1,17 @@
 import { Grid, LinearProgress, Typography } from '@mui/material';
-import { Nutrient } from '../../types/meal';
 import { SpaceBetweenContainer } from '../Containers/ScreenContainer';
 import { koreanNutrient, nutrientColors } from '../../constants/nutrient';
+import { Nutrient } from '../../types/meal';
 
 interface IndividualNutrientProps {
   mass: number;
   nutrient: Nutrient;
   percentage: number;
   unit?: string;
+  isAll?: boolean;
 }
 
-const IndividualNutrient: React.FC<IndividualNutrientProps> = ({ mass, nutrient, percentage, unit = 'g' }) => {
+const IndividualNutrient: React.FC<IndividualNutrientProps> = ({ mass, nutrient, percentage, unit = 'g', isAll }) => {
   const color = nutrientColors[nutrient];
 
   return (
@@ -22,7 +23,10 @@ const IndividualNutrient: React.FC<IndividualNutrientProps> = ({ mass, nutrient,
         &nbsp;{unit}
       </Typography>
       <SpaceBetweenContainer>
-        <Typography variant="caption">전체 {koreanNutrient[nutrient]}</Typography>
+        <Typography variant="caption">
+          {isAll && '전체 '}
+          {koreanNutrient[nutrient]}
+        </Typography>
         <Typography variant="caption">{percentage}%</Typography>
       </SpaceBetweenContainer>
       <LinearProgress variant="determinate" value={percentage} color={color} sx={{ mt: 2, color: 'red' }} />

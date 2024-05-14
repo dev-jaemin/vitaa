@@ -6,7 +6,7 @@ export const StyledMaterialDesignContent = styled(MaterialDesignContent)({
   borderRadius: 12,
   backdropFilter: 'blur(4px)',
 
-  '#notistack-snackbar': {
+  '#notistack-Snackbar': {
     gap: 8,
   },
 });
