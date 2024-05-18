@@ -16,6 +16,7 @@ import '@stackflow/plugin-basic-ui/index.css';
 import { AuthCallbackActivity } from '../activities/AuthCallbackActivity';
 import { providersPlugin } from './plugins/providersPlugin';
 import ChatBottomSheet from '../activities/_bottomsheets/ChatBottomSheet';
+import RegisterActivity from '../activities/RegisterActivity';
 export const { Stack, useFlow } = stackflow({
   transitionDuration: 350,
   plugins: [
@@ -31,8 +32,11 @@ export const { Stack, useFlow } = stackflow({
         ProfileActivity: '/profile',
         SettingsActivity: '/settings',
         CapturedActivity: '/captured',
-        AuthActivity: '/auth',
         MealActivity: '/meal',
+        /** Auth 관련 페이지 */
+        AuthActivity: '/auth',
+        RegisterActivity: '/register',
+        LandingActivity: '/landing',
         AuthCallbackActivity: '/auth/callback',
         /**모달 */
         CalendarModal: '/calendar',
@@ -54,6 +58,7 @@ export const { Stack, useFlow } = stackflow({
     SettingsActivity,
     AuthActivity,
     AuthCallbackActivity,
+    RegisterActivity,
     /**모달 */
     CalendarModal,
     MealSelectionModal,

@@ -25,8 +25,8 @@ export const AuthActivity: ActivityComponentType = () => {
   }, []);
 
   return (
-    <AppScreen appBar={{ title: '카카오 로그인' }}>
-      <ScreenContainer>
+    <AppScreen>
+      <ScreenContainer style={{ display: 'flex', height: '100%', flexDirection: 'column', justifyContent: 'center' }}>
         <WelcomeBox />
         <Box>
           <Button onClick={handleLogin}>

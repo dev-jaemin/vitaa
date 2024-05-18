@@ -31,8 +31,8 @@ export const AuthCallbackActivity = () => {
   useEffect(() => {
     if (code) {
       postAuthKakaoCallback(code);
-
-      push('MainActivity', {});
+      push('RegisterActivity', {});
+      // push('MainActivity', {});
     }
   }, []);
 

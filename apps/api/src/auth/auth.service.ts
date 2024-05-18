@@ -124,4 +124,8 @@ export class AuthService {
   async register(body: RegisterDto) {
     this.userRepository.save(body);
   }
+
+  async checkUserExist(kakaoId: number) {
+    return this.userRepository.findOne({ where: { kakaoId } });
+  }
 }
