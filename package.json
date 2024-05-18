@@ -26,6 +26,7 @@
     "@stackflow/plugin-history-sync": "^1.4.0",
     "@stackflow/plugin-renderer-basic": "^1.1.8",
     "@stackflow/react": "^1.1.8",
+    "@types/multer": "^1.4.11",
     "@types/react-lottie": "^1.2.10",
     "axios": "^1.6.8",
     "bcrypt": "^5.1.1",
