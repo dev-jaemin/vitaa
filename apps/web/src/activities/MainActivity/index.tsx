@@ -6,8 +6,6 @@ import Header from '../../components/Header';
 import WelcomeBox from './WelcomeBox/WelcomeBox';
 import CalorieBox from './CalorieBox/CalorieBox';
 import NutrientBox from '../../components/NutrientBox/NutrientBox';
-import { useAuthUser } from '../../providers';
-import { useGetUserInfo } from '../../apis/auth/_hooks/me';
 import { useGetMealByDate } from '../../apis/meal/_hooks/getMeal';
 import { useSelectedDate } from '../../recoil/selectedDate';
 import { useSetMeals } from '../../recoil/meal';
@@ -15,9 +13,6 @@ import { useEffect } from 'react';
 import MealList from './MealList/MealList';
 
 const MainActivity: ActivityComponentType = () => {
-  const { user } = useAuthUser();
-  const { data } = useGetUserInfo();
-
   const selectedDate = useSelectedDate();
   const setMeals = useSetMeals();
   const { data: mealData } = useGetMealByDate(selectedDate.toISOString().split('T')[0]);

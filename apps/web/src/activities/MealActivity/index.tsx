@@ -6,6 +6,7 @@ import NutrientBox from '../../components/NutrientBox/NutrientBox';
 import { PostMealDto } from '@repo/ui';
 import ReviewBox from '../../components/ReviewBox/ReviewBox';
 import MealImageBox from '../../components/MealBox/MealImageBox';
+import { Box } from '@mui/material';
 
 type MealActivityParams = {
   params: {
@@ -17,11 +18,12 @@ const MealActivity: React.FC<MealActivityParams> = ({ params: { meal } }) => {
   return (
     <AppScreen>
       <BackHeader />
-      <ScreenContainer gap={4} sx={{ height: '90%' }}>
+      <ScreenContainer gap={4} sx={{ height: '100%' }} pb={10}>
         <MealBox meal={meal} max={3000} isDisableClick />
         <ReviewBox meal={meal} />
         <MealImageBox src={meal.image} />
         <NutrientBox meals={[meal]} isShowHeader />
+        <Box height={100} />
       </ScreenContainer>
     </AppScreen>
   );

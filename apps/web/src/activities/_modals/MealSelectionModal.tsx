@@ -32,7 +32,14 @@ const MealSelectionModal: ActivityComponentType = () => {
         <Box width={'100%'} mt={2}>
           {mealData.map(meal => {
             if (meal === selectedMeal) return null;
-            return <SimpleMealBox mealCategory={meal} icon={<ChevronRight />} onClick={() => handleSelectMeal(meal)} />;
+            return (
+              <SimpleMealBox
+                key={meal}
+                mealCategory={meal}
+                icon={<ChevronRight />}
+                onClick={() => handleSelectMeal(meal)}
+              />
+            );
           })}
         </Box>
       </CenterContainer>

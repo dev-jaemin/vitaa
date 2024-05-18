@@ -24,7 +24,7 @@ const ReviewBox = ({ meal }: { meal: PostMealDto }) => {
             </>
           </Box>
         </FlexContainer>
-        <Typography variant="h1" color={'primary.main'}>
+        <Typography variant="h1" color={reviewProps.fontColor} mx={2}>
           {meal.rating}
         </Typography>
       </SpaceBetweenContainer>
