@@ -77,20 +77,10 @@ export class AuthService {
       const userId = decodedRefreshToken.userId;
 
       // 데이터베이스에서 User 객체 가져오기
-      // const user = await this.usersRepository.getUserWithCurrentRefreshToken(userId);
-      const user: UserDto = {
-        id: 1,
-        kakaoId: decodedRefreshToken.kakaoId,
-        username: '김재민',
-        gender: 'M',
-        age: 24,
-        weight: 67,
-        height: 176,
-        goal: '다이어트',
-      };
+      const user = await this.userRepository.findOne({ where: { id: userId } });
 
       // 2차 검증
-      // const isRefreshTokenMatching = await bcrypt.compare(refreshToken, user.currentRefreshToken);
+      // const isRefreshTokenMatching = await bcrypt.compare(refreshToken, user.refreshToken);
 
       // if (!isRefreshTokenMatching) {
       //   throw new UnauthorizedException('Invalid refresh-token');
