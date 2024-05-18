@@ -11,3 +11,4 @@ server/dist
 public/dist
 
 apps/fastapi/__pycache__
+fastapi.sh
