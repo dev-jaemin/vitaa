@@ -4,6 +4,7 @@ import { useSelectedDate } from '../../recoil/selectedDate';
 import dayjs from 'dayjs';
 import { ArrowDropDown, Chat } from '@mui/icons-material';
 import { useFlow } from '../../layouts/stackflow';
+import DefaultAvatar from '/DefaultAvatar.png';
 
 const Header = ({ isCalendar = false }: { isCalendar?: boolean }) => {
   const selectedDate = useSelectedDate();
@@ -22,7 +23,7 @@ const Header = ({ isCalendar = false }: { isCalendar?: boolean }) => {
   return (
     <HeaderPaper>
       <SpaceBetweenContainer>
-        <Circle style={{ backgroundImage: `url('https://picsum.photos/52/52')` }} />
+        <img src={DefaultAvatar} alt="avatar" style={{ width: 52, height: 52, borderRadius: '50%' }} />
         {isCalendar && (
           <Button endIcon={<ArrowDropDown />} color="secondary" onClick={onClickCalendar}>
             {dayjs(selectedDate).format('YYYY년 MM월 DD일')}

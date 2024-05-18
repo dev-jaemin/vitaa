@@ -15,7 +15,6 @@ import {
   Radio,
   RadioGroup,
   Typography,
-  styled,
   useTheme,
 } from '@mui/material';
 
@@ -23,6 +22,7 @@ import { ScreenContainer } from '../../components/Containers/ScreenContainer';
 import { useFlow } from '../../layouts/stackflow';
 import Login from '@mui/icons-material/Login';
 import GavelIcon from '@mui/icons-material/Gavel';
+import DefaultAvatar from '/DefaultAvatar.png';
 
 const ProfileActivity: ActivityComponentType = () => {
   const { push } = useFlow();
@@ -43,7 +43,7 @@ const ProfileActivity: ActivityComponentType = () => {
           width="100%"
           sx={{ backgroundColor: theme.colors.primary.lighter }}
         >
-          <Circle style={{ backgroundImage: `url('https://picsum.photos/52/52')` }} />
+          <img src={DefaultAvatar} alt="avatar" style={{ width: 100, height: 100, borderRadius: '50%' }} />
         </Box>
         <Box px={2} width="100%">
           <Box display="flex" flexDirection="column" gap={1} m={1} p={2} border="1px solid #ddd">
@@ -91,21 +91,5 @@ const ProfileActivity: ActivityComponentType = () => {
     </AppScreen>
   );
 };
-
-const Circle = styled(Box)(({ theme }) => ({
-  borderRadius: '50%',
-  width: 100,
-  height: 100,
-  backgroundColor: theme.colors.primary.main,
-  backgroundSize: 'contain',
-  cursor: 'pointer',
-  '&:hover': {
-    backgroundColor: theme.colors.primary.dark,
-  },
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  color: theme.palette.common.white,
-}));
 
 export default ProfileActivity;

@@ -5,7 +5,6 @@ import BackHeader from '../../components/Header/BackHeader';
 import NutrientBox from '../../components/NutrientBox/NutrientBox';
 import { PostMealDto } from '@repo/ui';
 import ReviewBox from '../../components/ReviewBox/ReviewBox';
-import { Typography, styled } from '@mui/material';
 import MealImageBox from '../../components/MealBox/MealImageBox';
 
 type MealActivityParams = {
