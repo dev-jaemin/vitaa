@@ -7,7 +7,7 @@ from starlette.responses import JSONResponse
 from datetime import date
 
 app = FastAPI()
-api_key = ""
+api_key = os.getenv('API_KEY')
 
 headers = {
     "Content-Type": "application/json",
