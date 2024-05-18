@@ -45,7 +45,7 @@ export class AuthController {
   @HttpCode(201)
   async register(@Body() body: RegisterDto, @Res() res: Response) {
     try {
-      this.authService.register(body);
+      await this.authService.register(body);
 
       const { accessToken, refreshToken } = await this.authService.getJWT(body.kakaoId);
       res.cookie('accessToken', accessToken, { httpOnly: true });

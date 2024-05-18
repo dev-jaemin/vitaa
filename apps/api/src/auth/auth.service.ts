@@ -44,7 +44,14 @@ export class AuthService {
 
   generateAccessToken(user: UserDto): string {
     const payload = {
-      ...user,
+      id: user.id,
+      kakaoId: user.kakaoId,
+      usernmae: user.username,
+      gender: user.gender,
+      age: user.age,
+      weight: user.weight,
+      height: user.height,
+      goal: user.goal,
     };
     return this.jwtService.sign(payload);
   }
@@ -52,7 +59,14 @@ export class AuthService {
   // TODO : userRepository 추가
   async generateRefreshToken(user: UserDto): Promise<string> {
     const payload = {
-      userId: user.id,
+      id: user.id,
+      kakaoId: user.kakaoId,
+      usernmae: user.username,
+      gender: user.gender,
+      age: user.age,
+      weight: user.weight,
+      height: user.height,
+      goal: user.goal,
     };
 
     const refreshToken = this.jwtService.sign(payload, {
@@ -96,7 +110,7 @@ export class AuthService {
   }
 
   async register(body: RegisterDto) {
-    this.userRepository.save(body);
+    await this.userRepository.save(body);
   }
 
   async checkUserExist(kakaoId: number) {
