@@ -1,28 +1,15 @@
 import type { ActivityComponentType } from '@stackflow/react';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { BottomNavigation } from '../../components/BottomNavigation';
-import {
-  Box,
-  Button,
-  FormControl,
-  FormControlLabel,
-  Input,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Radio,
-  RadioGroup,
-  Typography,
-  useTheme,
-} from '@mui/material';
+import { Box, Button, Typography, styled, useTheme } from '@mui/material';
 
 import { ScreenContainer } from '../../components/Containers/ScreenContainer';
 import { useFlow } from '../../layouts/stackflow';
-import Login from '@mui/icons-material/Login';
 import GavelIcon from '@mui/icons-material/Gavel';
 import DefaultAvatar from '/DefaultAvatar.png';
+import { Logout, QuestionAnswer, Settings } from '@mui/icons-material';
+import { useGetUserInfo } from '../../apis/auth/_hooks/me';
+import { enqueueSnackbar } from 'notistack';
 
 const ProfileActivity: ActivityComponentType = () => {
   const { push } = useFlow();
@@ -32,59 +19,68 @@ const ProfileActivity: ActivityComponentType = () => {
     push('AuthActivity', {}, { animate: true });
   }
 
+  function handleSettings() {
+    push('MyInformationActivity', {}, { animate: true });
+  }
+
+  function handleRules() {
+    push('RulesBottomSheet', {});
+  }
+
+  function handleQnA() {
+    enqueueSnackbar('Coming Soon! 조금만 기다려 주세요 ㅠㅠ', { variant: 'info' });
+  }
+
+  const { data } = useGetUserInfo();
   return (
     <AppScreen>
-      <ScreenContainer style={{ padding: 0 }}>
+      <ScreenContainer style={{ padding: 0, height: '100%' }}>
         <Box
           display="flex"
           justifyContent="center"
+          flexDirection={'column'}
           alignItems="center"
-          height="50%"
           width="100%"
+          py={4}
           sx={{ backgroundColor: theme.colors.primary.lighter }}
         >
           <img src={DefaultAvatar} alt="avatar" style={{ width: 100, height: 100, borderRadius: '50%' }} />
+          <Typography variant="h4" mt={2}>
+            {data?.username}
+          </Typography>
+          <Typography>
+            {data?.height}cm / {data?.weight}kg / {data?.age}살
+          </Typography>
         </Box>
-        <Box px={2} width="100%">
-          <Box display="flex" flexDirection="column" gap={1} m={1} p={2} border="1px solid #ddd">
-            <Typography variant="h6">내 정보 수정</Typography>
-            <FormControl style={{ gap: 10 }}>
-              <RadioGroup
-                aria-labelledby="성별 수정"
-                defaultValue="female"
-                name="gender-group"
-                sx={{ flexDirection: 'row' }}
-              >
-                <FormControlLabel value="female" control={<Radio />} label="여자" />
-                <FormControlLabel value="male" control={<Radio />} label="남자" />
-                <FormControlLabel value="other" control={<Radio />} label="Other" />
-              </RadioGroup>
-              <Input placeholder="생년월일" type="date" />
-              <Input placeholder="체중" type="number" />
-              <Input placeholder="키" type="number" />
-              <Button variant="outlined" color="primary" style={{ marginTop: 10 }}>
-                수정하기
-              </Button>
-            </FormControl>
+        <Box mt={4} display={'flex'} width={'100%'} flexDirection={'column'} gap={2}>
+          <Box display={'flex'} px={4} gap={1}>
+            <NavButton variant="contained" onClick={handleSettings}>
+              <Settings />
+              <Typography variant="h6" ml={2}>
+                내 정보 변경
+              </Typography>
+            </NavButton>
+            <NavButton variant="contained" onClick={handleQnA}>
+              <QuestionAnswer />
+              <Typography variant="h6" ml={2}>
+                Q & A
+              </Typography>
+            </NavButton>
           </Box>
-          <List>
-            <ListItem>
-              <ListItemButton>
-                <ListItemIcon>
-                  <GavelIcon />
-                </ListItemIcon>
-                <ListItemText primary="약관" />
-              </ListItemButton>
-            </ListItem>
-            <ListItem>
-              <ListItemButton onClick={handleLogin}>
-                <ListItemIcon>
-                  <Login />
-                </ListItemIcon>
-                <ListItemText primary="카카오 로그아웃" />
-              </ListItemButton>
-            </ListItem>
-          </List>
+          <Box display={'flex'} px={4} gap={1}>
+            <NavButton variant="contained" onClick={handleRules}>
+              <GavelIcon />
+              <Typography variant="h6" ml={2}>
+                약관
+              </Typography>
+            </NavButton>
+            <NavButton onClick={handleLogin} variant="contained">
+              <Logout />
+              <Typography variant="h6" ml={2}>
+                로그아웃
+              </Typography>
+            </NavButton>
+          </Box>
         </Box>
       </ScreenContainer>
       <BottomNavigation />
@@ -93,3 +89,14 @@ const ProfileActivity: ActivityComponentType = () => {
 };
 
 export default ProfileActivity;
+
+const NavButton = styled(Button)({
+  width: '50%',
+  height: '200px',
+  borderRadius: 24,
+  backgroundColor: 'whitesmoke',
+  color: 'black',
+  ':hover': {
+    backgroundColor: 'lightgray',
+  },
+});

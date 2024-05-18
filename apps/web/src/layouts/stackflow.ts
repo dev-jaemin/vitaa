@@ -17,6 +17,9 @@ import { AuthCallbackActivity } from '../activities/AuthCallbackActivity';
 import { providersPlugin } from './plugins/providersPlugin';
 import ChatBottomSheet from '../activities/_bottomsheets/ChatBottomSheet';
 import RegisterActivity from '../activities/RegisterActivity';
+import MyInformationActivity from '../activities/MyInformationActivity';
+import RulesBottomSheet from '../activities/_bottomsheets/RulesBottomSheet';
+
 export const { Stack, useFlow } = stackflow({
   transitionDuration: 350,
   plugins: [
@@ -29,10 +32,12 @@ export const { Stack, useFlow } = stackflow({
         /**페이지 */
         MainActivity: '/',
         CameraActivity: '/camera',
-        ProfileActivity: '/profile',
         SettingsActivity: '/settings',
         CapturedActivity: '/captured',
         MealActivity: '/meal',
+        /** 프로필 페이지 */
+        ProfileActivity: '/profile',
+        MyInformationActivity: '/my-information',
         /** Auth 관련 페이지 */
         AuthActivity: '/auth',
         RegisterActivity: '/register',
@@ -43,6 +48,7 @@ export const { Stack, useFlow } = stackflow({
         MealSelectionModal: '/meal-selection',
         /**바텀시트 */
         ChatBottomSheet: '/chat?message',
+        RulesBottomSheet: '/rules',
       },
       fallbackActivity: () => 'MainActivity',
     }),
@@ -59,11 +65,13 @@ export const { Stack, useFlow } = stackflow({
     AuthActivity,
     AuthCallbackActivity,
     RegisterActivity,
+    MyInformationActivity,
     /**모달 */
     CalendarModal,
     MealSelectionModal,
     /**바텀시트 */
     ChatBottomSheet,
+    RulesBottomSheet,
   },
   initialActivity: () => 'MainActivity',
 });
