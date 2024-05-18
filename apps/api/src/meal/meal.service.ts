@@ -8,8 +8,8 @@ import { PostMealDto } from '@repo/ui/types';
 export class MealService {
   constructor(@InjectRepository(Meal) private mealRepository: Repository<Meal>) {}
 
-  async findMealByDate(date: Date) {
-    return this.mealRepository.find({ where: { date } });
+  async findMealByDate(userId: number, date: Date) {
+    return this.mealRepository.find({ where: { userId, date } });
   }
 
   async createMeal(meal: PostMealDto) {

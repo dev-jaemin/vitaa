@@ -10,8 +10,9 @@ export class MealController {
 
   // GET /meal/:date - 날짜별 음식 조회
   @Get('/')
-  getMealByDate(@Query('date') date: Date) {
-    return this.mealService.findMealByDate(date);
+  @UseGuards(AuthGuard('jwt'))
+  getMealByDate(@Req() req: Request, @Query('date') date: Date) {
+    return this.mealService.findMealByDate(req.user.id, date);
   }
 
   @Post('/')
