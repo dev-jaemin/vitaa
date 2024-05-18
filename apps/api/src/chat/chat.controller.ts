@@ -18,9 +18,23 @@ export class ChatController {
   @UseGuards(AuthGuard('jwt'))
   async chatInference(@Req() req: Request, @Res() res: Response, @Body() body: ChatInferDto) {
     try {
-      const a = await this.chatService.inferChat({ ...body }, req.user.id);
-      console.log(a);
-      // this.chatService.postChat({ ...body });
+      const questionChat = {
+        message: body.message,
+        type: 'question',
+        userId: req.user.id,
+      };
+      await this.chatService.saveChat(questionChat);
+
+      const answer = await this.chatService.inferChat({ ...body }, req.user.id);
+
+      const answerChat = {
+        message: answer.answer,
+        type: 'answer',
+        userId: req.user.id,
+      };
+
+      await this.chatService.saveChat(answerChat);
+
       return res.send({ message: 'success' });
     } catch (err) {
       return res.send({ message: 'error' });

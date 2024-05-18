@@ -2,8 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Chat } from './chat.entity';
-import { ChatInferDto } from '@repo/ui/types';
+import { ChatDto, ChatInferDto } from '@repo/ui/types';
 import { User } from 'src/auth/user.entity';
+import { inferenceAxiosInstance } from 'src/common/service/axiosInstance';
 
 @Injectable()
 export class ChatService {
@@ -15,11 +16,12 @@ export class ChatService {
   async findChatByUserId(userId: number) {
     return this.chatRepository.find({ where: { userId } });
   }
+
   async inferChat(chat: ChatInferDto, userId: number) {
     const user = await this.userRepository.findOne({ where: { id: userId } });
     const bodyForInference = {
-      chat: chat.chat,
-      day_nutrient: chat.day_nutrient,
+      chat: chat.message,
+      day_nutrient: chat.dayNutrient,
       user_data: {
         gender: user.gender,
         age: user.age,
@@ -29,9 +31,13 @@ export class ChatService {
       },
     };
 
-    return bodyForInference;
+    const { data: inferenceData } = await inferenceAxiosInstance.post('/chat_infer', bodyForInference);
+    return inferenceData;
   }
-  // async postChat(chat: ) {
 
-  // }
+  async saveChat(chat: ChatDto) {
+    return this.chatRepository.save(chat);
+  }
+
+  // async PostChat
 }
