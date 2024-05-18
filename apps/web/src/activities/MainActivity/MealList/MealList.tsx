@@ -19,8 +19,8 @@ const MealList = () => {
         오늘의 식단
       </Typography>
       <Box display="flex" flexDirection="column" gap={1} width={'90%'} alignItems={'center'}>
-        {meals.map(meal => (
-          <MealBox meal={meal} max={tempMaxCalories} key={meal.image} />
+        {meals.map((meal, idx) => (
+          <MealBox meal={meal} max={tempMaxCalories} key={meal.image + idx} />
         ))}
         {missingMeals.map((missingCategory, idx) => (
           <RecommendMealBox mealCategory={missingCategory} key={idx} />

@@ -2,12 +2,10 @@ import { LocalFireDepartment } from '@mui/icons-material';
 import { Box, Typography, styled } from '@mui/material';
 import { Gauge } from '@mui/x-charts/Gauge';
 import { useMeals } from '../../../recoil/meal';
-
-const tempMaxCalories = 3000;
+import { useUserMaxNut } from '../../../recoil/userDailyNutrient';
 
 const CalorieBox = () => {
-  const maxCalories = tempMaxCalories;
-
+  const { maxCalories } = useUserMaxNut();
   const meals = useMeals();
   const currentCalories = meals.reduce((sum, meal) => sum + meal.calories ?? 0, 0);
 
