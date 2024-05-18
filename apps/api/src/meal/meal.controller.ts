@@ -1,8 +1,9 @@
-import { Body, Controller, Get, Post, Query, Req, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Req, Res, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { MealService } from './meal.service';
 import { PostMealDto } from '@repo/ui/types';
 import { AuthGuard } from '@nestjs/passport';
 import { Request, Response } from 'express';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('meal')
 export class MealController {
@@ -17,10 +18,16 @@ export class MealController {
 
   @Post('/')
   @UseGuards(AuthGuard('jwt'))
-  createMeal(@Req() req: Request, @Res() res: Response, @Body() body: PostMealDto) {
+  @UseInterceptors(FileInterceptor('image'))
+  async createMeal(
+    @UploadedFile() file: Express.Multer.File,
+    @Req() req: Request,
+    @Res() res: Response,
+    @Body() body: PostMealDto,
+  ) {
     try {
-      this.mealService.createMeal({ ...body, kakaoId: req.user.kakaoId });
-      return res.send({ message: 'success' });
+      const result = await this.mealService.createMeal({ ...body, image: file, userId: req.user.id });
+      return res.send(result);
     } catch (err) {
       return res.send({ message: 'error' });
     }
