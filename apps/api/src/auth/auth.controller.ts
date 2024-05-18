@@ -47,6 +47,11 @@ export class AuthController {
     try {
       this.authService.register(body);
 
+      const { accessToken, refreshToken } = await this.authService.getJWT(body.kakaoId);
+      res.cookie('accessToken', accessToken, { httpOnly: true });
+      res.cookie('refreshToken', refreshToken, { httpOnly: true });
+      res.cookie('isLoggedIn', true, { httpOnly: false });
+
       return res.send({ message: 'success' });
     } catch (err) {
       throw new UnauthorizedException();

@@ -36,31 +36,15 @@ export class AuthService {
     return { accessToken, refreshToken };
   }
 
-  // TODO : userRepository 추가 및 mock data 수정
   async kakaoValidateUser(kakaoId: number): Promise<UserDto> {
-    // let user: User = await this.usersRepository.findUserByKakaoId(kakaoId); // 유저 조회
+    let user: User = await this.userRepository.findOne({ where: { kakaoId } });
 
-    let user: UserDto = {
-      id: 1,
-      kakaoId: kakaoId,
-      username: '김재민',
-      gender: 'M',
-      age: 24,
-      weight: 67,
-      height: 176,
-      goal: '다이어트',
-    };
-    // if (!user) {
-    //   user = await this.usersRepository.create({
-    //     kakaoId,
-    //   });
-    // }
     return user;
   }
 
   generateAccessToken(user: UserDto): string {
     const payload = {
-      id: user.id,
+      ...user,
     };
     return this.jwtService.sign(payload);
   }
