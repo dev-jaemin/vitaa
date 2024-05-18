@@ -19,6 +19,7 @@ import ChatBottomSheet from '../activities/_bottomsheets/ChatBottomSheet';
 import RegisterActivity from '../activities/RegisterActivity';
 import MyInformationActivity from '../activities/MyInformationActivity';
 import RulesBottomSheet from '../activities/_bottomsheets/RulesBottomSheet';
+import PersonalNutrientBottomSheet from '../activities/_bottomsheets/PersonalNutrientBottomSheet';
 
 export const { Stack, useFlow } = stackflow({
   transitionDuration: 350,
@@ -49,6 +50,7 @@ export const { Stack, useFlow } = stackflow({
         /**바텀시트 */
         ChatBottomSheet: '/chat?message',
         RulesBottomSheet: '/rules',
+        PersonalNutrientBottomSheet: '/nutrients',
       },
       fallbackActivity: () => 'MainActivity',
     }),
@@ -72,6 +74,7 @@ export const { Stack, useFlow } = stackflow({
     /**바텀시트 */
     ChatBottomSheet,
     RulesBottomSheet,
+    PersonalNutrientBottomSheet,
   },
   initialActivity: () => 'MainActivity',
 });

@@ -1,17 +1,11 @@
 import type { ActivityComponentType } from '@stackflow/react';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
-import { BottomNavigation } from '../../components/BottomNavigation';
 import {
   Box,
   Button,
   FormControl,
   FormControlLabel,
   Input,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
   Radio,
   RadioGroup,
   Typography,
@@ -19,9 +13,6 @@ import {
 } from '@mui/material';
 
 import { ScreenContainer } from '../../components/Containers/ScreenContainer';
-import { useFlow } from '../../layouts/stackflow';
-import Login from '@mui/icons-material/Login';
-import GavelIcon from '@mui/icons-material/Gavel';
 import DefaultAvatar from '/DefaultAvatar.png';
 import { useGetUserInfo } from '../../apis/auth/_hooks/me';
 import { enqueueSnackbar } from 'notistack';

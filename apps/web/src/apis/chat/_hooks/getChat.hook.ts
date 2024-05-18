@@ -1,19 +1,19 @@
 import { useQuery } from '../../../config/react-query/useQuery';
 import { QUERY_KEYS } from '../../../constants/queryKeys';
-import { getUserInfo } from '..';
 import { enqueueSnackbar } from 'notistack';
 import { useFlow } from '../../../layouts/stackflow';
+import { getChats } from '..';
 
-export const useGetUserInfo = () => {
+export const useGetChats = () => {
   const { push } = useFlow();
 
   return useQuery({
-    queryKey: QUERY_KEYS.ME,
-    queryFn: () => getUserInfo(),
+    queryKey: QUERY_KEYS.CHATS,
+    queryFn: () => getChats(),
     options: {
       onError: () => {
-        enqueueSnackbar('비타에 로그인 해 주세요!', { variant: 'warning' });
-        push('AuthActivity', {});
+        enqueueSnackbar('채팅내역을 불러오는데 실패했습니다. 잠시 뒤 다시 시도해주세요', { variant: 'warning' });
+        push('MainActivity', {});
       },
     },
   });

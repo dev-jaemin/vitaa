@@ -7,9 +7,8 @@ import { ScreenContainer } from '../../components/Containers/ScreenContainer';
 import { useFlow } from '../../layouts/stackflow';
 import GavelIcon from '@mui/icons-material/Gavel';
 import DefaultAvatar from '/DefaultAvatar.png';
-import { Logout, QuestionAnswer, Settings } from '@mui/icons-material';
+import { FoodBank, Logout, Settings } from '@mui/icons-material';
 import { useGetUserInfo } from '../../apis/auth/_hooks/me';
-import { enqueueSnackbar } from 'notistack';
 
 const ProfileActivity: ActivityComponentType = () => {
   const { push } = useFlow();
@@ -27,8 +26,8 @@ const ProfileActivity: ActivityComponentType = () => {
     push('RulesBottomSheet', {});
   }
 
-  function handleQnA() {
-    enqueueSnackbar('Coming Soon! 조금만 기다려 주세요 ㅠㅠ', { variant: 'info' });
+  function handleNutrient() {
+    push('PersonalNutrientBottomSheet', {});
   }
 
   const { data } = useGetUserInfo();
@@ -60,10 +59,10 @@ const ProfileActivity: ActivityComponentType = () => {
                 내 정보 변경
               </Typography>
             </NavButton>
-            <NavButton variant="contained" onClick={handleQnA}>
-              <QuestionAnswer />
+            <NavButton variant="contained" onClick={handleNutrient}>
+              <FoodBank />
               <Typography variant="h6" ml={2}>
-                Q & A
+                내 추천 영양분
               </Typography>
             </NavButton>
           </Box>
