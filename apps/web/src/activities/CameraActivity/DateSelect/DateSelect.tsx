@@ -5,7 +5,7 @@ import { Dayjs } from 'dayjs';
 import { MEAL_TIME, MealTime } from '../../../types/meal';
 
 interface DateSelectProps {
-  selectedMealDate: { date: Dayjs; meal: MealTime };
+  selectedMealDate: { date: Dayjs; category: MealTime };
   onDateChange: (name: string, value: Dayjs | MealTime | null) => void;
 }
 export const DateSelect = ({ selectedMealDate, onDateChange }: DateSelectProps) => {
@@ -24,9 +24,9 @@ export const DateSelect = ({ selectedMealDate, onDateChange }: DateSelectProps) 
           }}
         />
         <Select
-          value={selectedMealDate.meal}
+          value={selectedMealDate.category}
           onChange={e => {
-            onDateChange('meal', e.target.value as MealTime);
+            onDateChange('category', e.target.value as MealTime);
           }}
         >
           <MenuItem value={MEAL_TIME.BREAKFAST}>아침</MenuItem>

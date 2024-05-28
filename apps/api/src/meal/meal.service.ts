@@ -22,7 +22,7 @@ export class MealService {
     const user = await this.userRepository.findOne({ where: { id: meal.userId } });
 
     const bodyForInference = {
-      image: decodeURIComponent(meal.image.buffer.toString('base64')),
+      image: meal.image,
       food_category: meal.category,
       user_data: {
         gender: user.gender,
