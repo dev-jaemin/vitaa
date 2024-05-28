@@ -1,7 +1,7 @@
 import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
-import { PostMealDto } from '@repo/ui';
+import { Meal } from '@repo/ui';
 
-const mealAtom = atom<PostMealDto[]>({
+const mealAtom = atom<Meal[]>({
   key: 'mealAtom',
   default: [],
 });
