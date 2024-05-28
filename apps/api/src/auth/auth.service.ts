@@ -46,7 +46,7 @@ export class AuthService {
     const payload = {
       id: user.id,
       kakaoId: user.kakaoId,
-      usernmae: user.username,
+      username: user.username,
       gender: user.gender,
       age: user.age,
       weight: user.weight,
@@ -61,7 +61,7 @@ export class AuthService {
     const payload = {
       id: user.id,
       kakaoId: user.kakaoId,
-      usernmae: user.username,
+      username: user.username,
       gender: user.gender,
       age: user.age,
       weight: user.weight,
