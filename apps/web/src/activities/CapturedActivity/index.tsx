@@ -12,7 +12,7 @@ import VitaBot from '../../assets/VITA.png';
 import { useEffect, useState } from 'react';
 import SimpleMealBox from '../../components/MealBox/SimpleMealBox';
 import { useSetSelectedMeal, useselectedMeal } from '../../recoil/selectedMeal';
-import { Meal } from '../../types/meal';
+import { MealTime } from '../../types/meal';
 
 const options = {
   loop: true,
@@ -40,7 +40,7 @@ const CapturedActivity: ActivityComponentType = () => {
 
   const { push } = useFlow();
 
-  const handleClickChangeMeal = (selectedMeal: Meal) => {
+  const handleClickChangeMeal = (selectedMeal: MealTime) => {
     setSelectedMeal(selectedMeal);
     push('MealSelectionModal', {});
   };

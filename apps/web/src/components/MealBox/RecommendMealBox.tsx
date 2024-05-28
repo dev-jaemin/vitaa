@@ -5,9 +5,9 @@ import { FlexContainer, SpaceBetweenContainer } from '../Containers/ScreenContai
 import { ChevronRight } from '@mui/icons-material';
 import koreanMeal from '../../constants/meal';
 import { useFlow } from '../../layouts/stackflow';
-import { Meal } from '../../types/meal';
+import { MealTime } from '../../types/meal';
 
-const RecommendMealBox = ({ mealCategory }: { mealCategory: Meal }) => {
+const RecommendMealBox = ({ mealCategory }: { mealCategory: MealTime }) => {
   const image = useMealImage(mealCategory);
   const { push } = useFlow();
 

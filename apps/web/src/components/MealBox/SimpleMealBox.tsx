@@ -1,14 +1,14 @@
 import { Box, Typography, styled } from '@mui/material';
-import { Meal } from '../../types/meal';
+import { MealTime } from '../../types/meal';
 import useMealImage from '../../activities/MainActivity/_hooks/useMealImage';
 import { FlexContainer, SpaceBetweenContainer } from '../Containers/ScreenContainer';
 import koreanMeal from '../../constants/meal';
 import React from 'react';
 
 interface SimpleMealBoxProps {
-  mealCategory: Meal;
+  mealCategory: MealTime;
   icon: React.ReactNode;
-  onClick: (selectedMeal: Meal) => void;
+  onClick: (selectedMeal: MealTime) => void;
 }
 
 const SimpleMealBox: React.FC<SimpleMealBoxProps> = ({ mealCategory, icon, onClick }) => {

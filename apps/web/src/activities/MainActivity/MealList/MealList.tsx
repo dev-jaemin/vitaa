@@ -1,10 +1,10 @@
 import { Box, Typography } from '@mui/material';
 import MealBox from '../../../components/MealBox/MealBox';
 import { useMeals } from '../../../recoil/meal';
-import { Meal } from '../../../types/meal';
+import { MealTime } from '../../../types/meal';
 import RecommendMealBox from '../../../components/MealBox/RecommendMealBox';
 
-const defaultMeals: Meal[] = ['Breakfast', 'Lunch', 'Dinner', 'Snack'];
+const defaultMeals: MealTime[] = ['Breakfast', 'Lunch', 'Dinner', 'Snack'];
 
 const tempMaxCalories = 3000;
 const MealList = () => {

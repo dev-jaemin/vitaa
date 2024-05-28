@@ -1,4 +1,4 @@
-import { Meal } from '../types/meal';
+import { MealTime } from '../types/meal';
 
 const koreanMeal = {
   Breakfast: '아침',
@@ -9,4 +9,4 @@ const koreanMeal = {
 
 export default koreanMeal;
 
-export const mealData: Meal[] = ['Breakfast', 'Lunch', 'Dinner', 'Snack'];
+export const mealData: MealTime[] = ['Breakfast', 'Lunch', 'Dinner', 'Snack'];
