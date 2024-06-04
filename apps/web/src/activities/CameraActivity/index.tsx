@@ -43,12 +43,14 @@ const CameraActivity: ActivityComponentType = () => {
     if (!webcamRef.current) return;
     const imageSrc = webcamRef.current.getScreenshot();
     setImage(imageSrc);
+    enqueueSnackbar('사진 촬영 완료!', { variant: 'success' });
   }, [webcamRef]);
 
   const upload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       setImage(URL.createObjectURL(file));
+      enqueueSnackbar('사진 준비 완료!', { variant: 'success' });
     } else {
       enqueueSnackbar('파일을 업로드하지 못했습니다.', { variant: 'error' });
     }
@@ -66,7 +68,7 @@ const CameraActivity: ActivityComponentType = () => {
       <Camera webcamRef={webcamRef} />
       <CameraControlBox capture={capture} upload={upload} />
       <Box display="flex" justifyContent="center" p={4}>
-        <Button variant="contained" onClick={handleClick} fullWidth>
+        <Button variant="contained" onClick={handleClick} disabled={!capturedImage} fullWidth>
           분석 시작
         </Button>
       </Box>
