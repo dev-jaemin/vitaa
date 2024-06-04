@@ -20,9 +20,9 @@ export class AuthController {
     console.log(req.user.kakaoId, isUserRegistered);
     if (isUserRegistered) {
       const { accessToken, refreshToken } = await this.authService.getJWT(req.user.kakaoId);
-      res.cookie('accessToken', accessToken, { httpOnly: true });
-      res.cookie('refreshToken', refreshToken, { httpOnly: true });
-      res.cookie('isLoggedIn', true, { httpOnly: false });
+      res.cookie('accessToken', accessToken, { httpOnly: true, secure: true, sameSite: 'none' });
+      res.cookie('refreshToken', refreshToken, { httpOnly: true, sameSite: 'none' });
+      res.cookie('isLoggedIn', true, { httpOnly: false, sameSite: 'none' });
       return res.redirect(this.configService.get('WEB_URL'));
     }
     res.cookie('kakaoId', req.user.kakaoId, { httpOnly: false });
