@@ -45,8 +45,12 @@ const CameraActivity: ActivityComponentType = () => {
   const upload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setImage(URL.createObjectURL(file));
-      enqueueSnackbar('사진 준비 완료!', { variant: 'success' });
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        setImage(reader.result as string);
+        enqueueSnackbar('사진 준비 완료!', { variant: 'success' });
+      };
     } else {
       enqueueSnackbar('파일을 업로드하지 못했습니다.', { variant: 'error' });
     }

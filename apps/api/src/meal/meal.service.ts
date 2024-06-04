@@ -43,7 +43,7 @@ export class MealService {
       date: meal.date,
       image: s3Image,
       rating: inferenceData.rating,
-      review: inferenceData.review,
+      review: inferenceData.review.ReviewMessage,
       calories: inferenceData.meal_total.calories,
       carbs: inferenceData.meal_total.carbs,
       protein: inferenceData.meal_total.protein,

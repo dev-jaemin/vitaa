@@ -1,13 +1,12 @@
 import { Box, Typography, styled } from '@mui/material';
 
 const MealImageBox = ({ src }: { src: string }) => {
-  const capturedImage = 'https://picsum.photos/500/500';
   return (
     <BoxContainer>
       <Typography variant="h4" textAlign={'center'} mb={1}>
         내가 기록한 이미지
       </Typography>
-      <MealImage src={capturedImage} />
+      <MealImage src={src} />
     </BoxContainer>
   );
 };

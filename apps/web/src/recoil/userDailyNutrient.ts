@@ -4,10 +4,10 @@ import { MaxDaily } from '../constants/userDailyNutrient';
 const userMaxNutrients = atom<MaxDaily>({
   key: 'userMaxNutrients',
   default: {
-    maxCalories: 0,
-    maxCarbs: 0,
-    maxFat: 0,
-    maxProteins: 0,
+    maxCalories: 2600,
+    maxCarbs: 130,
+    maxFat: 60,
+    maxProteins: 65,
   },
 });
 
