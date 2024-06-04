@@ -116,8 +116,10 @@ async def chat_infer(item: QustionItem):
     item = dict(item)
     chat = item['chat']
     user_data = json.dumps(dict(item['user_data']), ensure_ascii=False)
-    day_nutrient = json.dumps(dict(item['user_data']), ensure_ascii=False)
-    text = f'Answer my question in Korean depeding on my user_data : {user_data} and my day_nutrient I took today : {day_nutrient}. My question is : {chat} '
+    day_nutrient = json.dumps(dict(item['day_nutrient']), ensure_ascii=False)
+    text = f'Answer my question in Korean depeding on my user_data : {user_data} and my daily nutrient I took today : {day_nutrient}. My question is : {chat} \
+        It would be great if you could determine whether my daily intake is appropriate. \
+        Do not use line breaks and please answer in string format'
 
     payload = {
         "model": "gpt-4o",
@@ -132,7 +134,7 @@ async def chat_infer(item: QustionItem):
             ]
             }
         ],
-        "max_tokens": 500
+        "max_tokens": 300
     }
     gpt_response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
    
