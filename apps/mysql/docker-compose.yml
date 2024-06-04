@@ -4,7 +4,7 @@ services:
     restart: always
     container_name: mysql_mukkaebi
     ports:
-      - '8503:3306'
+      - '3306:3306'
     environment: # -e 옵션
       - MYSQL_ROOT_PASSWORD=9240
       - MYSQL_DATABASE=mukkaebi

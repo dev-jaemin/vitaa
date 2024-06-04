@@ -148,10 +148,8 @@ async def chat_infer(item: QustionItem):
         raise HTTPException(status_code=500, detail="Server Error. Please check out API KEY")
 
     gpt_response_content = gpt_response.json()["choices"][0]['message']['content']
-     
+    
     response_dict = {}
     response_dict['answer'] = gpt_response_content
 
     return JSONResponse(response_dict)
-
-#

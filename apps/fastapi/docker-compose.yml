@@ -1,0 +1,13 @@
+services:
+  fastapi_vita:
+    image: python:3.9.9-slim-bullseye
+    restart: always
+    container_name: fastapi_vita
+    ports:
+      - '8080:8080'
+    environment:
+      API_KEY: ${API_KEY}
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: sh -c "pip install -r requirements.txt && uvicorn main:app --host 0.0.0.0 --port 8080"
