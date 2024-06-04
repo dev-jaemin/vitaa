@@ -3,6 +3,7 @@ import { QUERY_KEYS } from '../../../constants/queryKeys';
 import { enqueueSnackbar } from 'notistack';
 import { useFlow } from '../../../layouts/stackflow';
 import { getChats } from '..';
+import { useQueryClient } from 'react-query';
 
 export const useGetChats = () => {
   const { push } = useFlow();
@@ -16,5 +17,14 @@ export const useGetChats = () => {
         push('MainActivity', {});
       },
     },
+  });
+};
+
+export const usePrefetchChat = async () => {
+  const queryClient = useQueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: QUERY_KEYS.CHATS,
+    queryFn: () => getChats(),
   });
 };

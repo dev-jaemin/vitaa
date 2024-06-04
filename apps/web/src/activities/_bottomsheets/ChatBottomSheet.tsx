@@ -1,27 +1,101 @@
 import { BottomSheet } from '@stackflow/plugin-basic-ui';
 import { ActivityComponentType, useActivity } from '@stackflow/react';
 import { Box, Button, Input, Typography, styled } from '@mui/material';
-import AttachFileIcon from '@mui/icons-material/AttachFile';
 import { ChatItem } from '../../components/ChatItem';
-import { MOCK_CHAT_DATA } from '../MainActivity/_data/chat';
+import { useGetChats } from '../../apis/chat/_hooks/getChat.hook';
+import VitaBot from '/VITA.png';
+import { usePostChat } from '../../apis/chat/_hooks/postChat.hook.ts';
+import { useEffect, useState } from 'react';
+import { useTodayNutrient } from '../../recoil/meal';
+import { LoadingChatItem } from '../../components/ChatItem/LoadingChat.tsx';
+import { useIsLoadingChat, useSetIsLoadingChat, useTempMessageStore } from '../../recoil/chat.ts';
+import { useFlow } from '../../layouts/stackflow.ts';
 
 const ChatBottomSheet: ActivityComponentType = () => {
-  const messages = MOCK_CHAT_DATA;
   const activity = useActivity();
   const currentMessage = activity.params.message;
+
+  const { replace } = useFlow();
+
+  const [message, setMessage] = useState('');
+  const [tempMessage, setTempMessage] = useTempMessageStore();
+
+  const { data: messages } = useGetChats();
+
+  const todayNutrient = useTodayNutrient();
+
+  const send = usePostChat();
+  const isLoadingChat = useIsLoadingChat();
+  const setIsLoadingChat = useSetIsLoadingChat();
+
+  useEffect(() => {
+    if (currentMessage) {
+      console.log('handling SEnd');
+
+      handleSend();
+    }
+  }, [currentMessage]);
+
+  const removeCurrentMessage = () => {
+    replace('ChatBottomSheet', {});
+  };
+
+  const handleMessageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setMessage(e.target.value);
+  };
+
+  const handleSend = () => {
+    setIsLoadingChat(true);
+    setTempMessage({ message: currentMessage ?? message, type: 'question', createdAt: new Date().toString() });
+    scrollToBottom();
+
+    setTimeout(() => {
+      scrollToBottom();
+    }, 500);
+
+    try {
+      if (!currentMessage && !message) return;
+      send.mutate({ message: currentMessage ?? message, dayNutrient: todayNutrient });
+      setMessage('');
+    } catch (e) {
+      console.error(e);
+      setIsLoadingChat(false);
+    }
+
+    if (!isLoadingChat && currentMessage) {
+      removeCurrentMessage();
+    }
+  };
+
+  const scrollToBottom = () => {
+    const chatBox = document.getElementById('chatBox');
+    if (chatBox) {
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   return (
     <BottomSheet>
       <Box display="flex" alignItems="center" gap={1} p={2} borderBottom="1px solid #ddd">
-        <Circle style={{ backgroundImage: `url('https://picsum.photos/52/52')` }} />
-        <Typography variant="h4">먹깨비</Typography>
+        <Profile src={VitaBot} />
+        <Typography variant="h4">비타</Typography>
       </Box>
-      <Box height="100%" display="flex" flexDirection="column" justifyContent="space-between">
-        <Box margin={1}>
-          {messages.map((message, index) => (
-            <ChatItem key={index} me={message.sender === 'me'} message={message.message} />
+      <Box maxHeight={'100%'} display="flex" flexDirection="column" justifyContent="space-between">
+        <Box margin={1} maxHeight={400} sx={{ overflow: 'scroll' }} id="chatBox">
+          {messages?.map((message, index) => (
+            <ChatItem
+              key={index}
+              me={message.type === 'question'}
+              message={message.message}
+              createdAt={message.createdAt ?? ''}
+            />
           ))}
-          {currentMessage && <ChatItem me message={currentMessage} />}
+          {isLoadingChat && <ChatItem me message={tempMessage.message} createdAt={tempMessage.createdAt} isSending />}
+          {isLoadingChat && <LoadingChatItem />}
         </Box>
         <Box
           display="flex"
@@ -31,11 +105,19 @@ const ChatBottomSheet: ActivityComponentType = () => {
           py={1}
           borderTop="1px solid #eeeeee"
         >
-          <Box>
-            <AttachFileIcon />
-          </Box>
-          <Input placeholder="메시지를 입력하세요" sx={{ width: '70%' }} />
-          <Button variant="contained" color="primary">
+          <Input
+            disabled={isLoadingChat}
+            placeholder={isLoadingChat ? '비타가 답변중이에요!' : '비타와 자유롭게 대화해보세요!'}
+            sx={{ width: '70%' }}
+            onChange={handleMessageChange}
+            value={message}
+            onKeyUp={e => {
+              if (e.key === 'Enter') {
+                handleSend();
+              }
+            }}
+          />
+          <Button variant="contained" color="primary" onClick={handleSend}>
             전송
           </Button>
         </Box>
@@ -46,17 +128,9 @@ const ChatBottomSheet: ActivityComponentType = () => {
 
 export default ChatBottomSheet;
 
-const Circle = styled(Box)(({ theme }) => ({
+const Profile = styled('img')({
   borderRadius: '50%',
   width: 36,
   height: 36,
-  backgroundColor: theme.colors.primary.main,
-  cursor: 'pointer',
-  '&:hover': {
-    backgroundColor: theme.colors.primary.dark,
-  },
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  color: theme.palette.common.white,
-}));
+  objectFit: 'cover',
+});
