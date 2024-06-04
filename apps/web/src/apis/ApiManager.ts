@@ -6,7 +6,7 @@ const ApiManager = axios.create({
   baseURL: baseUrl,
   responseType: 'json',
   withCredentials: true,
-  timeout: 10000,
+  timeout: 100000,
   headers: { 'Content-Type': 'application/json' },
 });
 
