@@ -2,7 +2,7 @@ export interface Meal {
   id: number;
   userId: number;
   date: Date;
-  category: string;
+  category: 'Breakfast' | 'Lunch' | 'Dinner' | 'Snack';
   calories: number;
   carbs: number;
   protein: number;

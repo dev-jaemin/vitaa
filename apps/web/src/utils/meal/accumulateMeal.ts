@@ -1,6 +1,6 @@
-import { PostMealDto } from '@repo/ui';
+import { Meal } from '@repo/ui';
 
-const accumulateMeal = (meals: PostMealDto[]) => {
+const accumulateMeal = (meals: Meal[]) => {
   const acculated = {
     calories: 0,
     carbs: 0,

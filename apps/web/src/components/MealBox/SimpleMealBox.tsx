@@ -1,5 +1,5 @@
 import { Box, Typography, styled } from '@mui/material';
-import { MealTime } from '../../types/meal';
+import { MealTime } from '../../types/Meal';
 import useMealImage from '../../activities/MainActivity/_hooks/useMealImage';
 import { FlexContainer, SpaceBetweenContainer } from '../Containers/ScreenContainer';
 import koreanMeal from '../../constants/meal';
