@@ -11,7 +11,6 @@ import Camera from './Camera/Camera';
 import { DateSelect } from './DateSelect';
 import { MEAL_TIME, type MealTime } from '../../types/Meal';
 import dayjs, { Dayjs } from 'dayjs';
-import { usePostMealByDate } from '../../apis/meal/_hooks/postMeal';
 import { PostMealDto } from '@repo/ui';
 import { Box, Button } from '@mui/material';
 
@@ -30,11 +29,8 @@ const CameraActivity: ActivityComponentType = () => {
     image: capturedImage || '',
   };
 
-  const { mutateAsync } = usePostMealByDate(postData);
-
-  const handleClick = () => {
-    mutateAsync();
-    push('CapturedActivity', {});
+  const handleClick = async () => {
+    push('CapturedActivity', { postData: postData });
   };
 
   const setImage = useSetCapturedImage();
