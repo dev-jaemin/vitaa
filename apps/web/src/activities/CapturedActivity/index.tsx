@@ -8,14 +8,13 @@ import { Check, Edit } from '@mui/icons-material';
 import { Box, Button, Typography, styled } from '@mui/material';
 import LoadingLottie from '../../assets/lottie/loading.json';
 import Lottie from 'react-lottie';
-import VitaBot from '../../assets/VITA.png';
+import VitaBot from '/VITA.png';
 import { useEffect, useState } from 'react';
 import SimpleMealBox from '../../components/MealBox/SimpleMealBox';
 import { useSetSelectedMeal, useselectedMeal } from '../../recoil/selectedMeal';
 import { MealTime } from '../../types/Meal';
 import { usePostMealByDate } from '../../apis/meal/_hooks/postMeal';
 import { PostMealDto } from '@repo/ui';
-import { enqueueSnackbar } from 'notistack';
 
 const options = {
   loop: true,
