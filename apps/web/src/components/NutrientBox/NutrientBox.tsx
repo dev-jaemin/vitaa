@@ -12,34 +12,34 @@ const NutrientBox = ({ meals, isShowHeader }: { meals: Meal[]; isShowHeader?: bo
   const { calories, fat, carbs, protein } = accumulateMeal(meals);
   const isAll = meals.length > 1;
   return (
-    <BoxContainer container>
+    <BoxContainer>
       {isShowHeader && (
-        <Grid item sm={12}>
-          <Typography variant="h4" textAlign={'center'} mb={1}>
-            영양소 분석
-          </Typography>
-        </Grid>
+        <Typography variant="h4" textAlign={'center'} mb={1}>
+          영양소 분석
+        </Typography>
       )}
-      <IndividualNutrient
-        mass={calories}
-        nutrient={NUTRIENTS.CALORIES}
-        percentage={getPercentage(calories, maxCalories)}
-        unit="kcal"
-        isAll={isAll}
-      />
-      <IndividualNutrient
-        mass={carbs}
-        nutrient={NUTRIENTS.CARBS}
-        percentage={getPercentage(carbs, maxCarbs)}
-        isAll={isAll}
-      />
-      <IndividualNutrient
-        mass={protein}
-        nutrient={NUTRIENTS.PROTEIN}
-        percentage={getPercentage(protein, maxProteins)}
-        isAll={isAll}
-      />
-      <IndividualNutrient mass={fat} nutrient={NUTRIENTS.FAT} percentage={getPercentage(fat, maxFat)} isAll={isAll} />
+      <Grid container>
+        <IndividualNutrient
+          mass={calories}
+          nutrient={NUTRIENTS.CALORIES}
+          percentage={getPercentage(calories, maxCalories)}
+          unit="kcal"
+          isAll={isAll}
+        />
+        <IndividualNutrient
+          mass={carbs}
+          nutrient={NUTRIENTS.CARBS}
+          percentage={getPercentage(carbs, maxCarbs)}
+          isAll={isAll}
+        />
+        <IndividualNutrient
+          mass={protein}
+          nutrient={NUTRIENTS.PROTEIN}
+          percentage={getPercentage(protein, maxProteins)}
+          isAll={isAll}
+        />
+        <IndividualNutrient mass={fat} nutrient={NUTRIENTS.FAT} percentage={getPercentage(fat, maxFat)} isAll={isAll} />
+      </Grid>
     </BoxContainer>
   );
 };
