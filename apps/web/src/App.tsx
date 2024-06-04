@@ -16,10 +16,10 @@ function App() {
           <QueryClientProvider client={new QueryClient()}>
             <SnackbarProvider
               iconVariant={{
-                success: <Check color="success" />,
-                error: <Error color="error" />,
-                warning: <Warning color="warning" />,
-                info: <Info color="info" />,
+                success: <Check color="success" sx={{ mr: 1 }} />,
+                error: <Error color="error" sx={{ mr: 1 }} />,
+                warning: <Warning color="warning" sx={{ mr: 1 }} />,
+                info: <Info color="info" sx={{ mr: 1 }} />,
               }}
               anchorOrigin={{
                 vertical: 'bottom',
