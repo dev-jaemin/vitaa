@@ -66,7 +66,7 @@ const CameraActivity: ActivityComponentType = () => {
       <Camera webcamRef={webcamRef} />
       <CameraControlBox capture={capture} upload={upload} />
       <Box display="flex" justifyContent="center" p={4}>
-        <Button variant="outlined" onClick={handleClick}>
+        <Button variant="contained" onClick={handleClick} fullWidth>
           분석 시작
         </Button>
       </Box>
