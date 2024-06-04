@@ -1,7 +1,7 @@
 import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
-import { Meal } from '../types/meal';
+import { MealTime } from '../types/Meal';
 
-const selectedMealAtom = atom<Meal>({
+const selectedMealAtom = atom<MealTime>({
   key: 'selectedMealAtom',
   default: 'Breakfast',
 });

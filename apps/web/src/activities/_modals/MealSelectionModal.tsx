@@ -6,7 +6,7 @@ import { Box, Typography } from '@mui/material';
 import koreanMeal, { mealData } from '../../constants/meal';
 import { CenterContainer } from '../../components/Containers/ScreenContainer';
 import { useSetSelectedMeal, useselectedMeal } from '../../recoil/selectedMeal';
-import { Meal } from '../../types/meal';
+import { MealTime } from '../../types/Meal';
 import { useFlow } from '../../layouts/stackflow';
 
 const MealSelectionModal: ActivityComponentType = () => {
@@ -15,7 +15,7 @@ const MealSelectionModal: ActivityComponentType = () => {
 
   const { pop } = useFlow();
 
-  const handleSelectMeal = (selectedMeal: Meal) => {
+  const handleSelectMeal = (selectedMeal: MealTime) => {
     setSelectedMeal(selectedMeal);
     pop();
   };

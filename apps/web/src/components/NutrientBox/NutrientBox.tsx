@@ -2,10 +2,11 @@ import { Grid, Typography, styled } from '@mui/material';
 import IndividualNutrient from './IndividualNutrient';
 import accumulateMeal from '../../utils/meal/accumulateMeal';
 import getPercentage from '../../utils/meal/getPercentage';
-import { PostMealDto } from '@repo/ui';
+import { Meal } from '@repo/ui';
 import { useUserMaxNut } from '../../recoil/userDailyNutrient';
+import { NUTRIENTS } from '../../types/Meal';
 
-const NutrientBox = ({ meals, isShowHeader }: { meals: PostMealDto[]; isShowHeader?: boolean }) => {
+const NutrientBox = ({ meals, isShowHeader }: { meals: Meal[]; isShowHeader?: boolean }) => {
   const { maxCalories, maxCarbs, maxProteins, maxFat } = useUserMaxNut();
 
   const { calories, fat, carbs, protein } = accumulateMeal(meals);
@@ -21,19 +22,24 @@ const NutrientBox = ({ meals, isShowHeader }: { meals: PostMealDto[]; isShowHead
       )}
       <IndividualNutrient
         mass={calories}
-        nutrient={'CALORIES'}
+        nutrient={NUTRIENTS.CALORIES}
         percentage={getPercentage(calories, maxCalories)}
         unit="kcal"
         isAll={isAll}
       />
-      <IndividualNutrient mass={carbs} nutrient={'CARBS'} percentage={getPercentage(carbs, maxCarbs)} isAll={isAll} />
+      <IndividualNutrient
+        mass={carbs}
+        nutrient={NUTRIENTS.CARBS}
+        percentage={getPercentage(carbs, maxCarbs)}
+        isAll={isAll}
+      />
       <IndividualNutrient
         mass={protein}
-        nutrient={'PROTEIN'}
+        nutrient={NUTRIENTS.PROTEIN}
         percentage={getPercentage(protein, maxProteins)}
         isAll={isAll}
       />
-      <IndividualNutrient mass={fat} nutrient={'FAT'} percentage={getPercentage(fat, maxFat)} isAll={isAll} />
+      <IndividualNutrient mass={fat} nutrient={NUTRIENTS.FAT} percentage={getPercentage(fat, maxFat)} isAll={isAll} />
     </BoxContainer>
   );
 };
