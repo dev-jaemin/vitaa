@@ -12,7 +12,7 @@ import VitaBot from '../../assets/VITA.png';
 import { useEffect, useState } from 'react';
 import SimpleMealBox from '../../components/MealBox/SimpleMealBox';
 import { useSetSelectedMeal, useselectedMeal } from '../../recoil/selectedMeal';
-import { MealTime } from '../../types/meal';
+import { MealTime } from '../../types/Meal';
 
 const options = {
   loop: true,

@@ -1,4 +1,4 @@
-import { MealTime } from '../types/meal';
+import { MealTime } from '../types/Meal';
 
 const koreanMeal = {
   Breakfast: '아침',

@@ -9,7 +9,7 @@ import CameraControlBox from './Camera/CameraControlBox';
 import { enqueueSnackbar } from 'notistack';
 import Camera from './Camera/Camera';
 import { DateSelect } from './DateSelect';
-import { MEAL_TIME, type MealTime } from '../../types/meal';
+import { MEAL_TIME, type MealTime } from '../../types/Meal';
 import dayjs, { Dayjs } from 'dayjs';
 import { usePostMealByDate } from '../../apis/meal/_hooks/postMeal';
 import { PostMealDto } from '@repo/ui';

@@ -3,14 +3,14 @@ import { ScreenContainer } from '../../components/Containers/ScreenContainer';
 import MealBox from '../../components/MealBox/MealBox';
 import BackHeader from '../../components/Header/BackHeader';
 import NutrientBox from '../../components/NutrientBox/NutrientBox';
-import { PostMealDto } from '@repo/ui';
+import { Meal } from '@repo/ui';
 import ReviewBox from '../../components/ReviewBox/ReviewBox';
 import MealImageBox from '../../components/MealBox/MealImageBox';
 import { Box } from '@mui/material';
 
 type MealActivityParams = {
   params: {
-    meal: PostMealDto;
+    meal: Meal;
   };
 };
 

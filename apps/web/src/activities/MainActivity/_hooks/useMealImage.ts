@@ -1,4 +1,4 @@
-import { MealTime } from '../../../types/meal';
+import { MealTime } from '../../../types/Meal';
 import Breakfast from '../../../assets/breakfast.png';
 import Lunch from '../../../assets/lunch.png';
 import Dinner from '../../../assets/dinner.png';

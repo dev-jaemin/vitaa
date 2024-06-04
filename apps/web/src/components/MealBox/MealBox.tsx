@@ -5,9 +5,9 @@ import { FlexContainer, SpaceBetweenContainer } from '../Containers/ScreenContai
 import { ChevronRight } from '@mui/icons-material';
 import koreanMeal from '../../constants/meal';
 import { useFlow } from '../../layouts/stackflow';
-import { PostMealDto } from '@repo/ui';
+import { Meal } from '@repo/ui';
 
-const MealBox = ({ meal, max, isDisableClick }: { meal: PostMealDto; max: number; isDisableClick?: boolean }) => {
+const MealBox = ({ meal, max, isDisableClick }: { meal: Meal; max: number; isDisableClick?: boolean }) => {
   const { calories, category } = meal;
   const image = useMealImage(category);
   const { push } = useFlow();
