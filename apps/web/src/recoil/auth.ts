@@ -1,5 +1,5 @@
 import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { RegisterDto } from '@repo/ui';
+import { RegisterDto, User } from '@repo/ui';
 
 const registerStepAtom = atom<number>({
   key: 'registerStepAtom',
@@ -25,4 +25,12 @@ const useSetRegisterData = () => useSetRecoilState(registerAtom);
 const useRegisterStep = () => useRecoilState(registerStepAtom);
 const useSetReigsterStep = () => useSetRecoilState(registerStepAtom);
 
-export { useRegisterData, useSetRegisterData, useRegisterStep, useSetReigsterStep };
+const userAtom = atom<User | null>({
+  key: 'userAtom',
+  default: null,
+});
+
+const useUser = () => useRecoilValue(userAtom);
+const useSetUser = () => useSetRecoilState(userAtom);
+
+export { useRegisterData, useSetRegisterData, useRegisterStep, useSetReigsterStep, useUser, useSetUser };
