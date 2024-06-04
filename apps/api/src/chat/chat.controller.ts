@@ -35,9 +35,9 @@ export class ChatController {
 
       await this.chatService.saveChat(answerChat);
 
-      return res.send({ message: 'success' });
+      return res.send(answerChat);
     } catch (err) {
-      return res.send({ message: 'error' });
+      return res.send({ message: err });
     }
   }
 }
