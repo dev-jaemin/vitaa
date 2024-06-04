@@ -7,6 +7,7 @@ import { Meal } from '@repo/ui';
 import ReviewBox from '../../components/ReviewBox/ReviewBox';
 import MealImageBox from '../../components/MealBox/MealImageBox';
 import { Box } from '@mui/material';
+import { useCapturedImage } from '../../recoil/capturedImage';
 
 type MealActivityParams = {
   params: {
@@ -15,13 +16,15 @@ type MealActivityParams = {
 };
 
 const MealActivity: React.FC<MealActivityParams> = ({ params: { meal } }) => {
+  const capturedImage = useCapturedImage();
+
   return (
     <AppScreen>
       <BackHeader />
       <ScreenContainer gap={4} sx={{ height: '100%' }} pb={10}>
         <MealBox meal={meal} max={3000} isDisableClick />
         <ReviewBox meal={meal} />
-        <MealImageBox src={meal.image} />
+        <MealImageBox src={capturedImage ?? ''} />
         <NutrientBox meals={[meal]} isShowHeader />
         <Box height={100} />
       </ScreenContainer>
