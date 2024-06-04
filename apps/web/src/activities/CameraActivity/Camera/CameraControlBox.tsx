@@ -15,13 +15,11 @@ const CameraControlBox: React.FC<CameraControlBoxProps> = ({ capture, upload }) 
           &nbsp;촬영
         </Typography>
       </CaptureButton>
-      <Typography m={2} variant="caption">
+      <Typography m={1} variant="caption">
         또는
       </Typography>
       <UploadBox>
-        <Button variant="outlined" fullWidth>
-          파일에서 업로드
-        </Button>
+        <Button variant="outlined">파일에서 업로드</Button>
         <input type="file" accept="image/*" onChange={upload} />
       </UploadBox>
     </BoxContainer>
@@ -34,7 +32,6 @@ const UploadBox = styled(Box)({
   position: 'relative',
   overflow: 'hidden',
   display: 'inline-block',
-  width: '100%',
   '& input': {
     position: 'absolute',
     top: 0,

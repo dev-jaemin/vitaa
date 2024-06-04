@@ -11,7 +11,6 @@ import Camera from './Camera/Camera';
 import { DateSelect } from './DateSelect';
 import { MEAL_TIME, type MealTime } from '../../types/Meal';
 import dayjs, { Dayjs } from 'dayjs';
-import { usePostMealByDate } from '../../apis/meal/_hooks/postMeal';
 import { PostMealDto } from '@repo/ui';
 import { Box, Button } from '@mui/material';
 
@@ -30,11 +29,8 @@ const CameraActivity: ActivityComponentType = () => {
     image: capturedImage || '',
   };
 
-  const { mutateAsync } = usePostMealByDate(postData);
-
-  const handleClick = () => {
-    mutateAsync();
-    push('CapturedActivity', {});
+  const handleClick = async () => {
+    push('CapturedActivity', { postData: postData });
   };
 
   const setImage = useSetCapturedImage();
@@ -43,12 +39,14 @@ const CameraActivity: ActivityComponentType = () => {
     if (!webcamRef.current) return;
     const imageSrc = webcamRef.current.getScreenshot();
     setImage(imageSrc);
+    enqueueSnackbar('사진 촬영 완료!', { variant: 'success' });
   }, [webcamRef]);
 
   const upload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       setImage(URL.createObjectURL(file));
+      enqueueSnackbar('사진 준비 완료!', { variant: 'success' });
     } else {
       enqueueSnackbar('파일을 업로드하지 못했습니다.', { variant: 'error' });
     }
@@ -66,7 +64,7 @@ const CameraActivity: ActivityComponentType = () => {
       <Camera webcamRef={webcamRef} />
       <CameraControlBox capture={capture} upload={upload} />
       <Box display="flex" justifyContent="center" p={4}>
-        <Button variant="outlined" onClick={handleClick}>
+        <Button variant="contained" onClick={handleClick} disabled={!capturedImage} fullWidth>
           분석 시작
         </Button>
       </Box>

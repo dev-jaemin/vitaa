@@ -13,6 +13,9 @@ import { useEffect, useState } from 'react';
 import SimpleMealBox from '../../components/MealBox/SimpleMealBox';
 import { useSetSelectedMeal, useselectedMeal } from '../../recoil/selectedMeal';
 import { MealTime } from '../../types/Meal';
+import { usePostMealByDate } from '../../apis/meal/_hooks/postMeal';
+import { PostMealDto } from '@repo/ui';
+import { enqueueSnackbar } from 'notistack';
 
 const options = {
   loop: true,
@@ -23,19 +26,28 @@ const options = {
   },
 };
 
-const CapturedActivity: ActivityComponentType = () => {
+const CapturedActivity: ActivityComponentType<{ postData: PostMealDto }> = ({ params: { postData } }) => {
   const capturedImage = useCapturedImage();
-  // const capturedImage = 'https://picsum.photos/300/200';
   const [isLoaded, setIsLoaded] = useState(false);
 
   const selectedMeal = useselectedMeal();
   const setSelectedMeal = useSetSelectedMeal();
 
-  // TODO: 일단 10초 뒤 로딩 끝내는 로직
+  const { mutateAsync } = usePostMealByDate(postData);
+
+  const mutateData = async () => {
+    try {
+      const result = await mutateAsync();
+      push('MealActivity', { meal: result });
+    } catch (e) {
+      /* empty */
+    }
+
+    setIsLoaded(true);
+  };
+
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoaded(true);
-    }, 10000);
+    mutateData();
   }, []);
 
   const { push } = useFlow();
