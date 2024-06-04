@@ -11,11 +11,14 @@ import { useSelectedDate } from '../../recoil/selectedDate';
 import { useSetMeals } from '../../recoil/meal';
 import { useEffect } from 'react';
 import MealList from './MealList/MealList';
+import { usePrefetchChat } from '../../apis/chat/_hooks/getChat.hook';
 
 const MainActivity: ActivityComponentType = () => {
   const selectedDate = useSelectedDate();
   const setMeals = useSetMeals();
   const { data: mealData } = useGetMealByDate(selectedDate.toISOString().split('T')[0]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const prefetchChat = usePrefetchChat();
 
   useEffect(() => {
     if (mealData) {
