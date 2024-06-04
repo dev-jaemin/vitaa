@@ -117,10 +117,10 @@ async def chat_infer(item: QustionItem):
     chat = item['chat']
     user_data = json.dumps(dict(item['user_data']), ensure_ascii=False)
     day_nutrient = json.dumps(dict(item['user_data']), ensure_ascii=False)
-    text = f'Answer my question in Korean {chat} depeding on my user_data : {user_data} and my day_nutrient I took today : {day_nutrient}'
+    text = f'Answer my question in Korean depeding on my user_data : {user_data} and my day_nutrient I took today : {day_nutrient}. My question is : {chat} '
 
     payload = {
-        "model": "gpt-4-vision-preview",
+        "model": "gpt-4o",
         "messages": [
             {
             "role": "user",
@@ -132,11 +132,21 @@ async def chat_infer(item: QustionItem):
             ]
             }
         ],
-        "max_tokens": 200
+        "max_tokens": 500
     }
     gpt_response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
-    gpt_response_content = gpt_response.json()["choices"][0]['message']['content']
+   
+    print(gpt_response.json())
+    
+    if 'choices' not in gpt_response.json().keys() : 
+        raise HTTPException(status_code=500, detail="Server Error. Please check out API KEY")
+    if 'message' not in gpt_response.json()["choices"][0].keys() :
+        raise HTTPException(status_code=500, detail="Server Error. Please check out API KEY")
+    if 'content' not in gpt_response.json()["choices"][0]['message'].keys() : 
+        raise HTTPException(status_code=500, detail="Server Error. Please check out API KEY")
 
+    gpt_response_content = gpt_response.json()["choices"][0]['message']['content']
+     
     response_dict = {}
     response_dict['answer'] = gpt_response_content
 
