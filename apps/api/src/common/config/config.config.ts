@@ -4,7 +4,7 @@ import * as Joi from 'joi';
 
 export const configModuleOptions: ConfigModuleOptions = {
   isGlobal: true,
-  envFilePath: '.env.local',
+  envFilePath: ['.env.local', '.env.production'],
 };
 
 export const { TypedConfigService, TypedConfigModule } = createTypedConfig({
