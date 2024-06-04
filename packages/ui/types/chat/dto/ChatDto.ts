@@ -11,7 +11,9 @@ export interface ChatInferDto {
 }
 
 export interface ChatDto {
+  id?: number;
   userId: number;
   type: string;
   message: string;
+  createdAt?: string;
 }
