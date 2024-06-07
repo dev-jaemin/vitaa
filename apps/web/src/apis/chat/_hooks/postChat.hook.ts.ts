@@ -1,6 +1,5 @@
-import { useQueryClient } from 'react-query';
-
 import { ChatInferDto } from '@repo/ui';
+import { useQueryClient } from '@tanstack/react-query';
 import { enqueueSnackbar } from 'notistack';
 
 import { postChat } from '..';
@@ -17,7 +16,7 @@ export const usePostChat = () => {
       enqueueSnackbar('채팅 전송에 실패했습니다. 잠시 뒤 다시 시도해주세요', { variant: 'warning' });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(QUERY_KEYS.CHATS);
+      queryClient.invalidateQueries({ queryKey: ['chats'] });
     },
     onSettled: () => {
       setIsLoadingChat(false);

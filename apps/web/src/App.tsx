@@ -1,22 +1,38 @@
-import { QueryClient, QueryClientProvider } from 'react-query';
-
 import { Check, Error, Info, Warning } from '@mui/icons-material';
 import { StackLayout, ThemeProvider } from '@repo/ui';
-import { SnackbarProvider } from 'notistack';
+import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
+import { SnackbarProvider, enqueueSnackbar } from 'notistack';
 import { RecoilRoot } from 'recoil';
 
 import SnackbarTheme from './components/Snackbar/SnackbarTheme';
+import { COMMON_MESSAGE } from './constants/snackbarMessage';
 import { Stack } from './layouts/stackflow';
 
 import './App.css';
 import '@stackflow/plugin-basic-ui/index.css';
 
 function App() {
+  const queryClient = new QueryClient({
+    queryCache: new QueryCache({
+      onError: error => {
+        if (error instanceof AxiosError)
+          enqueueSnackbar(COMMON_MESSAGE.SERVER_ERROR, {
+            variant: 'error',
+          });
+        else
+          enqueueSnackbar(COMMON_MESSAGE.UNKNOWN_ERROR, {
+            variant: 'error',
+          });
+      },
+    }),
+  });
+
   return (
     <>
       <ThemeProvider>
         <RecoilRoot>
-          <QueryClientProvider client={new QueryClient()}>
+          <QueryClientProvider client={queryClient}>
             <SnackbarProvider
               iconVariant={{
                 success: <Check color="success" sx={{ mr: 1 }} />,
