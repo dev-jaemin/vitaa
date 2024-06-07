@@ -1,6 +1,6 @@
 import { ConfigModuleOptions } from '@nestjs/config';
-import { createTypedConfig } from 'nestjs-typed-config';
 import * as Joi from 'joi';
+import { createTypedConfig } from 'nestjs-typed-config';
 
 export const configModuleOptions: ConfigModuleOptions = {
   isGlobal: true,

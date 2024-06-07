@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
-import { Meal } from './meal.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PostMealDto } from '@repo/ui/types';
-import { inferenceAxiosInstance } from 'src/common/service/axiosInstance';
 import { User } from 'src/auth/user.entity';
+import { inferenceAxiosInstance } from 'src/common/service/axiosInstance';
+import { Repository } from 'typeorm';
+
+import { Meal } from './meal.entity';
 
 @Injectable()
 export class MealService {

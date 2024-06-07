@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Chat } from './chat.entity';
 import { ChatDto, ChatInferDto } from '@repo/ui/types';
 import { User } from 'src/auth/user.entity';
 import { inferenceAxiosInstance } from 'src/common/service/axiosInstance';
+import { Repository } from 'typeorm';
+
+import { Chat } from './chat.entity';
 
 @Injectable()
 export class ChatService {

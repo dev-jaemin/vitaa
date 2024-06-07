@@ -1,12 +1,12 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
+import { InjectRepository } from '@nestjs/typeorm';
+import { RegisterDto, UserDto } from '@repo/ui/types';
 import axios, { AxiosResponse } from 'axios';
 import * as bcrypt from 'bcrypt';
-
-import { RegisterDto, UserDto } from '@repo/ui/types';
-import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+
 import { User } from './user.entity';
 
 @Injectable()
@@ -37,7 +37,7 @@ export class AuthService {
   }
 
   async kakaoValidateUser(kakaoId: number): Promise<UserDto> {
-    let user: User = await this.userRepository.findOne({ where: { kakaoId } });
+    const user: User = await this.userRepository.findOne({ where: { kakaoId } });
 
     return user;
   }

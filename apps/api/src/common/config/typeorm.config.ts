@@ -1,5 +1,6 @@
 import { TypeOrmModuleAsyncOptions } from '@nestjs/typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+
 import { TypedConfigModule, TypedConfigService } from './config.config';
 
 export const TypeOrmConfig: TypeOrmModuleAsyncOptions = {

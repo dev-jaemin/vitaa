@@ -25,6 +25,11 @@ module.exports = {
             group: 'builtin',
             position: 'after',
           },
+          {
+            pattern: '@nest*',
+            group: 'builtin',
+            position: 'after',
+          },
         ],
         pathGroupsExcludedImportTypes: ['react', 'react-dom'],
         alphabetize: {
