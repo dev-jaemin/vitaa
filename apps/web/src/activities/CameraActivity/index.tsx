@@ -1,7 +1,7 @@
 import { useCallback, useRef, useState } from 'react';
 import Webcam from 'react-webcam';
 
-import { Box, Button } from '@mui/material';
+import { Box, Typography, styled } from '@mui/material';
 import { PostMealDto } from '@repo/ui';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
 import type { ActivityComponentType } from '@stackflow/react';
@@ -16,7 +16,6 @@ import { useFlow } from '../../layouts/stackflow';
 import { useCapturedImage, useSetCapturedImage } from '../../recoil/capturedImage';
 import { MEAL_TIME, type MealTime } from '../../types/Meal';
 
-
 const CameraActivity: ActivityComponentType = () => {
   const webcamRef = useRef<Webcam>(null);
   const { push } = useFlow();
@@ -26,6 +25,7 @@ const CameraActivity: ActivityComponentType = () => {
     date: dayjs(),
     category: MEAL_TIME.BREAKFAST,
   });
+
   const postData: PostMealDto = {
     date: selectedMealDate.date.toDate(),
     category: selectedMealDate.category,
@@ -65,19 +65,51 @@ const CameraActivity: ActivityComponentType = () => {
     }
   };
 
+  const handleRemoveImage = () => {
+    setImage(null);
+  };
+
   return (
     <AppScreen>
       <DateSelect selectedMealDate={selectedMealDate} onDateChange={handleDateChange} />
-      <Camera webcamRef={webcamRef} />
-      <CameraControlBox capture={capture} upload={upload} />
-      <Box display="flex" justifyContent="center" p={4}>
-        <Button variant="contained" onClick={handleClick} disabled={!capturedImage} fullWidth>
-          분석 시작
-        </Button>
-      </Box>
+      {!capturedImage && <Camera webcamRef={webcamRef} />}
+      {capturedImage && (
+        <>
+          <ImageBox>
+            <Image src={capturedImage} alt="captured" />
+          </ImageBox>
+          <Typography sx={{ ml: 2 }} variant="caption">
+            잠깐! 음식사진이 맞는지 확인 후 분석을 시작해주세요.
+          </Typography>
+        </>
+      )}
+      <CameraControlBox
+        capture={capture}
+        upload={upload}
+        capturedImage={capturedImage}
+        removeImage={handleRemoveImage}
+        handleClick={handleClick}
+      />
       <BottomNavigation />
     </AppScreen>
   );
 };
 
 export default CameraActivity;
+
+export const ImageBox = styled(Box)({
+  width: '90%',
+  height: 'auto',
+  overflow: 'hidden',
+  borderRadius: 16,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  border: '1px solid #ccc',
+  margin: '18px',
+});
+
+const Image = styled('img')({
+  width: '100%',
+  objectFit: 'cover',
+});

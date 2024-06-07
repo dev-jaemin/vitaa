@@ -1,28 +1,60 @@
 import React from 'react';
 
-import { CameraAltRounded } from '@mui/icons-material';
-import { Box, Button, IconButton, Typography, styled } from '@mui/material';
+import { CameraAltRounded, DeleteOutline } from '@mui/icons-material';
+import { Box, Button, Divider, IconButton, Typography, styled } from '@mui/material';
+import { FlexContainer } from '../../../components/Containers/ScreenContainer';
 
 interface CameraControlBoxProps {
   capture: () => void;
   upload: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  removeImage: () => void;
+  capturedImage: string | null;
+  handleClick: () => void;
 }
-const CameraControlBox: React.FC<CameraControlBoxProps> = ({ capture, upload }) => {
+const CameraControlBox: React.FC<CameraControlBoxProps> = ({
+  capture,
+  upload,
+  removeImage,
+  capturedImage,
+  handleClick,
+}) => {
   return (
     <BoxContainer>
-      <CaptureButton onClick={capture}>
-        <CameraAltRounded />
-        <Typography variant="caption" color={'whitesmoke'}>
-          &nbsp;촬영
-        </Typography>
-      </CaptureButton>
-      <Typography m={1} variant="caption">
-        또는
-      </Typography>
-      <UploadBox>
-        <Button variant="outlined">파일에서 업로드</Button>
-        <input type="file" accept="image/*" onChange={upload} />
-      </UploadBox>
+      {!capturedImage && (
+        <>
+          <CaptureButton onClick={capture} fullWidth>
+            <CameraAltRounded fontSize="small" />
+            <Typography variant="caption" color={'whitesmoke'}>
+              &nbsp;촬영
+            </Typography>
+          </CaptureButton>
+          <FlexContainer my={2} width={'100%'} justifyContent={'center'}>
+            <Divider sx={{ width: '30%' }} />
+            <Typography m={1} variant="caption">
+              또는
+            </Typography>
+            <Divider sx={{ width: '30%' }} />
+          </FlexContainer>
+        </>
+      )}
+
+      {capturedImage ? (
+        <FlexContainer width={'100%'} gap={1}>
+          <Button variant="contained" onClick={handleClick} fullWidth>
+            분석 시작
+          </Button>
+          <Button variant="outlined" color="error" onClick={removeImage}>
+            <DeleteOutline />
+          </Button>
+        </FlexContainer>
+      ) : (
+        <UploadBox>
+          <Button variant="outlined" fullWidth>
+            파일에서 업로드
+          </Button>
+          <input type="file" accept="image/*" onChange={upload} style={{ height: '52px' }} />
+        </UploadBox>
+      )}
     </BoxContainer>
   );
 };
@@ -32,6 +64,8 @@ export default CameraControlBox;
 const UploadBox = styled(Box)({
   position: 'relative',
   overflow: 'hidden',
+  width: '100%',
+  height: 52,
   display: 'inline-block',
   '& input': {
     position: 'absolute',
@@ -45,14 +79,12 @@ const UploadBox = styled(Box)({
   },
 });
 
-const CaptureButton = styled(IconButton)(({ theme }) => ({
+const CaptureButton = styled(Button)(({ theme }) => ({
   color: 'white',
   backgroundColor: theme.colors.primary.main,
   '&:hover': {
     backgroundColor: theme.colors.primary.dark,
   },
-  borderRadius: 24,
-  padding: 16,
 }));
 
 const BoxContainer = styled(Box)({
