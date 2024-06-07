@@ -1,8 +1,8 @@
-import { Box, Typography } from '@mui/material';
-import { getTimeIntervalOfDay } from '../../../utils/date/timeOfDay';
-import { useGetUserInfo } from '../../../apis/auth/_hooks/me';
-import { useSetUserMaxNut } from '../../../recoil/userDailyNutrient';
 import { useEffect } from 'react';
+
+import { Box, Typography } from '@mui/material';
+
+import { useGetUserInfo } from '../../../apis/auth/_hooks/me';
 import {
   FEMALE_50_OVER,
   FEMALE_30_UNDER,
@@ -11,6 +11,8 @@ import {
   MALE_50_OVER,
   MALE_50_UNDER,
 } from '../../../constants/userDailyNutrient';
+import { useSetUserMaxNut } from '../../../recoil/userDailyNutrient';
+import { getTimeIntervalOfDay } from '../../../utils/date/timeOfDay';
 
 const currentTime = new Date();
 

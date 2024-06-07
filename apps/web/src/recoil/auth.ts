@@ -1,5 +1,5 @@
-import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { RegisterDto, User } from '@repo/ui';
+import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
 const registerStepAtom = atom<number>({
   key: 'registerStepAtom',

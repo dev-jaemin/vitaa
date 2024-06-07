@@ -1,12 +1,13 @@
-import { AppScreen } from '@stackflow/plugin-basic-ui';
-import { ScreenContainer } from '../../components/Containers/ScreenContainer';
-import MealBox from '../../components/MealBox/MealBox';
-import BackHeader from '../../components/Header/BackHeader';
-import NutrientBox from '../../components/NutrientBox/NutrientBox';
-import { Meal } from '@repo/ui';
-import ReviewBox from '../../components/ReviewBox/ReviewBox';
-import MealImageBox from '../../components/MealBox/MealImageBox';
 import { Box } from '@mui/material';
+import { Meal } from '@repo/ui';
+import { AppScreen } from '@stackflow/plugin-basic-ui';
+
+import { ScreenContainer } from '../../components/Containers/ScreenContainer';
+import BackHeader from '../../components/Header/BackHeader';
+import MealBox from '../../components/MealBox/MealBox';
+import MealImageBox from '../../components/MealBox/MealImageBox';
+import NutrientBox from '../../components/NutrientBox/NutrientBox';
+import ReviewBox from '../../components/ReviewBox/ReviewBox';
 import { useCapturedImage } from '../../recoil/capturedImage';
 
 type MealActivityParams = {

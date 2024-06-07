@@ -1,8 +1,10 @@
+import { useQueryClient } from 'react-query';
+
+import { ChatInferDto } from '@repo/ui';
 import { enqueueSnackbar } from 'notistack';
+
 import { postChat } from '..';
 import { useMutation } from '../../../config/react-query/useMutation';
-import { ChatInferDto } from '@repo/ui';
-import { useQueryClient } from 'react-query';
 import { QUERY_KEYS } from '../../../constants/queryKeys';
 import { useSetIsLoadingChat } from '../../../recoil/chat';
 

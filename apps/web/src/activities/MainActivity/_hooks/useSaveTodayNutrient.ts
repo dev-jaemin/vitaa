@@ -1,7 +1,8 @@
 import { Meal } from '@repo/ui';
+
+import { useSetTodayNutrient } from '../../../recoil/meal';
 import { useSelectedDate } from '../../../recoil/selectedDate';
 import accumulateMeal from '../../../utils/meal/accumulateMeal';
-import { useSetTodayNutrient } from '../../../recoil/meal';
 
 const today = new Date();
 

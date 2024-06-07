@@ -1,9 +1,12 @@
-import { Box, Typography, styled } from '@mui/material';
-import { MealTime } from '../../types/Meal';
-import useMealImage from '../../activities/MainActivity/_hooks/useMealImage';
-import { FlexContainer, SpaceBetweenContainer } from '../Containers/ScreenContainer';
-import koreanMeal from '../../constants/meal';
 import React from 'react';
+
+import { Box, Typography, styled } from '@mui/material';
+
+import useMealImage from '../../activities/MainActivity/_hooks/useMealImage';
+import koreanMeal from '../../constants/meal';
+import { MealTime } from '../../types/Meal';
+import { FlexContainer, SpaceBetweenContainer } from '../Containers/ScreenContainer';
+
 
 interface SimpleMealBoxProps {
   mealCategory: MealTime;

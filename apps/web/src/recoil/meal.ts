@@ -1,5 +1,6 @@
-import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
 import { Meal } from '@repo/ui';
+import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
+
 import { DayNutrient } from '../../../../packages/ui/types/chat/dto/ChatDto';
 
 const mealAtom = atom<Meal[]>({

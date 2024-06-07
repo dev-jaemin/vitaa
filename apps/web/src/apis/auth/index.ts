@@ -1,4 +1,5 @@
 import { RegisterDto, User } from '@repo/ui';
+
 import ApiManager from '../ApiManager';
 
 export const getUserInfo = async (): Promise<User> => {

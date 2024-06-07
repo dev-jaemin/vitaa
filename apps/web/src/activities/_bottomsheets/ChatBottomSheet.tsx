@@ -1,15 +1,21 @@
+import { useEffect, useState } from 'react';
+
+import { Box, Button, Input, Typography, styled } from '@mui/material';
 import { BottomSheet } from '@stackflow/plugin-basic-ui';
 import { ActivityComponentType, useActivity } from '@stackflow/react';
-import { Box, Button, Input, Typography, styled } from '@mui/material';
-import { ChatItem } from '../../components/ChatItem';
+
 import { useGetChats } from '../../apis/chat/_hooks/getChat.hook';
-import VitaBot from '/VITA.png';
 import { usePostChat } from '../../apis/chat/_hooks/postChat.hook.ts';
-import { useEffect, useState } from 'react';
-import { useTodayNutrient } from '../../recoil/meal';
+import { ChatItem } from '../../components/ChatItem';
+
+import VitaBot from '/VITA.png';
+
+
+
 import { LoadingChatItem } from '../../components/ChatItem/LoadingChat.tsx';
-import { useIsLoadingChat, useSetIsLoadingChat, useTempMessageStore } from '../../recoil/chat.ts';
 import { useFlow } from '../../layouts/stackflow.ts';
+import { useIsLoadingChat, useSetIsLoadingChat, useTempMessageStore } from '../../recoil/chat.ts';
+import { useTodayNutrient } from '../../recoil/meal';
 
 const ChatBottomSheet: ActivityComponentType = () => {
   const activity = useActivity();

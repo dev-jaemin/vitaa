@@ -1,11 +1,12 @@
+import { ChevronRight } from '@mui/icons-material';
 import { Box, Typography, styled } from '@mui/material';
+import { Meal } from '@repo/ui';
 
 import useMealImage from '../../activities/MainActivity/_hooks/useMealImage';
-import { FlexContainer, SpaceBetweenContainer } from '../Containers/ScreenContainer';
-import { ChevronRight } from '@mui/icons-material';
 import koreanMeal from '../../constants/meal';
 import { useFlow } from '../../layouts/stackflow';
-import { Meal } from '@repo/ui';
+import { FlexContainer, SpaceBetweenContainer } from '../Containers/ScreenContainer';
+
 
 const MealBox = ({ meal, max, isDisableClick }: { meal: Meal; max: number; isDisableClick?: boolean }) => {
   const { calories, category } = meal;

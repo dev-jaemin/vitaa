@@ -1,17 +1,19 @@
-import type { ActivityComponentType } from '@stackflow/react';
+import { useEffect } from 'react';
+
 import { AppScreen } from '@stackflow/plugin-basic-ui';
+import type { ActivityComponentType } from '@stackflow/react';
+
+import CalorieBox from './CalorieBox/CalorieBox';
+import MealList from './MealList/MealList';
+import WelcomeBox from './WelcomeBox/WelcomeBox';
+import { usePrefetchChat } from '../../apis/chat/_hooks/getChat.hook';
+import { useGetMealByDate } from '../../apis/meal/_hooks/getMeal';
 import { BottomNavigation } from '../../components/BottomNavigation';
 import { ScreenContainer } from '../../components/Containers/ScreenContainer';
 import Header from '../../components/Header';
-import WelcomeBox from './WelcomeBox/WelcomeBox';
-import CalorieBox from './CalorieBox/CalorieBox';
 import NutrientBox from '../../components/NutrientBox/NutrientBox';
-import { useGetMealByDate } from '../../apis/meal/_hooks/getMeal';
-import { useSelectedDate } from '../../recoil/selectedDate';
 import { useSetMeals } from '../../recoil/meal';
-import { useEffect } from 'react';
-import MealList from './MealList/MealList';
-import { usePrefetchChat } from '../../apis/chat/_hooks/getChat.hook';
+import { useSelectedDate } from '../../recoil/selectedDate';
 
 const MainActivity: ActivityComponentType = () => {
   const selectedDate = useSelectedDate();

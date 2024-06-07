@@ -1,4 +1,5 @@
 import { ChatDto, ChatInferDto } from '@repo/ui';
+
 import ApiManager from '../ApiManager';
 
 export const getChats = async (): Promise<ChatDto[]> => {

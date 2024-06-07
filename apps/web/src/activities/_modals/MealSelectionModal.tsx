@@ -1,13 +1,14 @@
-import { Modal } from '@stackflow/plugin-basic-ui';
-import { ActivityComponentType } from '@stackflow/react';
-import SimpleMealBox from '../../components/MealBox/SimpleMealBox';
 import { ChevronRight } from '@mui/icons-material';
 import { Box, Typography } from '@mui/material';
-import koreanMeal, { mealData } from '../../constants/meal';
+import { Modal } from '@stackflow/plugin-basic-ui';
+import { ActivityComponentType } from '@stackflow/react';
+
 import { CenterContainer } from '../../components/Containers/ScreenContainer';
+import SimpleMealBox from '../../components/MealBox/SimpleMealBox';
+import koreanMeal, { mealData } from '../../constants/meal';
+import { useFlow } from '../../layouts/stackflow';
 import { useSetSelectedMeal, useselectedMeal } from '../../recoil/selectedMeal';
 import { MealTime } from '../../types/Meal';
-import { useFlow } from '../../layouts/stackflow';
 
 const MealSelectionModal: ActivityComponentType = () => {
   const selectedMeal = useselectedMeal();

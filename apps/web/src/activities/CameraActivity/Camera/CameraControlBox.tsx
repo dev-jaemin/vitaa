@@ -1,6 +1,7 @@
+import React from 'react';
+
 import { CameraAltRounded } from '@mui/icons-material';
 import { Box, Button, IconButton, Typography, styled } from '@mui/material';
-import React from 'react';
 
 interface CameraControlBoxProps {
   capture: () => void;

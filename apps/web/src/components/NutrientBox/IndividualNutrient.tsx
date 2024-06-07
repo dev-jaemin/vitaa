@@ -1,7 +1,8 @@
 import { Grid, LinearProgress, Typography } from '@mui/material';
-import { SpaceBetweenContainer } from '../Containers/ScreenContainer';
+
 import { koreanNutrient, nutrientColors } from '../../constants/nutrient';
 import { Nutrient } from '../../types/Meal';
+import { SpaceBetweenContainer } from '../Containers/ScreenContainer';
 
 interface IndividualNutrientProps {
   mass: number;

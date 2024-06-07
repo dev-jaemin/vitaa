@@ -1,4 +1,5 @@
 import { Meal, PostMealDto } from '@repo/ui';
+
 import ApiManager from '../ApiManager';
 
 export const getMealByDate = async (date: string): Promise<Meal[]> => {

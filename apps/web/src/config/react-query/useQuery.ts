@@ -1,6 +1,8 @@
+import { QueryFunction, QueryKey, UseQueryOptions, useQuery as _useQuery } from 'react-query';
+
 import { AxiosError } from 'axios';
 import { useSnackbar } from 'notistack';
-import { QueryFunction, QueryKey, UseQueryOptions, useQuery as _useQuery } from 'react-query';
+
 import { COMMON_MESSAGE } from '../../constants/snackbarMessage';
 
 export type UseQueryProps<TData = unknown, TError = unknown, TQueryFnData = TData> = {

@@ -1,8 +1,10 @@
+import { useEffect } from 'react';
+
 import { enqueueSnackbar } from 'notistack';
+
 import { usePostRegister } from '../../../apis/auth/_hooks/register.hook';
 import { useFlow } from '../../../layouts/stackflow';
 import { useRegisterData, useRegisterStep, useSetRegisterData } from '../../../recoil/auth';
-import { useEffect } from 'react';
 import { get_cookie } from '../../../utils/storage/cookie';
 
 interface RegisterResponse {

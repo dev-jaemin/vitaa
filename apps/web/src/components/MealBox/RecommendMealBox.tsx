@@ -1,11 +1,12 @@
+
+import { ChevronRight } from '@mui/icons-material';
 import { Box, Typography, styled } from '@mui/material';
 
 import useMealImage from '../../activities/MainActivity/_hooks/useMealImage';
-import { FlexContainer, SpaceBetweenContainer } from '../Containers/ScreenContainer';
-import { ChevronRight } from '@mui/icons-material';
 import koreanMeal from '../../constants/meal';
 import { useFlow } from '../../layouts/stackflow';
 import { MealTime } from '../../types/Meal';
+import { FlexContainer, SpaceBetweenContainer } from '../Containers/ScreenContainer';
 
 const RecommendMealBox = ({ mealCategory }: { mealCategory: MealTime }) => {
   const image = useMealImage(mealCategory);

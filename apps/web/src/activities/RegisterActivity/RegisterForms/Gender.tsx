@@ -1,6 +1,7 @@
-import { Box, Button, styled } from '@mui/material';
-import { useRegisterData, useSetRegisterData } from '../../../recoil/auth';
 import { Female, Male } from '@mui/icons-material';
+import { Box, Button, styled } from '@mui/material';
+
+import { useRegisterData, useSetRegisterData } from '../../../recoil/auth';
 
 const GenderForm = () => {
   const { gender } = useRegisterData();

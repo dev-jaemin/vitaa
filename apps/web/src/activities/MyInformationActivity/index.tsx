@@ -1,5 +1,3 @@
-import type { ActivityComponentType } from '@stackflow/react';
-import { AppScreen } from '@stackflow/plugin-basic-ui';
 import {
   Box,
   Button,
@@ -11,11 +9,15 @@ import {
   Typography,
   useTheme,
 } from '@mui/material';
-
-import { ScreenContainer } from '../../components/Containers/ScreenContainer';
-import DefaultAvatar from '/DefaultAvatar.png';
-import { useGetUserInfo } from '../../apis/auth/_hooks/me';
+import { AppScreen } from '@stackflow/plugin-basic-ui';
+import type { ActivityComponentType } from '@stackflow/react';
 import { enqueueSnackbar } from 'notistack';
+
+import { useGetUserInfo } from '../../apis/auth/_hooks/me';
+import { ScreenContainer } from '../../components/Containers/ScreenContainer';
+
+import DefaultAvatar from '/DefaultAvatar.png';
+
 import BackHeader from '../../components/Header/BackHeader';
 
 const MyInformationActivity: ActivityComponentType = () => {

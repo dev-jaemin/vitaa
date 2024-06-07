@@ -1,13 +1,14 @@
+import { Box, Button, LinearProgress, Typography } from '@mui/material';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { type ActivityComponentType } from '@stackflow/react';
-import { ScreenContainer } from '../../components/Containers/ScreenContainer';
-import { Box, Button, LinearProgress, Typography } from '@mui/material';
-import { RegisterHeader } from './RegisterHeader';
+
 import { useGetRegisterForm } from './_hooks/useGetRegisterForm';
-import NumberForm from './RegisterForms/NumberField';
+import GoalForm from './RegisterForms/\bGoal';
 import GenderForm from './RegisterForms/Gender';
 import NameForm from './RegisterForms/Name';
-import GoalForm from './RegisterForms/\bGoal';
+import NumberForm from './RegisterForms/NumberField';
+import { RegisterHeader } from './RegisterHeader';
+import { ScreenContainer } from '../../components/Containers/ScreenContainer';
 
 const TOTAL_STEPS = 6;
 export const RegisterActivity: ActivityComponentType = () => {

@@ -1,4 +1,5 @@
 import { RegisterDto } from '@repo/ui';
+
 import { postRegister } from '..';
 import { useMutation } from '../../../config/react-query/useMutation';
 

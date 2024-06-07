@@ -1,12 +1,15 @@
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+import { Check, Error, Info, Warning } from '@mui/icons-material';
+import { StackLayout, ThemeProvider } from '@repo/ui';
+import { SnackbarProvider } from 'notistack';
+import { RecoilRoot } from 'recoil';
+
+import SnackbarTheme from './components/Snackbar/SnackbarTheme';
+import { Stack } from './layouts/stackflow';
+
 import './App.css';
 import '@stackflow/plugin-basic-ui/index.css';
-import { Stack } from './layouts/stackflow';
-import { StackLayout, ThemeProvider } from '@repo/ui';
-import { RecoilRoot } from 'recoil';
-import { SnackbarProvider } from 'notistack';
-import { Check, Error, Info, Warning } from '@mui/icons-material';
-import SnackbarTheme from './components/Snackbar/SnackbarTheme';
-import { QueryClient, QueryClientProvider } from 'react-query';
 
 function App() {
   return (

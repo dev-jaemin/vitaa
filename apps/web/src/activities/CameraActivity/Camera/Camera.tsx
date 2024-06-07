@@ -1,7 +1,8 @@
 import { RefObject } from 'react';
 import Webcam from 'react-webcam';
-import { useActivity } from '@stackflow/react';
+
 import { Box, styled } from '@mui/material';
+import { useActivity } from '@stackflow/react';
 
 const videoConstraints = {
   width: 1280,

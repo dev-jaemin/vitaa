@@ -1,7 +1,8 @@
 import { Box, Typography, styled } from '@mui/material';
-import { FlexContainer, SpaceBetweenContainer } from '../Containers/ScreenContainer';
 import { Meal } from '@repo/ui';
+
 import useReviewProps from '../../activities/MainActivity/MealList/_hooks/useReviewProps';
+import { FlexContainer, SpaceBetweenContainer } from '../Containers/ScreenContainer';
 
 const ReviewBox = ({ meal }: { meal: Meal }) => {
   const reviewProps = useReviewProps(meal.rating ?? 'E');

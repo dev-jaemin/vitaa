@@ -1,9 +1,12 @@
+import { useQueryClient } from 'react-query';
+
+import { enqueueSnackbar } from 'notistack';
+
+import { getChats } from '..';
 import { useQuery } from '../../../config/react-query/useQuery';
 import { QUERY_KEYS } from '../../../constants/queryKeys';
-import { enqueueSnackbar } from 'notistack';
 import { useFlow } from '../../../layouts/stackflow';
-import { getChats } from '..';
-import { useQueryClient } from 'react-query';
+
 
 export const useGetChats = () => {
   const { push } = useFlow();

@@ -1,6 +1,8 @@
+import { MutationFunction, UseMutationOptions, useMutation as _useMutation } from 'react-query';
+
 import { AxiosError } from 'axios';
 import { useSnackbar } from 'notistack';
-import { MutationFunction, UseMutationOptions, useMutation as _useMutation } from 'react-query';
+
 import { COMMON_MESSAGE } from '../../constants/snackbarMessage';
 
 interface MutationProps {

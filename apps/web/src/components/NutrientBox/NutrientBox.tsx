@@ -1,10 +1,11 @@
 import { Grid, Typography, styled } from '@mui/material';
-import IndividualNutrient from './IndividualNutrient';
-import accumulateMeal from '../../utils/meal/accumulateMeal';
-import getPercentage from '../../utils/meal/getPercentage';
 import { Meal } from '@repo/ui';
+
+import IndividualNutrient from './IndividualNutrient';
 import { useUserMaxNut } from '../../recoil/userDailyNutrient';
 import { NUTRIENTS } from '../../types/Meal';
+import accumulateMeal from '../../utils/meal/accumulateMeal';
+import getPercentage from '../../utils/meal/getPercentage';
 
 const NutrientBox = ({ meals, isShowHeader }: { meals: Meal[]; isShowHeader?: boolean }) => {
   const { maxCalories, maxCarbs, maxProteins, maxFat } = useUserMaxNut();

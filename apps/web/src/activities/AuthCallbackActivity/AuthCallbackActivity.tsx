@@ -1,8 +1,10 @@
-import axios from 'axios';
 import { useEffect } from 'react';
-import { useFlow } from '../../layouts/stackflow';
+
 import { type AuthResponse } from '@repo/ui';
+import axios from 'axios';
 import { enqueueSnackbar } from 'notistack';
+
+import { useFlow } from '../../layouts/stackflow';
 
 export const AuthCallbackActivity = () => {
   const params = new URL(document.URL).searchParams;
