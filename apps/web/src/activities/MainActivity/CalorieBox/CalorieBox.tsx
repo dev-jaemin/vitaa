@@ -1,6 +1,7 @@
 import { LocalFireDepartment } from '@mui/icons-material';
 import { Box, Typography, styled } from '@mui/material';
 import { Gauge } from '@mui/x-charts/Gauge';
+
 import { useMeals } from '../../../recoil/meal';
 import { useUserMaxNut } from '../../../recoil/userDailyNutrient';
 

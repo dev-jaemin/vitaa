@@ -1,4 +1,5 @@
 import { Box, Button, Divider, TextField, Typography, styled } from '@mui/material';
+
 import { useRegisterData, useSetRegisterData } from '../../../recoil/auth';
 
 const DEFAULT_GOALS = ['다이어트', '근육 증가', '체력 향상', '건강 관리'];

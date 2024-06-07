@@ -1,7 +1,8 @@
+import { enqueueSnackbar } from 'notistack';
+
+import { getUserInfo } from '..';
 import { useQuery } from '../../../config/react-query/useQuery';
 import { QUERY_KEYS } from '../../../constants/queryKeys';
-import { getUserInfo } from '..';
-import { enqueueSnackbar } from 'notistack';
 import { useFlow } from '../../../layouts/stackflow';
 import { useSetUser } from '../../../recoil/auth';
 

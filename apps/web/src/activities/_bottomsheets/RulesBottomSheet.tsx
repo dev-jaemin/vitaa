@@ -1,6 +1,6 @@
+import { Box, Typography } from '@mui/material';
 import { BottomSheet } from '@stackflow/plugin-basic-ui';
 import { ActivityComponentType } from '@stackflow/react';
-import { Box, Typography } from '@mui/material';
 
 const RulesBottomSheet: ActivityComponentType = () => {
   return (

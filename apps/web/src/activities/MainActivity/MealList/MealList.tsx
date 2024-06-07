@@ -1,8 +1,9 @@
 import { Box, Typography } from '@mui/material';
+
 import MealBox from '../../../components/MealBox/MealBox';
+import RecommendMealBox from '../../../components/MealBox/RecommendMealBox';
 import { useMeals } from '../../../recoil/meal';
 import { MealTime } from '../../../types/Meal';
-import RecommendMealBox from '../../../components/MealBox/RecommendMealBox';
 
 const defaultMeals: MealTime[] = ['Breakfast', 'Lunch', 'Dinner', 'Snack'];
 

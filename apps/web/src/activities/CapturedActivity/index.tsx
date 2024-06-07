@@ -1,20 +1,29 @@
-import type { ActivityComponentType } from '@stackflow/react';
-import { AppScreen } from '@stackflow/plugin-basic-ui';
-import { CenterContainer, ScreenContainer } from '../../components/Containers/ScreenContainer';
-import { useCapturedImage } from '../../recoil/capturedImage';
-import { useFlow } from '../../layouts/stackflow';
-import BackHeader from '../../components/Header/BackHeader';
+import { useEffect, useState } from 'react';
+import Lottie from 'react-lottie';
+
 import { Check, Edit } from '@mui/icons-material';
 import { Box, Button, Typography, styled } from '@mui/material';
+import { PostMealDto } from '@repo/ui';
+import { AppScreen } from '@stackflow/plugin-basic-ui';
+import type { ActivityComponentType } from '@stackflow/react';
+
+import { usePostMealByDate } from '../../apis/meal/_hooks/postMeal';
 import LoadingLottie from '../../assets/lottie/loading.json';
-import Lottie from 'react-lottie';
-import VitaBot from '/VITA.png';
-import { useEffect, useState } from 'react';
+import { CenterContainer, ScreenContainer } from '../../components/Containers/ScreenContainer';
+import BackHeader from '../../components/Header/BackHeader';
 import SimpleMealBox from '../../components/MealBox/SimpleMealBox';
+import { useFlow } from '../../layouts/stackflow';
+import { useCapturedImage } from '../../recoil/capturedImage';
+
+
+
+
+import VitaBot from '/VITA.png';
+
+
 import { useSetSelectedMeal, useselectedMeal } from '../../recoil/selectedMeal';
 import { MealTime } from '../../types/Meal';
-import { usePostMealByDate } from '../../apis/meal/_hooks/postMeal';
-import { PostMealDto } from '@repo/ui';
+
 
 const options = {
   loop: true,

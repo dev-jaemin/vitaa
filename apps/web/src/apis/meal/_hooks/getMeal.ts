@@ -1,8 +1,8 @@
+import { getMealByDate } from '..';
+import useSaveTodayNutrient from '../../../activities/MainActivity/_hooks/useSaveTodayNutrient';
 import { useQuery } from '../../../config/react-query/useQuery';
 import { QUERY_KEYS } from '../../../constants/queryKeys';
-import { getMealByDate } from '..';
 import { useUser } from '../../../recoil/auth';
-import useSaveTodayNutrient from '../../../activities/MainActivity/_hooks/useSaveTodayNutrient';
 
 export const useGetMealByDate = (date: string) => {
   const user = useUser();

@@ -1,14 +1,18 @@
-import type { ActivityComponentType } from '@stackflow/react';
-import { AppScreen } from '@stackflow/plugin-basic-ui';
-import { BottomNavigation } from '../../components/BottomNavigation';
+import { FoodBank, Logout, Settings } from '@mui/icons-material';
+import GavelIcon from '@mui/icons-material/Gavel';
 import { Box, Button, Typography, styled, useTheme } from '@mui/material';
+import { AppScreen } from '@stackflow/plugin-basic-ui';
+import type { ActivityComponentType } from '@stackflow/react';
 
+import { useGetUserInfo } from '../../apis/auth/_hooks/me';
+import { BottomNavigation } from '../../components/BottomNavigation';
 import { ScreenContainer } from '../../components/Containers/ScreenContainer';
 import { useFlow } from '../../layouts/stackflow';
-import GavelIcon from '@mui/icons-material/Gavel';
+
+
 import DefaultAvatar from '/DefaultAvatar.png';
-import { FoodBank, Logout, Settings } from '@mui/icons-material';
-import { useGetUserInfo } from '../../apis/auth/_hooks/me';
+
+
 
 const ProfileActivity: ActivityComponentType = () => {
   const { push } = useFlow();

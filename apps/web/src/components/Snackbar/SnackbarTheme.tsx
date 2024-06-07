@@ -1,5 +1,5 @@
-import { MaterialDesignContent } from 'notistack';
 import { styled } from '@mui/material';
+import { MaterialDesignContent } from 'notistack';
 
 export const StyledMaterialDesignContent = styled(MaterialDesignContent)({
   backgroundColor: 'rgba(0, 0, 0, 0.80)',

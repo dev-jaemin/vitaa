@@ -1,6 +1,7 @@
-import { useRegisterStep } from '../../recoil/auth';
-import { Box, IconButton, styled } from '@mui/material';
 import { ChevronLeft } from '@mui/icons-material';
+import { Box, IconButton, styled } from '@mui/material';
+
+import { useRegisterStep } from '../../recoil/auth';
 
 export const RegisterHeader = () => {
   const [registerStep, setRegisterStep] = useRegisterStep();

@@ -1,18 +1,21 @@
-import type { ActivityComponentType } from '@stackflow/react';
-import { AppScreen } from '@stackflow/plugin-basic-ui';
-import { BottomNavigation } from '../../components/BottomNavigation';
 import { useCallback, useRef, useState } from 'react';
 import Webcam from 'react-webcam';
+
+import { Box, Button } from '@mui/material';
+import { PostMealDto } from '@repo/ui';
+import { AppScreen } from '@stackflow/plugin-basic-ui';
+import type { ActivityComponentType } from '@stackflow/react';
+import dayjs, { Dayjs } from 'dayjs';
+import { enqueueSnackbar } from 'notistack';
+
+import Camera from './Camera/Camera';
+import CameraControlBox from './Camera/CameraControlBox';
+import { DateSelect } from './DateSelect';
+import { BottomNavigation } from '../../components/BottomNavigation';
 import { useFlow } from '../../layouts/stackflow';
 import { useCapturedImage, useSetCapturedImage } from '../../recoil/capturedImage';
-import CameraControlBox from './Camera/CameraControlBox';
-import { enqueueSnackbar } from 'notistack';
-import Camera from './Camera/Camera';
-import { DateSelect } from './DateSelect';
 import { MEAL_TIME, type MealTime } from '../../types/Meal';
-import dayjs, { Dayjs } from 'dayjs';
-import { PostMealDto } from '@repo/ui';
-import { Box, Button } from '@mui/material';
+
 
 const CameraActivity: ActivityComponentType = () => {
   const webcamRef = useRef<Webcam>(null);

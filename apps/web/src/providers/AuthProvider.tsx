@@ -1,5 +1,6 @@
-import { User } from '@repo/ui';
 import { createContext, useState, useContext } from 'react';
+
+import { User } from '@repo/ui';
 
 type ProviderContextType = {
   user: User | null;

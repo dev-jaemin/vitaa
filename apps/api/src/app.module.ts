@@ -1,14 +1,15 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { AppController } from './app.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
+
+import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { MealModule } from './meal/meal.module';
-import { FoodModule } from './food/food.module';
-import { TypeOrmConfig } from './common/config/typeorm.config';
-import { configModuleOptions } from './common/config/config.config';
 import { ChatModule } from './chat/chat.module';
+import { configModuleOptions } from './common/config/config.config';
+import { TypeOrmConfig } from './common/config/typeorm.config';
+import { FoodModule } from './food/food.module';
+import { MealModule } from './meal/meal.module';
 
 @Module({
   imports: [

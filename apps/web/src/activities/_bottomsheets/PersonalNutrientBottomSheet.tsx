@@ -1,9 +1,11 @@
+import { InfoOutlined } from '@mui/icons-material';
+import { Box, Typography } from '@mui/material';
 import { BottomSheet } from '@stackflow/plugin-basic-ui';
 import { ActivityComponentType } from '@stackflow/react';
-import { Box, Typography } from '@mui/material';
+
 import { useGetUserInfo } from '../../apis/auth/_hooks/me';
 import { useUserMaxNut } from '../../recoil/userDailyNutrient';
-import { InfoOutlined } from '@mui/icons-material';
+
 
 const PersonalNutrientBottomSheet: ActivityComponentType = () => {
   const { data: userInfo } = useGetUserInfo();

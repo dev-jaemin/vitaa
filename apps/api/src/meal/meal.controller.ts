@@ -1,8 +1,9 @@
 import { Body, Controller, Get, Post, Query, Req, Res, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
-import { MealService } from './meal.service';
-import { PostMealDto } from '@repo/ui/types';
 import { AuthGuard } from '@nestjs/passport';
+import { PostMealDto } from '@repo/ui/types';
 import { Request, Response } from 'express';
+
+import { MealService } from './meal.service';
 
 @Controller('meal')
 export class MealController {

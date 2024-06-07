@@ -1,25 +1,25 @@
-import { stackflow } from '@stackflow/react';
-import { basicRendererPlugin } from '@stackflow/plugin-renderer-basic';
 import { basicUIPlugin } from '@stackflow/plugin-basic-ui';
 import { historySyncPlugin } from '@stackflow/plugin-history-sync';
+import { basicRendererPlugin } from '@stackflow/plugin-renderer-basic';
+import { stackflow } from '@stackflow/react';
 
-import MainActivity from '../activities/MainActivity';
-import SettingsActivity from '../activities/Settings';
-import CameraActivity from '../activities/CameraActivity';
-import ProfileActivity from '../activities/ProfileActivity';
-import CalendarModal from '../activities/_modals/CalendarModal';
-import CapturedActivity from '../activities/CapturedActivity';
-import AuthActivity from '../activities/AuthActivity';
-import MealActivity from '../activities/MealActivity';
-import MealSelectionModal from '../activities/_modals/MealSelectionModal';
 import '@stackflow/plugin-basic-ui/index.css';
-import { AuthCallbackActivity } from '../activities/AuthCallbackActivity';
 import { providersPlugin } from './plugins/providersPlugin';
 import ChatBottomSheet from '../activities/_bottomsheets/ChatBottomSheet';
-import RegisterActivity from '../activities/RegisterActivity';
-import MyInformationActivity from '../activities/MyInformationActivity';
-import RulesBottomSheet from '../activities/_bottomsheets/RulesBottomSheet';
 import PersonalNutrientBottomSheet from '../activities/_bottomsheets/PersonalNutrientBottomSheet';
+import RulesBottomSheet from '../activities/_bottomsheets/RulesBottomSheet';
+import CalendarModal from '../activities/_modals/CalendarModal';
+import MealSelectionModal from '../activities/_modals/MealSelectionModal';
+import AuthActivity from '../activities/AuthActivity';
+import { AuthCallbackActivity } from '../activities/AuthCallbackActivity';
+import CameraActivity from '../activities/CameraActivity';
+import CapturedActivity from '../activities/CapturedActivity';
+import MainActivity from '../activities/MainActivity';
+import MealActivity from '../activities/MealActivity';
+import MyInformationActivity from '../activities/MyInformationActivity';
+import ProfileActivity from '../activities/ProfileActivity';
+import RegisterActivity from '../activities/RegisterActivity';
+import SettingsActivity from '../activities/Settings';
 
 export const { Stack, useFlow } = stackflow({
   transitionDuration: 350,

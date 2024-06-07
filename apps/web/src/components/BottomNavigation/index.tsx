@@ -1,9 +1,9 @@
+import { CameraAlt, Home, Person } from '@mui/icons-material';
+import { Box } from '@mui/material';
 import MUIBottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 
 import { useFlow } from '../../layouts/stackflow';
-import { CameraAlt, Home, Person } from '@mui/icons-material';
-import { Box } from '@mui/material';
 
 // TEMP TYPE
 type Activity = 'MainActivity' | 'CameraActivity' | 'ProfileActivity';

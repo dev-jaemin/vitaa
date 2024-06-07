@@ -1,6 +1,8 @@
-import { Box } from '@mui/material';
-import LoadingLottie from '../../assets/lottie/chatLoad.json';
 import Lottie from 'react-lottie';
+
+import { Box } from '@mui/material';
+
+import LoadingLottie from '../../assets/lottie/chatLoad.json';
 
 const options = {
   loop: true,

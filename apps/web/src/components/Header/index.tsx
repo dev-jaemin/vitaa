@@ -1,9 +1,13 @@
 import { Badge, Box, Button, styled } from '@mui/material';
+
 import { SpaceBetweenContainer } from '../Containers/ScreenContainer';
 import { useSelectedDate } from '../../recoil/selectedDate';
+
 import dayjs from 'dayjs';
 import { ArrowDropDown, Chat } from '@mui/icons-material';
+
 import { useFlow } from '../../layouts/stackflow';
+
 import DefaultAvatar from '/DefaultAvatar.png';
 
 const Header = ({ isCalendar = false }: { isCalendar?: boolean }) => {
