@@ -26,11 +26,9 @@ export const useGetRegisterForm = (): RegisterResponse => {
   const { push } = useFlow();
 
   const goHome = () => {
-    setTimeout(() => {
-      enqueueSnackbar('회원가입이 완료되었어요! 환영합니다:)', { variant: 'success' });
-      push('MainActivity', {});
-      return;
-    }, 4000);
+    enqueueSnackbar('회원가입이 완료되었어요! 환영합니다:)', { variant: 'success' });
+    push('MainActivity', {});
+    return;
   };
 
   const postRegister = usePostRegister(registerData, goHome);
