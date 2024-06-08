@@ -1,6 +1,6 @@
 CREATE TABLE user (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  kakao_id INT,
+  kakao_id BIGINT,
   username VARCHAR(255),
   gender VARCHAR(10),
   age INT,
