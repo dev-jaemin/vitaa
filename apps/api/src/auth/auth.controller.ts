@@ -25,14 +25,12 @@ export class AuthController {
       res.cookie('refreshToken', refreshToken, { httpOnly: true, sameSite: 'none' });
       res.cookie('isLoggedIn', true, { httpOnly: false, sameSite: 'none' });
 
-      return res.redirect(this.configService.get('WEB_URL'));
+      return res.redirect(req.headers.referer);
     }
 
-    console.log('=====================');
-    console.log(req);
-    console.log(req.headers);
+    console.log(req.headers.referer);
     res.cookie('kakaoId', req.user.kakaoId, { httpOnly: false });
-    return res.redirect(`${this.configService.get('WEB_URL')}/register`);
+    return res.redirect(`${req.headers.referer}register`);
   }
 
   @Post('refresh')
