@@ -26,9 +26,8 @@ export const useGetRegisterForm = (): RegisterResponse => {
   const { push } = useFlow();
 
   const goHome = () => {
-    setTimeout(() => {
-      push('MainActivity', {});
-    }, 5000);
+    push('MainActivity', {});
+    return;
   };
 
   const postRegister = usePostRegister(registerData, goHome);
