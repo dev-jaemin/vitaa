@@ -6,7 +6,6 @@ import { Request, Response } from 'express';
 
 import { AuthService } from './auth.service';
 
-
 @Controller('auth')
 export class AuthController {
   constructor(
@@ -25,10 +24,11 @@ export class AuthController {
       res.cookie('accessToken', accessToken, { httpOnly: true, secure: true, sameSite: 'none' });
       res.cookie('refreshToken', refreshToken, { httpOnly: true, sameSite: 'none' });
       res.cookie('isLoggedIn', true, { httpOnly: false, sameSite: 'none' });
-      return res.redirect(this.configService.get('WEB_URL'));
+
+      return res.redirect(req.headers.origin);
     }
     res.cookie('kakaoId', req.user.kakaoId, { httpOnly: false });
-    return res.redirect(this.configService.get('WEB_URL') + '/register');
+    return res.redirect(`${req.headers.origin}/register`);
   }
 
   @Post('refresh')

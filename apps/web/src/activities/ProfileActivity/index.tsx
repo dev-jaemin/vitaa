@@ -19,7 +19,7 @@ const ProfileActivity: ActivityComponentType = () => {
   const theme = useTheme();
   const { setUser } = useAuthUser();
 
-  function handleLogin() {
+  function handleLogout() {
     delete_cookie('accessToken');
     setUser?.(null);
     push('AuthActivity', {});
@@ -74,7 +74,7 @@ const ProfileActivity: ActivityComponentType = () => {
               <GavelIcon />
               <Typography variant="h6">약관</Typography>
             </NavButton>
-            <NavButton onClick={handleLogin} variant="contained">
+            <NavButton onClick={handleLogout} variant="contained">
               <Logout />
               <Typography variant="h6">로그아웃</Typography>
             </NavButton>
