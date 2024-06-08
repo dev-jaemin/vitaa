@@ -1,9 +1,11 @@
 import { createContext, useState, useContext, useEffect } from 'react';
+import { useLocation } from 'react-router';
 
 import { User } from '@repo/ui';
 import { enqueueSnackbar } from 'notistack';
 
 import { useGetUserInfo } from '../apis/auth/_hooks/me';
+import { AUTH_WHITE_LIST } from '../constants/authWhiteList';
 import { useFlow } from '../layouts/stackflow';
 
 type ProviderContextType = {
@@ -27,13 +29,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const { push } = useFlow();
   const [user, setUser] = useState<User | null>(null);
   const { data: userData, isLoading } = useGetUserInfo();
+  const pathname = window.location.pathname;
 
   useEffect(() => {
     if (userData) {
       setUser(userData);
     }
 
-    if (!isLoading && !userData) {
+    if (!isLoading && !userData && AUTH_WHITE_LIST.includes(pathname)) {
       enqueueSnackbar('비타에 로그인 해 주세요!', { variant: 'warning' });
       push('AuthActivity', {});
     }
