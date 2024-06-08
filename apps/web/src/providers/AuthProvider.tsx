@@ -27,7 +27,7 @@ export function useAuthUser() {
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const { push } = useFlow();
   const [user, setUser] = useState<User | null>(null);
-  const { data: userData, isLoading } = useGetUserInfo();
+  const { data: userData, isLoading, isError } = useGetUserInfo();
   const pathname = window.location.pathname;
 
   useEffect(() => {
@@ -37,8 +37,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     console.log('userData', userData);
     console.log('isLoading', isLoading);
+    console.log('isError', isError);
 
-    if (!AUTH_WHITE_LIST.find(whitePath => pathname.startsWith(whitePath)) && !isLoading && !userData) {
+    if (!AUTH_WHITE_LIST.find(whitePath => pathname.startsWith(whitePath)) && !isLoading && isError && !userData) {
       enqueueSnackbar('비타에 로그인 해 주세요!', { variant: 'warning' });
       push('AuthActivity', {});
     }
