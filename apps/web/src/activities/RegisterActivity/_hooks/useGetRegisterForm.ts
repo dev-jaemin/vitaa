@@ -19,8 +19,11 @@ export const useGetRegisterForm = (): RegisterResponse => {
   const [registerStep, setRegisterStep] = useRegisterStep();
   const registerData = useRegisterData();
   const setRegisterData = useSetRegisterData();
+  const searchParams = new URLSearchParams(window.location.search);
 
-  const kakaoId = get_cookie('kakaoId');
+  // const kakaoId = get_cookie('kakaoId');
+  const kakaoId = searchParams.get('kakaoId');
+  searchParams.delete('kakaoId');
   console.log('밖의 kakaoId: ', kakaoId);
 
   const { push } = useFlow();

@@ -30,7 +30,7 @@ export class AuthController {
 
     console.log(req.headers.referer);
     res.cookie('kakaoId', req.user.kakaoId, { httpOnly: false, secure: true, sameSite: 'none' });
-    return res.redirect(`${req.headers.referer}register`);
+    return res.redirect(`${req.headers.referer}register?kakaoId=${req.user.kakaoId}`);
   }
 
   @Post('refresh')
