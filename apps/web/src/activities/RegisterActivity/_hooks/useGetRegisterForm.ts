@@ -30,7 +30,7 @@ export const useGetRegisterForm = (): RegisterResponse => {
     return;
   };
 
-  const postRegister = usePostRegister(registerData);
+  const postRegister = usePostRegister(registerData, goHome);
 
   useEffect(() => {
     if (!kakaoId) {
@@ -47,7 +47,6 @@ export const useGetRegisterForm = (): RegisterResponse => {
 
   const register = async () => {
     await postRegister.mutateAsync();
-    goHome();
   };
 
   switch (registerStep) {
