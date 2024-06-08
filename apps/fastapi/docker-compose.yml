@@ -1,6 +1,8 @@
 services:
   fastapi_vita:
     image: python:3.9.9-slim-bullseye
+    mem_limit: 128m
+    mem_reservation: 128m  
     restart: always
     container_name: fastapi_vita
     ports:
