@@ -8,7 +8,7 @@ import { useFlow } from '../layouts/stackflow';
 
 type ProviderContextType = {
   user: User | null;
-  setUser?: (user: User) => void;
+  setUser?: (user: User | null) => void;
 };
 
 const ProviderContext = createContext<ProviderContextType>({ user: null });
