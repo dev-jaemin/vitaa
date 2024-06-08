@@ -39,6 +39,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       enqueueSnackbar('비타에 로그인 해 주세요!', { variant: 'warning' });
       push('AuthActivity', {});
     }
+
+    if (pathname.startsWith('/auth') && userData) {
+      push('MainActivity', {});
+    }
   }, [userData, isFetching, isFetched, pathname]);
 
   return <ProviderContext.Provider value={{ user, setUser }}>{children}</ProviderContext.Provider>;
