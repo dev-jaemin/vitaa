@@ -14,6 +14,7 @@ import NutrientBox from '../../components/NutrientBox/NutrientBox';
 import { useGetMealByDate } from '../../hooks/meal/useGetMealByDate';
 import { useSetMeals } from '../../recoil/meal';
 import { useSelectedDate } from '../../recoil/selectedDate';
+import { WaterBox } from './WaterBox/WaterBox';
 
 const MainActivity: ActivityComponentType = () => {
   const selectedDate = useSelectedDate();
@@ -33,6 +34,7 @@ const MainActivity: ActivityComponentType = () => {
       <Header isCalendar />
       <ScreenContainer gap={4}>
         <WelcomeBox />
+        <WaterBox />
         <CalorieBox />
         <NutrientBox meals={mealData ?? []} />
         <MealList />
