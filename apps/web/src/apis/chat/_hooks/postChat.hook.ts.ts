@@ -4,8 +4,8 @@ import { enqueueSnackbar } from 'notistack';
 
 import { postChat } from '..';
 import { useMutation } from '../../../config/react-query/useMutation';
-import { QUERY_KEYS } from '../../../constants/queryKeys';
 import { useSetIsLoadingChat } from '../../../recoil/chat';
+import { UseMutationResult } from '@tanstack/react-query';
 
 export const usePostChat = () => {
   const queryClient = useQueryClient();
