@@ -25,12 +25,11 @@ export class AuthController {
       res.cookie('refreshToken', refreshToken, { httpOnly: false, secure: true, sameSite: 'none' });
       res.cookie('isLoggedIn', true, { httpOnly: false, secure: true, sameSite: 'none' });
 
-      return res.redirect(req.headers.referer);
+      return res.redirect(this.configService.get('WEB_URL'));
     }
 
-    console.log(req.headers.referer);
     res.cookie('kakaoId', req.user.kakaoId, { httpOnly: false, secure: true, sameSite: 'none' });
-    return res.redirect(`${req.headers.referer}register?kakaoId=${req.user.kakaoId}`);
+    return res.redirect(`${this.configService.get('WEB_URL')}/register?kakaoId=${req.user.kakaoId}`);
   }
 
   @Post('refresh')
@@ -52,9 +51,9 @@ export class AuthController {
       await this.authService.register(body);
 
       const { accessToken, refreshToken } = await this.authService.getJWT(body.kakaoId);
-      res.cookie('accessToken', accessToken, { httpOnly: true });
-      res.cookie('refreshToken', refreshToken, { httpOnly: true });
-      res.cookie('isLoggedIn', true, { httpOnly: false });
+      res.cookie('accessToken', accessToken, { httpOnly: true, secure: true, sameSite: 'none' });
+      res.cookie('refreshToken', refreshToken, { httpOnly: true, secure: true, sameSite: 'none' });
+      res.cookie('isLoggedIn', true, { httpOnly: false, secure: true, sameSite: 'none' });
 
       return res.send({ message: 'success' });
     } catch (err) {
