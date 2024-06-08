@@ -57,6 +57,7 @@ export class AuthController {
 
       return res.send({ message: 'success' });
     } catch (err) {
+      console.error(err);
       throw new UnauthorizedException();
     }
   }
