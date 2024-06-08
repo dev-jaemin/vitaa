@@ -12,28 +12,30 @@ interface DateSelectProps {
 export const DateSelect = ({ selectedMealDate, onDateChange }: DateSelectProps) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Box mt={4} p={2}>
-        <Typography variant="h4" textAlign="center">
+      <Box mt={10} mb={2} px={2}>
+        <Typography variant="h4" color="secondary">
           날짜와 식사를 선택해주세요
         </Typography>
       </Box>
-      <Box display="flex" justifyContent="center" gap={1} p={2}>
+      <Box display="flex" justifyContent="center" gap={1} px={2} mt={1}>
         <DatePicker
+          sx={{ width: '100%' }}
           value={selectedMealDate.date}
           onChange={value => {
             onDateChange('date', value);
           }}
         />
         <Select
+          fullWidth
           value={selectedMealDate.category}
           onChange={e => {
             onDateChange('category', e.target.value as MealTime);
           }}
         >
-          <MenuItem value={MEAL_TIME.BREAKFAST}>아침</MenuItem>
-          <MenuItem value={MEAL_TIME.LUNCH}>점심</MenuItem>
-          <MenuItem value={MEAL_TIME.DINNER}>저녁</MenuItem>
-          <MenuItem value={MEAL_TIME.SNACK}>간식</MenuItem>
+          <MenuItem value={MEAL_TIME.BREAKFAST}>🍳 아침</MenuItem>
+          <MenuItem value={MEAL_TIME.LUNCH}>🍱 점심</MenuItem>
+          <MenuItem value={MEAL_TIME.DINNER}>🍜 저녁</MenuItem>
+          <MenuItem value={MEAL_TIME.SNACK}>🍡 간식</MenuItem>
         </Select>
       </Box>
     </LocalizationProvider>

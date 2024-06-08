@@ -50,6 +50,6 @@ export default NutrientBox;
 const BoxContainer = styled(Grid)(({ theme }) => ({
   borderRadius: 24,
   backgroundColor: theme.colors.secondary.lighter,
-  width: '95%',
+  width: '100%',
   padding: 16,
 }));

@@ -39,7 +39,7 @@ export default RecommendMealBox;
 const BoxContainer = styled(Box)(({ theme }) => ({
   borderRadius: 24,
   backgroundColor: theme.colors.secondary.lighter,
-  width: '90%',
+  width: '100%',
   padding: 16,
   cursor: 'pointer',
   transition: 'background-color 0.3s',

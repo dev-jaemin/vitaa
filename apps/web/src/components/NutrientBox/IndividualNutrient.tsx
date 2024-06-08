@@ -16,7 +16,7 @@ const IndividualNutrient: React.FC<IndividualNutrientProps> = ({ mass, nutrient,
   const color = nutrientColors[nutrient];
 
   return (
-    <Grid item sm={6} p={1}>
+    <Grid item xs={6} p={1}>
       <Typography variant="h3" display={'inline'}>
         {mass}
       </Typography>

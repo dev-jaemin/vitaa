@@ -19,7 +19,7 @@ import MealActivity from '../activities/MealActivity';
 import MyInformationActivity from '../activities/MyInformationActivity';
 import ProfileActivity from '../activities/ProfileActivity';
 import RegisterActivity from '../activities/RegisterActivity';
-import SettingsActivity from '../activities/Settings';
+import NotFoundActivity from '../activities/NotFound';
 
 export const { Stack, useFlow } = stackflow({
   transitionDuration: 350,
@@ -33,7 +33,6 @@ export const { Stack, useFlow } = stackflow({
         /**페이지 */
         MainActivity: '/',
         CameraActivity: '/camera',
-        SettingsActivity: '/settings',
         CapturedActivity: '/captured',
         MealActivity: '/meal',
         /** 프로필 페이지 */
@@ -51,8 +50,10 @@ export const { Stack, useFlow } = stackflow({
         ChatBottomSheet: '/chat?message',
         RulesBottomSheet: '/rules',
         PersonalNutrientBottomSheet: '/nutrients',
+        /** 404 페이지 */
+        NotFoundActivity: '*',
       },
-      fallbackActivity: () => 'MainActivity',
+      fallbackActivity: () => 'NotFoundActivity',
     }),
     providersPlugin,
   ],
@@ -63,7 +64,6 @@ export const { Stack, useFlow } = stackflow({
     ProfileActivity,
     CapturedActivity,
     MealActivity,
-    SettingsActivity,
     AuthActivity,
     AuthCallbackActivity,
     RegisterActivity,
@@ -75,6 +75,8 @@ export const { Stack, useFlow } = stackflow({
     ChatBottomSheet,
     RulesBottomSheet,
     PersonalNutrientBottomSheet,
+    /** 404 페이지 */
+    NotFoundActivity: NotFoundActivity,
   },
   initialActivity: () => 'MainActivity',
 });

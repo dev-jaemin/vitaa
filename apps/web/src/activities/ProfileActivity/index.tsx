@@ -62,29 +62,21 @@ const ProfileActivity: ActivityComponentType = () => {
           <Box display={'flex'} px={4} gap={1}>
             <NavButton variant="contained" onClick={handleSettings}>
               <Settings />
-              <Typography variant="h6" ml={2}>
-                내 정보 변경
-              </Typography>
+              <Typography variant="h6">내 정보 변경</Typography>
             </NavButton>
             <NavButton variant="contained" onClick={handleNutrient}>
               <FoodBank />
-              <Typography variant="h6" ml={2}>
-                내 추천 영양분
-              </Typography>
+              <Typography variant="h6">추천 영양분</Typography>
             </NavButton>
           </Box>
           <Box display={'flex'} px={4} gap={1}>
             <NavButton variant="contained" onClick={handleRules}>
               <GavelIcon />
-              <Typography variant="h6" ml={2}>
-                약관
-              </Typography>
+              <Typography variant="h6">약관</Typography>
             </NavButton>
             <NavButton onClick={handleLogin} variant="contained">
               <Logout />
-              <Typography variant="h6" ml={2}>
-                로그아웃
-              </Typography>
+              <Typography variant="h6">로그아웃</Typography>
             </NavButton>
           </Box>
         </Box>
@@ -99,6 +91,7 @@ export default ProfileActivity;
 const NavButton = styled(Button)({
   width: '50%',
   height: '200px',
+  display: 'block',
   borderRadius: 24,
   backgroundColor: 'whitesmoke',
   color: 'black',

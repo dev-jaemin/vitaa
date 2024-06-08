@@ -36,7 +36,7 @@ const BoxContainer = styled(Box)(({ theme }) => ({
   borderRadius: 24,
   backgroundColor: theme.colors.primary.lighter,
   marginTop: 16,
-  width: '90%',
+  width: '100%',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
