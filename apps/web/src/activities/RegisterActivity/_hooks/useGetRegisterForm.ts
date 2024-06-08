@@ -5,7 +5,6 @@ import { enqueueSnackbar } from 'notistack';
 import { usePostRegister } from '../../../apis/auth/_hooks/register.hook';
 import { useFlow } from '../../../layouts/stackflow';
 import { useRegisterData, useRegisterStep, useSetRegisterData } from '../../../recoil/auth';
-import { get_cookie } from '../../../utils/storage/cookie';
 
 interface RegisterResponse {
   title: string;
@@ -21,10 +20,8 @@ export const useGetRegisterForm = (): RegisterResponse => {
   const setRegisterData = useSetRegisterData();
   const searchParams = new URLSearchParams(window.location.search);
 
-  // const kakaoId = get_cookie('kakaoId');
   const kakaoId = searchParams.get('kakaoId');
   searchParams.delete('kakaoId');
-  console.log('밖의 kakaoId: ', kakaoId);
 
   const { push } = useFlow();
 
@@ -36,7 +33,6 @@ export const useGetRegisterForm = (): RegisterResponse => {
   const postRegister = usePostRegister(registerData, goHome);
 
   useEffect(() => {
-    console.log('안의 kakaoId: ', kakaoId);
     if (!kakaoId) {
       enqueueSnackbar('카카오 로그인이 필요해요', { variant: 'error' });
       push('AuthActivity', {});
@@ -44,6 +40,7 @@ export const useGetRegisterForm = (): RegisterResponse => {
     }
     setRegisterData({ ...registerData, kakaoId: Number(kakaoId) });
   }, []);
+
   const goNext = () => {
     setRegisterStep(registerStep + 1);
   };

@@ -35,7 +35,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setUser(userData);
     }
 
-    if (!AUTH_WHITE_LIST.includes(pathname) && !isLoading && !userData) {
+    if (!AUTH_WHITE_LIST.find(whitePath => pathname.startsWith(whitePath)) && !isLoading && !userData) {
       enqueueSnackbar('비타에 로그인 해 주세요!', { variant: 'warning' });
       push('AuthActivity', {});
     }
