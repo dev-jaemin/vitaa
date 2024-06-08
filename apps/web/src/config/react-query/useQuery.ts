@@ -1,4 +1,4 @@
-import { QueryFunction, QueryKey, UseQueryOptions, useQuery as _useQuery } from '@tanstack/react-query';
+import { QueryFunction, QueryKey, UseQueryOptions, useQuery as _useQuery, UseQueryResult } from '@tanstack/react-query';
 
 export type UseQueryProps<TData = unknown, TError = unknown, TQueryFnData = TData> = {
   queryKey: QueryKey;
