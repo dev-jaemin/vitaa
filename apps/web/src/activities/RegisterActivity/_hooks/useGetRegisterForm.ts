@@ -21,6 +21,7 @@ export const useGetRegisterForm = (): RegisterResponse => {
   const setRegisterData = useSetRegisterData();
 
   const kakaoId = get_cookie('kakaoId');
+  console.log('밖의 kakaoId: ', kakaoId);
 
   const { push } = useFlow();
 
@@ -32,6 +33,7 @@ export const useGetRegisterForm = (): RegisterResponse => {
   const postRegister = usePostRegister(registerData, goHome);
 
   useEffect(() => {
+    console.log('안의 kakaoId: ', kakaoId);
     if (!kakaoId) {
       enqueueSnackbar('카카오 로그인이 필요해요', { variant: 'error' });
       push('AuthActivity', {});
