@@ -13,20 +13,7 @@ import './App.css';
 import '@stackflow/plugin-basic-ui/index.css';
 
 function App() {
-  const queryClient = new QueryClient({
-    queryCache: new QueryCache({
-      onError: error => {
-        if (error instanceof AxiosError)
-          enqueueSnackbar(COMMON_MESSAGE.SERVER_ERROR, {
-            variant: 'error',
-          });
-        else
-          enqueueSnackbar(COMMON_MESSAGE.UNKNOWN_ERROR, {
-            variant: 'error',
-          });
-      },
-    }),
-  });
+  const queryClient = new QueryClient();
 
   return (
     <>
