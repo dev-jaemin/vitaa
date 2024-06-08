@@ -26,16 +26,18 @@ export function useAuthUser() {
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const { push } = useFlow();
   const [user, setUser] = useState<User | null>(null);
-  const { data: userData } = useGetUserInfo();
+  const { data: userData, isLoading } = useGetUserInfo();
 
   useEffect(() => {
     if (userData) {
       setUser(userData);
-    } else {
+    }
+
+    if (!isLoading && !userData) {
       enqueueSnackbar('비타에 로그인 해 주세요!', { variant: 'warning' });
       push('AuthActivity', {});
     }
-  }, [userData]);
+  }, [userData, isLoading]);
 
   return <ProviderContext.Provider value={{ user, setUser }}>{children}</ProviderContext.Provider>;
 }
