@@ -7,11 +7,11 @@ import CalorieBox from './CalorieBox/CalorieBox';
 import MealList from './MealList/MealList';
 import WelcomeBox from './WelcomeBox/WelcomeBox';
 import { usePrefetchChat } from '../../apis/chat/_hooks/getChat.hook';
-import { useGetMealByDate } from '../../apis/meal/_hooks/getMeal';
 import { BottomNavigation } from '../../components/BottomNavigation';
 import { ScreenContainer } from '../../components/Containers/ScreenContainer';
 import Header from '../../components/Header';
 import NutrientBox from '../../components/NutrientBox/NutrientBox';
+import { useGetMealByDate } from '../../hooks/meal/useGetMealByDate';
 import { useSetMeals } from '../../recoil/meal';
 import { useSelectedDate } from '../../recoil/selectedDate';
 
