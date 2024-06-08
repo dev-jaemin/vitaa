@@ -11,12 +11,18 @@ import { useFlow } from '../../layouts/stackflow';
 
 import DefaultAvatar from '/DefaultAvatar.png';
 
+import { useAuthUser } from '../../providers';
+import { delete_cookie } from '../../utils/storage/cookie';
+
 const ProfileActivity: ActivityComponentType = () => {
   const { push } = useFlow();
   const theme = useTheme();
+  const { setUser } = useAuthUser();
 
   function handleLogin() {
-    push('AuthActivity', {}, { animate: true });
+    delete_cookie('accessToken');
+    setUser?.(null);
+    push('AuthActivity', {});
   }
 
   function handleSettings() {

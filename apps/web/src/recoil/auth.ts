@@ -25,12 +25,4 @@ const useSetRegisterData = () => useSetRecoilState(registerAtom);
 const useRegisterStep = () => useRecoilState(registerStepAtom);
 const useSetReigsterStep = () => useSetRecoilState(registerStepAtom);
 
-const userAtom = atom<User | null>({
-  key: 'userAtom',
-  default: null,
-});
-
-const useUser = () => useRecoilValue(userAtom);
-const useSetUser = () => useSetRecoilState(userAtom);
-
-export { useRegisterData, useSetRegisterData, useRegisterStep, useSetReigsterStep, useUser, useSetUser };
+export { useRegisterData, useSetRegisterData, useRegisterStep, useSetReigsterStep };
