@@ -1,5 +1,4 @@
 import { createContext, useState, useContext, useEffect } from 'react';
-import { useLocation } from 'react-router';
 
 import { User } from '@repo/ui';
 import { enqueueSnackbar } from 'notistack';
@@ -36,7 +35,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setUser(userData);
     }
 
-    if (!isLoading && !userData && AUTH_WHITE_LIST.includes(pathname)) {
+    if (!isLoading && !userData && !AUTH_WHITE_LIST.includes(pathname)) {
       enqueueSnackbar('비타에 로그인 해 주세요!', { variant: 'warning' });
       push('AuthActivity', {});
     }
