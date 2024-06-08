@@ -1,6 +1,8 @@
 //쿠키 값 가져오는 함수
 function get_cookie(name: string) {
+  console.log('document.cookie: ', document.cookie);
   const value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+  console.log('value: ', value);
   return value ? value[2] : null;
 }
 
