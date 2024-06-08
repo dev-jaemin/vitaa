@@ -24,11 +24,11 @@ export class AuthController {
       res.cookie('accessToken', accessToken, { httpOnly: true, secure: true, sameSite: 'none' });
       res.cookie('refreshToken', refreshToken, { httpOnly: true, sameSite: 'none' });
       res.cookie('isLoggedIn', true, { httpOnly: false, sameSite: 'none' });
-
-      return res.redirect(req.get('origin'));
+      console.log(req.headers);
+      return res.redirect(this.configService.get('WEB_URL'));
     }
     res.cookie('kakaoId', req.user.kakaoId, { httpOnly: false });
-    return res.redirect(`${req.get('origin')}/register`);
+    return res.redirect(`${this.configService.get('WEB_URL')}/register`);
   }
 
   @Post('refresh')
