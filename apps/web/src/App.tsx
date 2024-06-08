@@ -41,7 +41,7 @@ function App() {
                 info: <Info color="info" sx={{ mr: 1 }} />,
               }}
               anchorOrigin={{
-                vertical: 'bottom',
+                vertical: 'top',
                 horizontal: 'center',
               }}
               Components={{

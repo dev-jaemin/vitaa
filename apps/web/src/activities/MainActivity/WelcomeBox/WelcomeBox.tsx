@@ -39,7 +39,7 @@ const WelcomeBox = () => {
 
   return (
     <Box textAlign={'center'}>
-      <Typography variant="h3">{text}</Typography>
+      <Typography variant="h3" fontWeight={400}>{text}</Typography>
       <Typography variant="h2">{data?.username + '님!'}</Typography>
     </Box>
   );

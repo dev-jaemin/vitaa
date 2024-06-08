@@ -35,7 +35,6 @@ export default CalorieBox;
 const BoxContainer = styled(Box)(({ theme }) => ({
   borderRadius: 24,
   backgroundColor: theme.colors.primary.lighter,
-  marginTop: 16,
   width: '100%',
   display: 'flex',
   flexDirection: 'column',
