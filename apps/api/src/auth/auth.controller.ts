@@ -25,10 +25,10 @@ export class AuthController {
       res.cookie('refreshToken', refreshToken, { httpOnly: true, sameSite: 'none' });
       res.cookie('isLoggedIn', true, { httpOnly: false, sameSite: 'none' });
 
-      return res.redirect(req.headers.origin);
+      return res.redirect(req.get('origin'));
     }
     res.cookie('kakaoId', req.user.kakaoId, { httpOnly: false });
-    return res.redirect(`${req.headers.origin}/register`);
+    return res.redirect(`${req.get('origin')}/register`);
   }
 
   @Post('refresh')
