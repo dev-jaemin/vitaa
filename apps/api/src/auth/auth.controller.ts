@@ -22,14 +22,14 @@ export class AuthController {
     if (isUserRegistered) {
       const { accessToken, refreshToken } = await this.authService.getJWT(req.user.kakaoId);
       res.cookie('accessToken', accessToken, { httpOnly: true, secure: true, sameSite: 'none' });
-      res.cookie('refreshToken', refreshToken, { httpOnly: true, sameSite: 'none' });
-      res.cookie('isLoggedIn', true, { httpOnly: false, sameSite: 'none' });
+      res.cookie('refreshToken', refreshToken, { httpOnly: true, secure: true, sameSite: 'none' });
+      res.cookie('isLoggedIn', true, { httpOnly: true, secure: true, sameSite: 'none' });
 
       return res.redirect(req.headers.referer);
     }
 
     console.log(req.headers.referer);
-    res.cookie('kakaoId', req.user.kakaoId, { httpOnly: false });
+    res.cookie('kakaoId', req.user.kakaoId, { httpOnly: true, secure: true, sameSite: 'none' });
     return res.redirect(`${req.headers.referer}register`);
   }
 
