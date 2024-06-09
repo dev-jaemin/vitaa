@@ -37,7 +37,8 @@ export class ChatService {
   }
 
   async saveChat(chat: ChatDto) {
-    return this.chatRepository.save(chat);
+    await this.chatRepository.save(chat);
+    return chat;
   }
 
   // async PostChat

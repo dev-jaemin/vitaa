@@ -19,6 +19,7 @@ export class ChatController {
   @UseGuards(AuthGuard('jwt'))
   async chatInference(@Req() req: Request, @Res() res: Response, @Body() body: ChatInferDto) {
     try {
+      console.log(body);
       const questionChat = {
         message: body.message,
         type: 'question',
