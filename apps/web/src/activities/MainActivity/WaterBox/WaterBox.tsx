@@ -1,12 +1,14 @@
-import { Box, Typography, styled } from '@mui/material';
+import { useEffect, useState } from 'react';
+
+import { Box, Grid, Typography, styled } from '@mui/material';
+import { enqueueSnackbar } from 'notistack';
+
+import { addCup, getCupCount } from './waterBoxUtils';
+import AddCup from '../../../assets/cup_add.png';
 import EmptyCup from '../../../assets/cup_empty.png';
 import FullCup from '../../../assets/cup_full.png';
-import AddCup from '../../../assets/cup_add.png';
 import { FlexContainer } from '../../../components/Containers/ScreenContainer';
-import { addCup, getCupCount } from './waterBoxUtils';
 import { useSelectedDate } from '../../../recoil/selectedDate';
-import { enqueueSnackbar } from 'notistack';
-import { useEffect, useState } from 'react';
 
 const TOTAL_WATER_CUPS = 7;
 const WATER_ML = 200;
@@ -57,7 +59,7 @@ export const WaterBox = () => {
       <Typography variant="caption" textAlign={'center'} ml={2}>
         하루에 1L 도전!
       </Typography>
-      <FlexContainer justifyContent={'space-between'} p={2}>
+      <Grid container display={'flex'} justifyContent={'center'} mt={1}>
         {Array.from({ length: currentWaterCups }).map((_, idx) => (
           <CupImage key={idx} src={FullCup} alt="cup" />
         ))}
@@ -65,7 +67,7 @@ export const WaterBox = () => {
         {Array.from({ length: TOTAL_WATER_CUPS - currentWaterCups - 1 }).map((_, idx) => (
           <CupImage key={'empty' + idx} src={EmptyCup} alt="cup" />
         ))}
-      </FlexContainer>
+      </Grid>
     </BoxContainer>
   );
 };

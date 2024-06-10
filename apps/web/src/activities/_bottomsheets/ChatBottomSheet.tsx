@@ -10,8 +10,6 @@ import { ChatItem } from '../../components/ChatItem';
 
 import VitaBot from '/VITA.png';
 
-
-
 import { LoadingChatItem } from '../../components/ChatItem/LoadingChat.tsx';
 import { useFlow } from '../../layouts/stackflow.ts';
 import { useIsLoadingChat, useSetIsLoadingChat, useTempMessageStore } from '../../recoil/chat.ts';
@@ -123,7 +121,7 @@ const ChatBottomSheet: ActivityComponentType = () => {
               }
             }}
           />
-          <Button variant="contained" color="primary" onClick={handleSend}>
+          <Button variant="contained" onClick={handleSend} disabled={!message.length}>
             전송
           </Button>
         </Box>

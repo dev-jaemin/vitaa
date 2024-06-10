@@ -8,7 +8,7 @@ import { useUserMaxNut } from '../../../recoil/userDailyNutrient';
 const CalorieBox = () => {
   const { maxCalories } = useUserMaxNut();
   const meals = useMeals();
-  const currentCalories = meals.reduce((sum, meal) => sum + meal.calories ?? 0, 0);
+  const currentCalories = meals.reduce((sum, meal) => sum + meal.calories, 0);
 
   const progressValue = (currentCalories / maxCalories) * 100;
 
