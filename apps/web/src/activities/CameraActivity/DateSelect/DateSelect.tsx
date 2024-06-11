@@ -8,8 +8,9 @@ import { MEAL_TIME, MealTime } from '../../../types/Meal';
 interface DateSelectProps {
   selectedMealDate: { date: Dayjs; category: MealTime };
   onDateChange: (name: string, value: Dayjs | MealTime | null) => void;
+  availableMealTimes: MealTime[];
 }
-export const DateSelect = ({ selectedMealDate, onDateChange }: DateSelectProps) => {
+export const DateSelect = ({ selectedMealDate, onDateChange, availableMealTimes }: DateSelectProps) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Box mt={10} mb={2} px={2}>
@@ -32,10 +33,14 @@ export const DateSelect = ({ selectedMealDate, onDateChange }: DateSelectProps) 
             onDateChange('category', e.target.value as MealTime);
           }}
         >
-          <MenuItem value={MEAL_TIME.BREAKFAST}>🍳 아침</MenuItem>
-          <MenuItem value={MEAL_TIME.LUNCH}>🍱 점심</MenuItem>
-          <MenuItem value={MEAL_TIME.DINNER}>🍜 저녁</MenuItem>
-          <MenuItem value={MEAL_TIME.SNACK}>🍡 간식</MenuItem>
+          {availableMealTimes?.map(mealTime => (
+            <MenuItem key={mealTime} value={mealTime}>
+              {(mealTime === MEAL_TIME.BREAKFAST && '🍳 아침') ||
+                (mealTime === MEAL_TIME.LUNCH && '🍱 점심') ||
+                (mealTime === MEAL_TIME.DINNER && '🍜 저 녁') ||
+                (mealTime === MEAL_TIME.SNACK && '🍡 간식')}
+            </MenuItem>
+          ))}
         </Select>
       </Box>
     </LocalizationProvider>
