@@ -30,6 +30,9 @@ const MealActivity: React.FC<MealActivityParams> = ({ params: { meal } }) => {
     image => image.mealCategory === meal.category && image.date === meal.date.toISOString().split('T')[0],
   );
 
+  console.log('caputredImages', capturedImages);
+  console.log('foundImage', foundImage);
+
   const handleDeleteMeal = () => {
     enqueueSnackbar('아직 없는 기능이에요.', { variant: 'info' });
     replace('MainActivity', {});
