@@ -4,7 +4,6 @@ import { getChats } from '..';
 import { useQuery } from '../../../config/react-query/useQuery';
 import { QUERY_KEYS } from '../../../constants/queryKeys';
 import { useFlow } from '../../../layouts/stackflow';
-import { UseQueryResult } from '@tanstack/react-query';
 
 export const useGetChats = () => {
   const { push } = useFlow();

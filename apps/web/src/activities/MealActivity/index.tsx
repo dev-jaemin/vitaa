@@ -1,19 +1,19 @@
 import { Box } from '@mui/material';
 import { Meal } from '@repo/ui';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
+import { enqueueSnackbar } from 'notistack';
 
+import { DeleteMealBtn } from './DeleteMealBtn';
 import { ScreenContainer } from '../../components/Containers/ScreenContainer';
 import BackHeader from '../../components/Header/BackHeader';
 import MealBox from '../../components/MealBox/MealBox';
 import MealImageBox from '../../components/MealBox/MealImageBox';
 import NutrientBox from '../../components/NutrientBox/NutrientBox';
 import ReviewBox from '../../components/ReviewBox/ReviewBox';
-import { useCapturedImage } from '../../recoil/capturedImage';
-import { DeleteMealBtn } from './DeleteMealBtn';
-import { useMealsStore } from '../../recoil/meal';
-import { SetMeal } from '@mui/icons-material';
 import { useFlow } from '../../layouts/stackflow';
-import { enqueueSnackbar } from 'notistack';
+import { useCapturedImage } from '../../recoil/capturedImage';
+import { useUserMaxNut } from '../../recoil/userDailyNutrient';
+// import { useMealsStore } from '../../recoil/meal';
 
 type MealActivityParams = {
   params: {
@@ -22,17 +22,15 @@ type MealActivityParams = {
 };
 
 const MealActivity: React.FC<MealActivityParams> = ({ params: { meal } }) => {
-  const capturedImage = useCapturedImage();
-  const [meals, setMeals] = useMealsStore();
+  const capturedImages = useCapturedImage();
+  const { maxCalories } = useUserMaxNut();
   const { replace } = useFlow();
 
+  const foundImage = capturedImages.find(
+    image => image.mealCategory === meal.category && image.date === meal.date.toISOString().split('T')[0],
+  );
+
   const handleDeleteMeal = () => {
-    // try {
-    //   setMeals(meals.filter(m => m.id !== meal.id));
-    //   enqueueSnackbar('삭제되었습니다.', { variant: 'success' });
-    // } catch {
-    //   enqueueSnackbar('삭제에 실패했습니다.', { variant: 'error' });
-    // }
     enqueueSnackbar('아직 없는 기능이에요.', { variant: 'info' });
     replace('MainActivity', {});
   };
@@ -41,9 +39,9 @@ const MealActivity: React.FC<MealActivityParams> = ({ params: { meal } }) => {
     <AppScreen>
       <BackHeader />
       <ScreenContainer gap={4} sx={{ height: '100%' }} pb={10}>
-        <MealBox meal={meal} max={3000} isDisableClick />
+        <MealBox meal={meal} max={maxCalories} isDisableClick />
         <ReviewBox meal={meal} />
-        <MealImageBox src={capturedImage ?? ''} />
+        <MealImageBox src={foundImage?.url ?? ''} />
         <NutrientBox meals={[meal]} isShowHeader />
         <DeleteMealBtn handleDeleteMeal={handleDeleteMeal} />
         <Box height={100} />

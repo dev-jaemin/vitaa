@@ -2,29 +2,32 @@ import { Box, Typography } from '@mui/material';
 
 import MealBox from '../../../components/MealBox/MealBox';
 import RecommendMealBox from '../../../components/MealBox/RecommendMealBox';
+import { mealData } from '../../../constants/meal';
 import { useMeals } from '../../../recoil/meal';
-import { MealTime } from '../../../types/Meal';
+import { useUserMaxNut } from '../../../recoil/userDailyNutrient';
 
-const defaultMeals: MealTime[] = ['Breakfast', 'Lunch', 'Dinner', 'Snack'];
-
-const tempMaxCalories = 3000;
 const MealList = () => {
   const meals = useMeals();
+  const { maxCalories } = useUserMaxNut();
 
   const existingMeals = new Set(meals.map(meal => meal.category));
-  const missingMeals = defaultMeals.filter(meal => !existingMeals.has(meal));
+  const missingMeals = mealData.filter(meal => !existingMeals.has(meal));
 
   return (
     <>
       <Typography variant="subtitle2" textAlign={'left'}>
         오늘의 식단
       </Typography>
-      <Box display="flex" flexDirection="column" gap={1} width={'90%'} alignItems={'center'}>
+      <Box display="flex" flexDirection="column" gap={1} width={'100%'} alignItems={'center'}>
         {meals.map((meal, idx) => (
-          <MealBox meal={meal} max={tempMaxCalories} key={meal.image + idx} />
+          <Box width={'100%'} key={meal.id}>
+            <MealBox meal={meal} max={maxCalories} key={meal.image + idx} />
+          </Box>
         ))}
         {missingMeals.map((missingCategory, idx) => (
-          <RecommendMealBox mealCategory={missingCategory} key={idx} />
+          <Box width={'100%'} key={missingCategory}>
+            <RecommendMealBox mealCategory={missingCategory} key={idx} />
+          </Box>
         ))}
       </Box>
     </>

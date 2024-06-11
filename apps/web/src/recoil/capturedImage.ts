@@ -1,16 +1,13 @@
 import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
 
-const capturedImageAtom = atom<string | null>({
+import { MealImage } from '../types/images';
+
+const capturedImageAtom = atom<MealImage[]>({
   key: 'capturedImage',
-  default: null,
+  default: [],
 });
 
-const useCapturedImage = () => {
-  return useRecoilValue(capturedImageAtom);
-};
-
-const useSetCapturedImage = () => {
-  return useSetRecoilState(capturedImageAtom);
-};
+const useCapturedImage = () => useRecoilValue(capturedImageAtom);
+const useSetCapturedImage = () => useSetRecoilState(capturedImageAtom);
 
 export { useCapturedImage, useSetCapturedImage };

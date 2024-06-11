@@ -5,6 +5,7 @@ import type { ActivityComponentType } from '@stackflow/react';
 
 import CalorieBox from './CalorieBox/CalorieBox';
 import MealList from './MealList/MealList';
+import { WaterBox } from './WaterBox/WaterBox';
 import WelcomeBox from './WelcomeBox/WelcomeBox';
 import { usePrefetchChat } from '../../apis/chat/_hooks/getChat.hook';
 import { BottomNavigation } from '../../components/BottomNavigation';
@@ -14,7 +15,6 @@ import NutrientBox from '../../components/NutrientBox/NutrientBox';
 import { useGetMealByDate } from '../../hooks/meal/useGetMealByDate';
 import { useSetMeals } from '../../recoil/meal';
 import { useSelectedDate } from '../../recoil/selectedDate';
-import { WaterBox } from './WaterBox/WaterBox';
 
 const MainActivity: ActivityComponentType = () => {
   const selectedDate = useSelectedDate();
