@@ -1,47 +1,61 @@
 import { useCallback, useRef, useState } from 'react';
 import Webcam from 'react-webcam';
 
-import { Box, Typography, styled } from '@mui/material';
+import { Box, Button, Typography, styled } from '@mui/material';
 import { PostMealDto } from '@repo/ui';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
 import type { ActivityComponentType } from '@stackflow/react';
 import dayjs, { Dayjs } from 'dayjs';
 import { enqueueSnackbar } from 'notistack';
 
+import VITA from '/VITA.png';
+
+import { useAddImage } from './_hooks/addImage';
 import Camera from './Camera/Camera';
 import CameraControlBox from './Camera/CameraControlBox';
 import { DateSelect } from './DateSelect';
 import { BottomNavigation } from '../../components/BottomNavigation';
+import { CenterContainer } from '../../components/Containers/ScreenContainer';
+import { mealData } from '../../constants/meal';
 import { useFlow } from '../../layouts/stackflow';
-import { useCapturedImage, useSetCapturedImage } from '../../recoil/capturedImage';
+import { useMeals } from '../../recoil/meal';
 import { MEAL_TIME, type MealTime } from '../../types/Meal';
+// import { useAddImage } from './_hooks/addImage';
 
 const CameraActivity: ActivityComponentType = () => {
   const webcamRef = useRef<Webcam>(null);
   const { push } = useFlow();
-  const capturedImage = useCapturedImage();
+  const [currentImage, setCurrentImage] = useState<string | null>(null);
+  const { addImage } = useAddImage();
+  const meals = useMeals();
+
+  const existingMeals = new Set(meals.map(meal => meal.category));
+  const missingMeals = mealData.filter(meal => !existingMeals.has(meal));
 
   const [selectedMealDate, setSelectedMealDate] = useState<{ date: Dayjs; category: MealTime }>({
     date: dayjs(),
-    category: MEAL_TIME.BREAKFAST,
+    category: missingMeals.length ? missingMeals[0] : MEAL_TIME.BREAKFAST,
   });
 
   const postData: PostMealDto = {
     date: selectedMealDate.date.toDate(),
     category: selectedMealDate.category,
-    image: capturedImage || '',
+    image: currentImage ?? '',
   };
 
   const handleClick = async () => {
     push('CapturedActivity', { postData: postData });
   };
 
-  const setImage = useSetCapturedImage();
-
   const capture = useCallback(() => {
     if (!webcamRef.current) return;
     const imageSrc = webcamRef.current.getScreenshot();
-    setImage(imageSrc);
+
+    if (imageSrc) {
+      setCurrentImage(imageSrc);
+      addImage(imageSrc, selectedMealDate.category, selectedMealDate.date.format('YYYY-MM-DD'));
+    }
+
     enqueueSnackbar('사진 촬영 완료!', { variant: 'success' });
   }, [webcamRef]);
 
@@ -51,7 +65,8 @@ const CameraActivity: ActivityComponentType = () => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        setImage(reader.result as string);
+        setCurrentImage(reader.result as string);
+        addImage(reader.result as string, selectedMealDate.category, selectedMealDate.date.format('YYYY-MM-DD'));
         enqueueSnackbar('사진 준비 완료!', { variant: 'success' });
       };
     } else {
@@ -66,30 +81,52 @@ const CameraActivity: ActivityComponentType = () => {
   };
 
   const handleRemoveImage = () => {
-    setImage(null);
+    setCurrentImage(null);
+  };
+
+  const handleGoHome = () => {
+    push('MainActivity', {}, { animate: false });
   };
 
   return (
     <AppScreen>
-      <DateSelect selectedMealDate={selectedMealDate} onDateChange={handleDateChange} />
-      {!capturedImage && <Camera webcamRef={webcamRef} />}
-      {capturedImage && (
-        <>
-          <ImageBox>
-            <Image src={capturedImage} alt="captured" />
-          </ImageBox>
-          <Typography sx={{ ml: 2 }} variant="caption">
-            잠깐! 음식사진이 맞는지 확인 후 분석을 시작해주세요.
+      {missingMeals.length === 0 ? (
+        <CenterContainer height={'100%'} justifyContent={'center'} alignItems={'center'} flexDirection={'column'}>
+          <img src={VITA} alt="placeholder" width={'80%'} />
+          <Typography variant="h4" color="secondary">
+            오늘의 식사를 모두 등록하셨어요!
           </Typography>
+          <Button variant="outlined" color="primary" onClick={handleGoHome} sx={{ mt: 2 }}>
+            홈으로 돌아가기
+          </Button>
+        </CenterContainer>
+      ) : (
+        <>
+          <DateSelect
+            selectedMealDate={selectedMealDate}
+            onDateChange={handleDateChange}
+            availableMealTimes={missingMeals}
+          />
+          {!currentImage && <Camera webcamRef={webcamRef} />}
+          {currentImage && (
+            <>
+              <ImageBox>
+                <Image src={currentImage} alt="captured" />
+              </ImageBox>
+              <Typography sx={{ ml: 2 }} variant="caption">
+                잠깐! 음식사진이 맞는지 확인 후 분석을 시작해주세요.
+              </Typography>
+            </>
+          )}
+          <CameraControlBox
+            capture={capture}
+            upload={upload}
+            capturedImage={currentImage}
+            removeImage={handleRemoveImage}
+            handleClick={handleClick}
+          />
         </>
       )}
-      <CameraControlBox
-        capture={capture}
-        upload={upload}
-        capturedImage={capturedImage}
-        removeImage={handleRemoveImage}
-        handleClick={handleClick}
-      />
       <BottomNavigation />
     </AppScreen>
   );

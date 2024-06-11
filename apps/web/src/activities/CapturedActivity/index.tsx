@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Lottie from 'react-lottie';
 
-import { Check, Edit } from '@mui/icons-material';
+import { Check } from '@mui/icons-material';
 import { Box, Button, Typography, styled } from '@mui/material';
 import { PostMealDto } from '@repo/ui';
 import { AppScreen } from '@stackflow/plugin-basic-ui';
@@ -11,19 +11,10 @@ import { usePostMealByDate } from '../../apis/meal/_hooks/postMeal';
 import LoadingLottie from '../../assets/lottie/loading.json';
 import { CenterContainer, ScreenContainer } from '../../components/Containers/ScreenContainer';
 import BackHeader from '../../components/Header/BackHeader';
-import SimpleMealBox from '../../components/MealBox/SimpleMealBox';
 import { useFlow } from '../../layouts/stackflow';
 import { useCapturedImage } from '../../recoil/capturedImage';
 
-
-
-
 import VitaBot from '/VITA.png';
-
-
-import { useSetSelectedMeal, useselectedMeal } from '../../recoil/selectedMeal';
-import { MealTime } from '../../types/Meal';
-
 
 const options = {
   loop: true,
@@ -35,13 +26,12 @@ const options = {
 };
 
 const CapturedActivity: ActivityComponentType<{ postData: PostMealDto }> = ({ params: { postData } }) => {
-  const capturedImage = useCapturedImage();
+  const capturedImages = useCapturedImage();
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const selectedMeal = useselectedMeal();
-  const setSelectedMeal = useSetSelectedMeal();
-
   const { mutateAsync } = usePostMealByDate(postData);
+
+  const recentImage = capturedImages[capturedImages.length - 1];
 
   const mutateData = async () => {
     try {
@@ -60,12 +50,7 @@ const CapturedActivity: ActivityComponentType<{ postData: PostMealDto }> = ({ pa
 
   const { push } = useFlow();
 
-  const handleClickChangeMeal = (selectedMeal: MealTime) => {
-    setSelectedMeal(selectedMeal);
-    push('MealSelectionModal', {});
-  };
-
-  if (!capturedImage) {
+  if (!recentImage) {
     push('CameraActivity', {}, { animate: false });
   }
 
@@ -81,7 +66,7 @@ const CapturedActivity: ActivityComponentType<{ postData: PostMealDto }> = ({ pa
     <AppScreen>
       <BackHeader secondButtonIcon={<Check />} onClickSecondButton={handleDone} />
       <ScreenContainer gap={2} sx={{ height: '90%' }}>
-        <SimpleMealBox mealCategory={selectedMeal} icon={<Edit fontSize="small" />} onClick={handleClickChangeMeal} />
+        {/* <SimpleMealBox mealCategory={selectedMeal} icon={<Edit fontSize="small" />} onClick={handleClickChangeMeal} /> */}
         {isLoaded ? (
           <> </>
         ) : (
@@ -96,10 +81,10 @@ const CapturedActivity: ActivityComponentType<{ postData: PostMealDto }> = ({ pa
           </CenterContainer>
         )}
 
-        {capturedImage && (
+        {recentImage && (
           <BoxContainer>
             <Typography variant="h6">촬영된 이미지 : </Typography>
-            <Image src={capturedImage} alt="captured" />
+            <Image src={recentImage.url} alt="captured" />
           </BoxContainer>
         )}
       </ScreenContainer>
