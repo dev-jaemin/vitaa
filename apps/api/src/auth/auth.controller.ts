@@ -20,7 +20,7 @@ export class AuthController {
     const isUserRegistered = await this.authService.checkUserExist(req.user.kakaoId);
     console.log(req.user.kakaoId, isUserRegistered);
 
-    const redirectUrl = req.headers.host.includes('localhost')
+    const redirectUrl = req.headers.referer.includes('localhost')
       ? 'http://localhost:5173'
       : this.configService.get('WEB_URL');
 
@@ -30,7 +30,7 @@ export class AuthController {
       res.cookie('refreshToken', refreshToken, { httpOnly: false, secure: true });
       res.cookie('isLoggedIn', true, { httpOnly: false, secure: true });
 
-      return res.redirect(`${redirectUrl}/register?kakaoId=${req.user.kakaoId}`);
+      return res.redirect(`${redirectUrl}`);
     }
 
     res.cookie('kakaoId', req.user.kakaoId, { httpOnly: false, secure: true });
