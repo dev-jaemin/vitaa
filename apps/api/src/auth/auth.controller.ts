@@ -24,6 +24,7 @@ export class AuthController {
       res.cookie('accessToken', accessToken, { httpOnly: false, secure: true });
       res.cookie('refreshToken', refreshToken, { httpOnly: false, secure: true });
       res.cookie('isLoggedIn', true, { httpOnly: false, secure: true });
+      console.log(req.headers);
 
       return res.redirect(this.configService.get('WEB_URL'));
     }
