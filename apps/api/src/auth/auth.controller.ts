@@ -21,14 +21,14 @@ export class AuthController {
     console.log(req.user.kakaoId, isUserRegistered);
     if (isUserRegistered) {
       const { accessToken, refreshToken } = await this.authService.getJWT(req.user.kakaoId);
-      res.cookie('accessToken', accessToken, { httpOnly: false, secure: true, sameSite: 'none' });
-      res.cookie('refreshToken', refreshToken, { httpOnly: false, secure: true, sameSite: 'none' });
-      res.cookie('isLoggedIn', true, { httpOnly: false, secure: true, sameSite: 'none' });
+      res.cookie('accessToken', accessToken, { httpOnly: false, secure: true });
+      res.cookie('refreshToken', refreshToken, { httpOnly: false, secure: true });
+      res.cookie('isLoggedIn', true, { httpOnly: false, secure: true });
 
       return res.redirect(this.configService.get('WEB_URL'));
     }
 
-    res.cookie('kakaoId', req.user.kakaoId, { httpOnly: false, secure: true, sameSite: 'none' });
+    res.cookie('kakaoId', req.user.kakaoId, { httpOnly: false, secure: true });
     return res.redirect(`${this.configService.get('WEB_URL')}/register?kakaoId=${req.user.kakaoId}`);
   }
 
