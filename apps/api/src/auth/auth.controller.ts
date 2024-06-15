@@ -19,18 +19,22 @@ export class AuthController {
   async kakaoLogin(@Req() req: Request, @Res() res: Response) {
     const isUserRegistered = await this.authService.checkUserExist(req.user.kakaoId);
     console.log(req.user.kakaoId, isUserRegistered);
+
+    const redirectUrl = req.headers.host.includes('localhost')
+      ? 'http://localhost:5173'
+      : this.configService.get('WEB_URL');
+
     if (isUserRegistered) {
       const { accessToken, refreshToken } = await this.authService.getJWT(req.user.kakaoId);
       res.cookie('accessToken', accessToken, { httpOnly: false, secure: true });
       res.cookie('refreshToken', refreshToken, { httpOnly: false, secure: true });
       res.cookie('isLoggedIn', true, { httpOnly: false, secure: true });
-      console.log(req.headers);
 
-      return res.redirect(this.configService.get('WEB_URL'));
+      return res.redirect(`${redirectUrl}/register?kakaoId=${req.user.kakaoId}`);
     }
 
     res.cookie('kakaoId', req.user.kakaoId, { httpOnly: false, secure: true });
-    return res.redirect(`${this.configService.get('WEB_URL')}/register?kakaoId=${req.user.kakaoId}`);
+    return res.redirect(`${redirectUrl}/register?kakaoId=${req.user.kakaoId}`);
   }
 
   @Post('refresh')
