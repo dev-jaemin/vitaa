@@ -50,15 +50,15 @@ async def meal_infer(item: MealInferItem):
     image = item['image']
     food_category = item['food_category']
     user_data = json.dumps(dict(item['user_data']), ensure_ascii=False)
-    text = "Please perform the following tasks based on the image. \
+    text = "Please perform the following tasks based on the image. It's my "+food_category+". \
     Task 1 : Please check if there are any foods in the image. Please answer either yes or no. If there is no food, do not perform following task. \
     Task 2 : Identifying and Quantifying Nutritional Values of Foods in the Image.  Summarizing Nutritional Values of All Foods Consumed.  \
     Task 3 : Evaluate the foods on a scale of A to E based on the balance of nutrients. \
-    Task 4 : Make a short review depeding on my data : "+user_data+" and suggest other foods. \
+    Task 4 : Make a short review depeding on my data : "+user_data+" and suggest other foods. Please include foods name you identified in ReviewMessage. \
     Please answer food in Korean. Answer only in JSON format without explanation. And answer without spaces or line breaks inside the JSON. Use single quotes instead of double quotes inside the JSON and ReviewMessage. \
     This is an example if There are any foods in the image - {'task1': 'yes','task2':{'total':{'calories':883,'carbohydrate':165.8,'protein':30.1,'fat':18}},'task3':'E','task4': {'ReviewMessage': review_message, 'suggestion': food suggestions}} \
     This is an another example if there are no foods in the image - {'task1': 'no'}"
-
+    
     payload = {
     "model": "gpt-4o",
     "messages": [
@@ -72,7 +72,7 @@ async def meal_infer(item: MealInferItem):
                 {
                     "type": "image_url",
                     "image_url": {
-                        "url": f"{image}"
+                        "url": f"data:image/jpeg;base64,{image}"
                     }
                 }
             ]
