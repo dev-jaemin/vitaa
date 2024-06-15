@@ -5,7 +5,7 @@ import { Request, Response } from 'express';
 
 import { MealService } from './meal.service';
 
-@Controller('meal')
+@Controller('api/meal')
 export class MealController {
   constructor(private mealService: MealService) {}
 
