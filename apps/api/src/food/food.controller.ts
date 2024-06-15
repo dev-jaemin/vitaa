@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Param, Patch, Post } from '@nestjs/common';
 import { CreateFoodDto } from 'src/food/dto/create_food_dto';
 import { UpdateFoodDto } from 'src/food/dto/update_food_dto copy';
 
-@Controller('food')
+@Controller('api/food')
 export class FoodController {
   // POST /food - 음식 추가
   @Post()

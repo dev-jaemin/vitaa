@@ -7,7 +7,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   // health check
-  @Get('hello')
+  @Get('api/hello')
   get() {
     return 'health check';
   }
