@@ -50,7 +50,11 @@ const ChatBottomSheet: ActivityComponentType = () => {
 
   const handleSend = () => {
     setIsLoadingChat(true);
-    setTempMessage({ message: currentMessage ?? message, type: 'question', createdAt: new Date().toString() });
+    setTempMessage({
+      message: currentMessage && currentMessage.length > 0 ? currentMessage : message,
+      type: 'question',
+      createdAt: new Date().toString(),
+    });
     scrollToBottom();
 
     setTimeout(() => {
@@ -59,7 +63,10 @@ const ChatBottomSheet: ActivityComponentType = () => {
 
     try {
       if (!currentMessage && !message) return;
-      send.mutate({ message: currentMessage ?? message, dayNutrient: todayNutrient });
+      send.mutate({
+        message: currentMessage && currentMessage.length > 0 ? currentMessage : message,
+        dayNutrient: todayNutrient,
+      });
       setMessage('');
     } catch (e) {
       console.error(e);

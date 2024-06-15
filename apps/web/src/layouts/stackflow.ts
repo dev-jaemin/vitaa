@@ -17,9 +17,9 @@ import CapturedActivity from '../activities/CapturedActivity';
 import MainActivity from '../activities/MainActivity';
 import MealActivity from '../activities/MealActivity';
 import MyInformationActivity from '../activities/MyInformationActivity';
+import NotFoundActivity from '../activities/NotFound';
 import ProfileActivity from '../activities/ProfileActivity';
 import RegisterActivity from '../activities/RegisterActivity';
-import NotFoundActivity from '../activities/NotFound';
 
 export const { Stack, useFlow } = stackflow({
   transitionDuration: 350,
@@ -47,7 +47,7 @@ export const { Stack, useFlow } = stackflow({
         CalendarModal: '/calendar',
         MealSelectionModal: '/meal-selection',
         /**바텀시트 */
-        ChatBottomSheet: '/chat?message',
+        ChatBottomSheet: '/chat',
         RulesBottomSheet: '/rules',
         PersonalNutrientBottomSheet: '/nutrients',
         /** 404 페이지 */
