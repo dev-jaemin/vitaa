@@ -3,12 +3,12 @@ services:
     image: mysql:latest
     restart: always
     mem_limit: 256m
-    container_name: mysql_vita
+    container_name: mysql_vitaa
     ports:
-      - '3306:3306'
+      - '3307:3306'
     environment: # -e 옵션
       - MYSQL_ROOT_PASSWORD=9240
-      - MYSQL_DATABASE=mukkaebi
+      - MYSQL_DATABASE=vitaa
       - MYSQL_USER=admin
       - MYSQL_PASSWORD=admin
       - TZ=Asia/Seoul
