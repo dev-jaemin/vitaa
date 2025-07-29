@@ -28,7 +28,7 @@ docker compose ps
 
 ```
 
-### 패키지 설치
+### 서버 실행
 
 ```
 bun install
@@ -44,6 +44,16 @@ bun dev
 
 ```
 bun run build
+```
+
+### 추론서버(fastapi) 실행
+
+```
+cd apps/fastapi
+conda activate openai
+pip install -r requirements.txt
+export API_KEY={본인_OPENAI_API_KEY}
+uvicorn main:app --port 8504 --host 0.0.0.0
 ```
 
 ### 프로젝트 구조
